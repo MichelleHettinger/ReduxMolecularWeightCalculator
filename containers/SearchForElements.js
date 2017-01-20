@@ -6,15 +6,25 @@ let SearchForElements = ({ dispatch }) => {
   let input
 
   return (
-    <div id="SearchForElements">
-      <form onChange={e => {
-        e.preventDefault()
-        dispatch(searchForElements(input.value))
-      }}>
-        <input ref={node => {
-          input = node
-        }} />
-      </form>
+    <div id="SearchForElements" className="row">
+      <div className="col-sm-6 col-sm-offset-3">
+        <form
+          onChange={willSubmit => {
+            //Prevent form submission and subsequent page reload when hitting enter/return
+            willSubmit.preventDefault()
+
+            //Dispatch an action from the action creator with the value of the input
+            dispatch(searchForElements(input.value))
+          }}
+        >
+          <input className="form-control input-md"
+            ref={node => {
+              //Node refers to this specific element (this input element)
+              input = node
+            }}
+          />
+        </form>
+      </div>
     </div>
   )
 }

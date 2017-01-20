@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
 import elementsFound from './elementsFound'
 
-//elemensFound and visibiltyFilter are states accessed from anywhere in the app
-
+//elementsFound becomes the first key in the state object.
 const MWtCalc = combineReducers({
   elementsFound
 })

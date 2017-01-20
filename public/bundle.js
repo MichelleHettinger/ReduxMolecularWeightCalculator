@@ -22010,8 +22010,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//elemensFound and visibiltyFilter are states accessed from anywhere in the app
-
+	//elementsFound becomes the first key in the state object.
 	var MWtCalc = (0, _redux.combineReducers)({
 	  elementsFound: _elementsFound2.default
 	});
@@ -22032,7 +22031,9 @@
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 
-	  //console.log(action)
+	  //If state doesn't exist, it becomes an empty array.
+	  //If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
+	  //Otherwise return state.
 	  switch (action.type) {
 	    case 'SEARCH_ELEMENT':
 	      return action.elementsFound;
@@ -22062,7 +22063,7 @@
 
 	var _SearchForElements2 = _interopRequireDefault(_SearchForElements);
 
-	var _DisplayElements = __webpack_require__(203);
+	var _DisplayElements = __webpack_require__(204);
 
 	var _DisplayElements2 = _interopRequireDefault(_DisplayElements);
 
@@ -22071,9 +22072,35 @@
 	var App = function App() {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    _react2.default.createElement(_SearchForElements2.default, null),
-	    _react2.default.createElement(_DisplayElements2.default, null)
+	    { id: 'topApp', className: 'container' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'h1',
+	        null,
+	        'Heading Component Soon'
+	      )
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-8' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Calc Panel Coming Soon'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-4' },
+	        _react2.default.createElement(_SearchForElements2.default, null),
+	        _react2.default.createElement(_DisplayElements2.default, null)
+	      )
+	    )
 	  );
 	};
 
@@ -22106,16 +22133,28 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { id: 'SearchForElements' },
+	    { id: 'SearchForElements', className: 'row' },
 	    _react2.default.createElement(
-	      'form',
-	      { onChange: function onChange(e) {
-	          e.preventDefault();
-	          dispatch((0, _actions.searchForElements)(input.value));
-	        } },
-	      _react2.default.createElement('input', { ref: function ref(node) {
-	          input = node;
-	        } })
+	      'div',
+	      { className: 'col-sm-6 col-sm-offset-3' },
+	      _react2.default.createElement(
+	        'form',
+	        {
+	          onChange: function onChange(willSubmit) {
+	            //Prevent form submission and subsequent page reload when hitting enter/return
+	            willSubmit.preventDefault();
+
+	            //Dispatch an action from the action creator with the value of the input
+	            dispatch((0, _actions.searchForElements)(input.value));
+	          }
+	        },
+	        _react2.default.createElement('input', { className: 'form-control input-md',
+	          ref: function ref(node) {
+	            //Node refers to this specific element (this input element)
+	            input = node;
+	          }
+	        })
+	      )
 	    )
 	  );
 	};
@@ -22158,7 +22197,7 @@
 	});
 	exports.elementPicker = undefined;
 
-	var _elements = __webpack_require__(205);
+	var _elements = __webpack_require__(203);
 
 	var _elements2 = _interopRequireDefault(_elements);
 
@@ -22234,44 +22273,6 @@
 
 /***/ },
 /* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _reactRedux = __webpack_require__(159);
-
-	var _ElementsPanel = __webpack_require__(206);
-
-	var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var mapStateToProps = function mapStateToProps(state) {
-
-	  return {
-	    elementsFound: state.elementsFound
-	  };
-	};
-
-	// const mapDispatchToProps = (dispatch) => {
-	//   return {
-	//     onTodoClick: (id) => {
-	//       dispatch(toggleTodo(id))
-	//     }
-	//   }
-	// }
-
-	var ElementDivs = (0, _reactRedux.connect)(mapStateToProps)(_ElementsPanel2.default);
-
-	exports.default = ElementDivs;
-
-/***/ },
-/* 204 */,
-/* 205 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22781,7 +22782,44 @@
 	module.exports = elements;
 
 /***/ },
-/* 206 */
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(159);
+
+	var _ElementsPanel = __webpack_require__(205);
+
+	var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+
+	  return {
+	    elementsFound: state.elementsFound
+	  };
+	};
+
+	// const mapDispatchToProps = (dispatch) => {
+	//   return {
+	//     onTodoClick: (id) => {
+	//       dispatch(toggleTodo(id))
+	//     }
+	//   }
+	// }
+
+	var ElementDivs = (0, _reactRedux.connect)(mapStateToProps)(_ElementsPanel2.default);
+
+	exports.default = ElementDivs;
+
+/***/ },
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22800,11 +22838,11 @@
 	  var elementsFound = _ref.elementsFound;
 	  return _react2.default.createElement(
 	    "div",
-	    { id: "DisplayElements" },
+	    { id: "DisplayElements", className: "row" },
 	    elementsFound.map(function (element, i) {
 	      return _react2.default.createElement(
 	        "div",
-	        { key: i, className: "elementFound" },
+	        { key: i, className: "elementFound col-sm-3" },
 	        _react2.default.createElement(
 	          "p",
 	          { key: i },
@@ -22812,12 +22850,12 @@
 	        ),
 	        _react2.default.createElement(
 	          "p",
-	          null,
+	          { style: { textAlign: 'center' } },
 	          element.acronym
 	        ),
 	        _react2.default.createElement(
 	          "p",
-	          null,
+	          { style: { textAlign: 'center' } },
 	          element.mass
 	        )
 	      );
