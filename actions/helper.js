@@ -76,3 +76,16 @@ export const elementPicker = (userInput) => {
 
     }
 }
+
+export const adjustElement = (element, pm) => {
+  switch (pm) {
+    case '+':
+      return element.multiplier + 1
+
+    case '-':
+      return element.multiplier - 1
+
+    default:
+      return element
+  }
+}

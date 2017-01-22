@@ -2,7 +2,6 @@
 //If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
 //Otherwise return state.
 const elementsFound = (state = [], action) => {
-
   switch (action.type) {
     case 'SEARCH_ELEMENT':
       return action.elementsFound

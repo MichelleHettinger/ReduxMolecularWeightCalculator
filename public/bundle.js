@@ -22038,7 +22038,6 @@
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 
-
 	  switch (action.type) {
 	    case 'SEARCH_ELEMENT':
 	      return action.elementsFound;
@@ -22057,7 +22056,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	      value: true
 	});
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -22066,18 +22065,29 @@
 	//If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
 	//Otherwise return state.
 	var elementClicked = function elementClicked() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-	  var action = arguments[1];
+	      var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	      var action = arguments[1];
 
+	      switch (action.type) {
+	            case 'PIN_ELEMENT':
+	                  //Return an array containing the contents of state and push action.element into that array
+	                  return [].concat(_toConsumableArray(state), [action.element]);
 
-	  switch (action.type) {
-	    case 'PIN_ELEMENT':
-	      //Return an array containing the contents of state and push action.element into that array
-	      return [].concat(_toConsumableArray(state), [action.element]);
+	            case 'PLUS_MINUS':
 
-	    default:
-	      return state;
-	  }
+	                  state[action.i].multiplier = action.multiplier;
+	                  //console.log(state)
+	                  return state;
+
+	            case 'REMOVE_ELEMENT':
+
+	                  state = state.splice(action.i, 1);
+
+	                  return state;
+
+	            default:
+	                  return state;
+	      }
 	};
 
 	exports.default = elementClicked;
@@ -22215,14 +22225,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.pinElement = exports.searchForElements = undefined;
+	exports.addPlusMinus = exports.pinElement = exports.searchForElements = undefined;
 
 	var _helper = __webpack_require__(203);
 
 	var searchForElements = exports.searchForElements = function searchForElements(text) {
 	  var elementsFound = (0, _helper.elementPicker)(text);
 	  //console.log(elementsFound)
-
 	  return {
 	    type: 'SEARCH_ELEMENT',
 	    elementsFound: elementsFound
@@ -22230,13 +22239,31 @@
 	};
 
 	var pinElement = exports.pinElement = function pinElement(element) {
-
-	  console.log(element);
+	  element.multiplier = 1;
 
 	  return {
 	    type: 'PIN_ELEMENT',
 	    element: element
 	  };
+	};
+
+	var addPlusMinus = exports.addPlusMinus = function addPlusMinus(element, i, pm) {
+	  var multiplier = (0, _helper.adjustElement)(element, pm);
+
+	  switch (multiplier) {
+	    case 0:
+	      return {
+	        type: 'REMOVE_ELEMENT',
+	        i: i
+	      };
+
+	    default:
+	      return {
+	        type: 'PLUS_MINUS',
+	        multiplier: multiplier,
+	        i: i
+	      };
+	  }
 	};
 
 /***/ },
@@ -22248,7 +22275,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.elementPicker = undefined;
+	exports.adjustElement = exports.elementPicker = undefined;
 
 	var _elements = __webpack_require__(204);
 
@@ -22321,6 +22348,19 @@
 	    } else if (listElements2.length > 0) {
 	      return listElements;
 	    }
+	  }
+	};
+
+	var adjustElement = exports.adjustElement = function adjustElement(element, pm) {
+	  switch (pm) {
+	    case '+':
+	      return element.multiplier + 1;
+
+	    case '-':
+	      return element.multiplier - 1;
+
+	    default:
+	      return element;
 	  }
 	};
 
@@ -22904,17 +22944,17 @@
 	          } },
 	        _react2.default.createElement(
 	          "p",
-	          { key: i },
+	          null,
 	          element.atomicNumber
 	        ),
 	        _react2.default.createElement(
 	          "p",
-	          { style: { textAlign: 'center' } },
+	          null,
 	          element.acronym
 	        ),
 	        _react2.default.createElement(
 	          "p",
-	          { style: { textAlign: 'center' } },
+	          null,
 	          element.mass
 	        )
 	      );
@@ -22950,27 +22990,26 @@
 
 	var _CalculationPanel2 = _interopRequireDefault(_CalculationPanel);
 
+	var _index = __webpack_require__(202);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//import { pinElement } from '../actions/index'
-
 	var mapStateToProps = function mapStateToProps(state) {
-
 	  return {
 	    elementsClicked: state.elementsClicked
 	  };
 	};
 
-	// const mapDispatchToProps = (dispatch) => {
-	//   return {
-	//     onElementClick: (element) => {
-	//     	//console.log(element)
-	//       dispatch(pinElement(element))
-	//     }
-	//   }
-	// }
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onPMClick: function onPMClick(element, i, pm) {
+	      //console.log(element)
+	      dispatch((0, _index.addPlusMinus)(element, i, pm));
+	    }
+	  };
+	};
 
-	var CalcElementDivs = (0, _reactRedux.connect)(mapStateToProps)(_CalculationPanel2.default);
+	var CalcElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CalculationPanel2.default);
 
 	exports.default = CalcElementDivs;
 
@@ -22991,14 +23030,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CalculationPanel = function CalculationPanel(_ref) {
-	  var elementsClicked = _ref.elementsClicked;
+	  var elementsClicked = _ref.elementsClicked,
+	      onPMClick = _ref.onPMClick;
 	  return _react2.default.createElement(
 	    "div",
 	    { id: "CalculationPanel", className: "row" },
 	    elementsClicked.map(function (element, i) {
 	      return _react2.default.createElement(
 	        "div",
-	        { key: i, className: "elementSelected col-sm-1" },
+	        { key: i, className: "elementSelected col-sm-1", onClick: function onClick() {
+	            return onPMClick(element, i, '+');
+	          } },
 	        _react2.default.createElement(
 	          "div",
 	          { className: "btn btn-xs btn-primary p-m" },
@@ -23011,11 +23053,15 @@
 	        _react2.default.createElement(
 	          "p",
 	          null,
-	          element.acronym
+	          element.acronym,
+	          " ",
+	          element.multiplier
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "btn btn-xs btn-primary p-m" },
+	          { className: "btn btn-xs btn-primary p-m", onClick: function onClick() {
+	              return onPMClick(element, i, '-');
+	            } },
 	          _react2.default.createElement(
 	            "p",
 	            null,
@@ -23032,8 +23078,10 @@
 	    mass: _react.PropTypes.number.isRequired,
 	    name: _react.PropTypes.string.isRequired,
 	    acronym: _react.PropTypes.string.isRequired,
-	    atomicNumber: _react.PropTypes.number.isRequired
-	  }).isRequired).isRequired
+	    atomicNumber: _react.PropTypes.number.isRequired,
+	    multiplier: _react.PropTypes.number.isRequired
+	  }).isRequired).isRequired,
+	  onPMClick: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = CalculationPanel;

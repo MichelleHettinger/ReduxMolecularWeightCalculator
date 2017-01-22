@@ -5,9 +5,9 @@ const ElementsPanel = ({ elementsFound, onElementClick }) => (
   <div id="DisplayElements" className="row">
     {elementsFound.map( (element,i) =>
       <div key={i} className="elementFound col-sm-3" onClick={() => onElementClick(element)}>
-        <p key={i}>{element.atomicNumber}</p>
-        <p style={{textAlign:'center'}}>{element.acronym}</p>
-        <p style={{textAlign:'center'}}>{element.mass}</p>
+        <p>{element.atomicNumber}</p>
+        <p>{element.acronym}</p>
+        <p>{element.mass}</p>
       </div>
     )}
   </div>

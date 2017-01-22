@@ -1,26 +1,25 @@
 import { connect } from 'react-redux'
 import CalculationPanel from '../components/CalculationPanel'
-//import { pinElement } from '../actions/index'
+import { addPlusMinus } from '../actions/index'
 
 const mapStateToProps = (state) => {
-
   return {
     elementsClicked: state.elementsClicked
   }
 }
  
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onElementClick: (element) => {
-//     	//console.log(element)
-//       dispatch(pinElement(element))
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPMClick: (element, i, pm) => {
+    	//console.log(element)
+      dispatch(addPlusMinus(element, i, pm))
+    }
+  }
+}
 
 const CalcElementDivs = connect(
   mapStateToProps,
-  //mapDispatchToProps
+  mapDispatchToProps
 )(CalculationPanel)
 
 export default CalcElementDivs
