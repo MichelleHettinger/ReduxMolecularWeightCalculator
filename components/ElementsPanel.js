@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 
-const ElementsPanel = ({ elementsFound }) => (
+const ElementsPanel = ({ elementsFound, onElementClick }) => (
 
   <div id="DisplayElements" className="row">
     {elementsFound.map( (element,i) =>
-      <div key={i} className="elementFound col-sm-3">
+      <div key={i} className="elementFound col-sm-3" onClick={() => onElementClick(element)}>
         <p key={i}>{element.atomicNumber}</p>
         <p style={{textAlign:'center'}}>{element.acronym}</p>
         <p style={{textAlign:'center'}}>{element.mass}</p>
@@ -12,7 +12,7 @@ const ElementsPanel = ({ elementsFound }) => (
     )}
   </div>
 )
-
+ 
 ElementsPanel.propTypes = {
   elementsFound: PropTypes.arrayOf(PropTypes.shape({
     mass: PropTypes.number.isRequired,
@@ -20,7 +20,7 @@ ElementsPanel.propTypes = {
     acronym: PropTypes.string.isRequired,
     atomicNumber: PropTypes.number.isRequired
   }).isRequired).isRequired,
-  //onTodoClick: PropTypes.func.isRequired
+  onElementClick: PropTypes.func.isRequired
 }
 
 export default ElementsPanel

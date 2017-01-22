@@ -4,7 +4,15 @@
 #DisplayElements{
 
 }
+#CalculationPanel{
 
+}
 .elementFound{
 	border: 1px solid black;
+}
+.elementSelected{
+
+}
+.elementSelected p{
+	text-align: center;
 }

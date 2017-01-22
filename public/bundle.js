@@ -60,7 +60,7 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _App = __webpack_require__(199);
+	var _App = __webpack_require__(200);
 
 	var _App2 = _interopRequireDefault(_App);
 
@@ -22008,11 +22008,16 @@
 
 	var _elementsFound2 = _interopRequireDefault(_elementsFound);
 
+	var _elementClicked = __webpack_require__(199);
+
+	var _elementClicked2 = _interopRequireDefault(_elementClicked);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//elementsFound becomes the first key in the state object.
 	var MWtCalc = (0, _redux.combineReducers)({
-	  elementsFound: _elementsFound2.default
+	  elementsFound: _elementsFound2.default,
+	  elementsClicked: _elementClicked2.default
 	});
 
 	exports.default = MWtCalc;
@@ -22026,14 +22031,14 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var searchForElements = function searchForElements() {
+	//If state doesn't exist, it becomes an empty array.
+	//If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
+	//Otherwise return state.
+	var elementsFound = function elementsFound() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 
-	  //If state doesn't exist, it becomes an empty array.
-	  //If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
-	  //Otherwise return state.
+
 	  switch (action.type) {
 	    case 'SEARCH_ELEMENT':
 	      return action.elementsFound;
@@ -22043,11 +22048,11 @@
 	  }
 	};
 
-	exports.default = searchForElements;
+	exports.default = elementsFound;
 
 /***/ },
 /* 199 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
@@ -22055,59 +22060,96 @@
 	  value: true
 	});
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	//If state doesn't exist, it becomes an empty array.
+	//If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
+	//Otherwise return state.
+	var elementClicked = function elementClicked() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+	  var action = arguments[1];
+
+
+	  switch (action.type) {
+	    case 'PIN_ELEMENT':
+	      //Push the new element into the state array
+	      return [].concat(_toConsumableArray(state), [action.element]);
+
+	    default:
+	      return state;
+	  }
+	};
+
+	exports.default = elementClicked;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SearchForElements = __webpack_require__(200);
+	var _SearchForElements = __webpack_require__(201);
 
 	var _SearchForElements2 = _interopRequireDefault(_SearchForElements);
 
-	var _DisplayElements = __webpack_require__(204);
+	var _DisplayElements = __webpack_require__(205);
 
 	var _DisplayElements2 = _interopRequireDefault(_DisplayElements);
+
+	var _DisplayCalcElements = __webpack_require__(207);
+
+	var _DisplayCalcElements2 = _interopRequireDefault(_DisplayCalcElements);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = function App() {
-	  return _react2.default.createElement(
-	    'div',
-	    { id: 'topApp', className: 'container' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Heading Component Soon'
-	      )
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'row' },
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'col-sm-8' },
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Calc Panel Coming Soon'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        { className: 'col-sm-4' },
-	        _react2.default.createElement(_SearchForElements2.default, null),
-	        _react2.default.createElement(_DisplayElements2.default, null)
-	      )
-	    )
-	  );
+			return _react2.default.createElement(
+					'div',
+					{ id: 'topApp', className: 'container' },
+					_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+									'h1',
+									null,
+									'Heading Component Soon'
+							)
+					),
+					_react2.default.createElement(
+							'div',
+							{ className: 'row' },
+							_react2.default.createElement(
+									'div',
+									{ className: 'col-sm-8' },
+									_react2.default.createElement(
+											'h1',
+											null,
+											'Calc Panel Coming Soon'
+									),
+									_react2.default.createElement(_DisplayCalcElements2.default, null)
+							),
+							_react2.default.createElement(
+									'div',
+									{ className: 'col-sm-4' },
+									_react2.default.createElement(_SearchForElements2.default, null),
+									_react2.default.createElement(_DisplayElements2.default, null)
+							)
+					)
+			);
 	};
 
 	exports.default = App;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22122,10 +22164,11 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _actions = __webpack_require__(201);
+	var _actions = __webpack_require__(202);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	//Since this component uses redux, it is considered a container, rather than a presentational component
 	var SearchForElements = function SearchForElements(_ref) {
 	  var dispatch = _ref.dispatch;
 
@@ -22140,9 +22183,9 @@
 	      _react2.default.createElement(
 	        'form',
 	        {
-	          onChange: function onChange(willSubmit) {
+	          onChange: function onChange(form) {
 	            //Prevent form submission and subsequent page reload when hitting enter/return
-	            willSubmit.preventDefault();
+	            form.preventDefault();
 
 	            //Dispatch an action from the action creator with the value of the input
 	            dispatch((0, _actions.searchForElements)(input.value));
@@ -22164,7 +22207,7 @@
 	exports.default = SearchForElements;
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22172,13 +22215,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.searchForElements = undefined;
+	exports.pinElement = exports.searchForElements = undefined;
 
-	var _helper = __webpack_require__(202);
+	var _helper = __webpack_require__(203);
 
 	var searchForElements = exports.searchForElements = function searchForElements(text) {
 	  var elementsFound = (0, _helper.elementPicker)(text);
-	  console.log(elementsFound);
+	  //console.log(elementsFound)
 
 	  return {
 	    type: 'SEARCH_ELEMENT',
@@ -22186,8 +22229,18 @@
 	  };
 	};
 
+	var pinElement = exports.pinElement = function pinElement(element) {
+
+	  console.log(element);
+
+	  return {
+	    type: 'PIN_ELEMENT',
+	    element: element
+	  };
+	};
+
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22197,7 +22250,7 @@
 	});
 	exports.elementPicker = undefined;
 
-	var _elements = __webpack_require__(203);
+	var _elements = __webpack_require__(204);
 
 	var _elements2 = _interopRequireDefault(_elements);
 
@@ -22272,7 +22325,7 @@
 	};
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22782,7 +22835,7 @@
 	module.exports = elements;
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22793,9 +22846,11 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _ElementsPanel = __webpack_require__(205);
+	var _ElementsPanel = __webpack_require__(206);
 
 	var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
+
+	var _index = __webpack_require__(202);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22806,20 +22861,21 @@
 	  };
 	};
 
-	// const mapDispatchToProps = (dispatch) => {
-	//   return {
-	//     onTodoClick: (id) => {
-	//       dispatch(toggleTodo(id))
-	//     }
-	//   }
-	// }
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    onElementClick: function onElementClick(element) {
+	      //console.log(element)
+	      dispatch((0, _index.pinElement)(element));
+	    }
+	  };
+	};
 
-	var ElementDivs = (0, _reactRedux.connect)(mapStateToProps)(_ElementsPanel2.default);
+	var ElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ElementsPanel2.default);
 
 	exports.default = ElementDivs;
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22835,14 +22891,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ElementsPanel = function ElementsPanel(_ref) {
-	  var elementsFound = _ref.elementsFound;
+	  var elementsFound = _ref.elementsFound,
+	      onElementClick = _ref.onElementClick;
 	  return _react2.default.createElement(
 	    "div",
 	    { id: "DisplayElements", className: "row" },
 	    elementsFound.map(function (element, i) {
 	      return _react2.default.createElement(
 	        "div",
-	        { key: i, className: "elementFound col-sm-3" },
+	        { key: i, className: "elementFound col-sm-3", onClick: function onClick() {
+	            return onElementClick(element);
+	          } },
 	        _react2.default.createElement(
 	          "p",
 	          { key: i },
@@ -22869,10 +22928,107 @@
 	    name: _react.PropTypes.string.isRequired,
 	    acronym: _react.PropTypes.string.isRequired,
 	    atomicNumber: _react.PropTypes.number.isRequired
-	  }).isRequired).isRequired
+	  }).isRequired).isRequired,
+	  onElementClick: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = ElementsPanel;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(159);
+
+	var _CalculationPanel = __webpack_require__(208);
+
+	var _CalculationPanel2 = _interopRequireDefault(_CalculationPanel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//import { pinElement } from '../actions/index'
+
+	var mapStateToProps = function mapStateToProps(state) {
+
+	  return {
+	    elementsClicked: state.elementsClicked
+	  };
+	};
+
+	// const mapDispatchToProps = (dispatch) => {
+	//   return {
+	//     onElementClick: (element) => {
+	//     	//console.log(element)
+	//       dispatch(pinElement(element))
+	//     }
+	//   }
+	// }
+
+	var CalcElementDivs = (0, _reactRedux.connect)(mapStateToProps)(_CalculationPanel2.default);
+
+	exports.default = CalcElementDivs;
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CalculationPanel = function CalculationPanel(_ref) {
+	  var elementsClicked = _ref.elementsClicked;
+	  return _react2.default.createElement(
+	    "div",
+	    { id: "CalculationPanel", className: "row" },
+	    elementsClicked.map(function (element, i) {
+	      return _react2.default.createElement(
+	        "div",
+	        { key: i, className: "elementSelected col-sm-1" },
+	        _react2.default.createElement(
+	          "p",
+	          { key: i },
+	          "+"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          element.acronym
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "-"
+	        )
+	      );
+	    })
+	  );
+	};
+
+	CalculationPanel.propTypes = {
+	  elementsClicked: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    mass: _react.PropTypes.number.isRequired,
+	    name: _react.PropTypes.string.isRequired,
+	    acronym: _react.PropTypes.string.isRequired,
+	    atomicNumber: _react.PropTypes.number.isRequired
+	  }).isRequired).isRequired
+	};
+
+	exports.default = CalculationPanel;
 
 /***/ }
 /******/ ]);
