@@ -5,7 +5,7 @@ const elementClicked = (state = [], action) => {
 
   switch (action.type) {
     case 'PIN_ELEMENT':
-    	//Push the new element into the state array
+    	//Return an array containing the contents of state and push action.element into that array
       return [...state, action.element]
 
     default:

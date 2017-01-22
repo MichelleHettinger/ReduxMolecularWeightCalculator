@@ -5,9 +5,15 @@ const CalculationPanel = ({ elementsClicked }) => (
   <div id="CalculationPanel" className="row">
     {elementsClicked.map( (element,i) =>
       <div key={i} className="elementSelected col-sm-1">
-        <p key={i}>+</p>
+        <div className="btn btn-xs btn-primary p-m">
+          <p>+</p>
+        </div>
+
         <p>{element.acronym}</p>
-        <p>-</p>
+
+        <div className="btn btn-xs btn-primary p-m">
+          <p>-</p>
+        </div>
       </div>
     )}
   </div>

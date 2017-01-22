@@ -22072,7 +22072,7 @@
 
 	  switch (action.type) {
 	    case 'PIN_ELEMENT':
-	      //Push the new element into the state array
+	      //Return an array containing the contents of state and push action.element into that array
 	      return [].concat(_toConsumableArray(state), [action.element]);
 
 	    default:
@@ -23000,9 +23000,13 @@
 	        "div",
 	        { key: i, className: "elementSelected col-sm-1" },
 	        _react2.default.createElement(
-	          "p",
-	          { key: i },
-	          "+"
+	          "div",
+	          { className: "btn btn-xs btn-primary p-m" },
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            "+"
+	          )
 	        ),
 	        _react2.default.createElement(
 	          "p",
@@ -23010,9 +23014,13 @@
 	          element.acronym
 	        ),
 	        _react2.default.createElement(
-	          "p",
-	          null,
-	          "-"
+	          "div",
+	          { className: "btn btn-xs btn-primary p-m" },
+	          _react2.default.createElement(
+	            "p",
+	            null,
+	            "-"
+	          )
 	        )
 	      );
 	    })
