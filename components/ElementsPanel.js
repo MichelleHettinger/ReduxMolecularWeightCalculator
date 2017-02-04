@@ -7,7 +7,8 @@ const ElementsPanel = ({ elementsFound, onElementClick }) => (
       <div key={i} className="elementFound col-sm-3" onClick={() => onElementClick(element)}>
         <p>{element.atomicNumber}</p>
         <p>{element.acronym}</p>
-        <p>{element.mass}</p>
+        <p>{element.name}</p>
+        <p>{element.mass.toFixed(3)}</p>
       </div>
     )}
   </div>

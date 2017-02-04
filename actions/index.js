@@ -46,3 +46,20 @@ export const doMinus = (id, multiplier) => {
       }
   }
 }
+
+export const calculateTotal = (mass, pm) => {
+
+  switch (pm) {
+    case 'MINUS':
+      return {
+        type: 'CALCULATE_TOTAL_MINUS',
+        mass,
+      }
+
+    default:
+      return {
+        type: 'CALCULATE_TOTAL_PLUS',
+        mass
+      }
+  }
+}

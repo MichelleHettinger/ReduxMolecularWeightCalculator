@@ -60,7 +60,7 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _App = __webpack_require__(200);
+	var _App = __webpack_require__(201);
 
 	var _App2 = _interopRequireDefault(_App);
 
@@ -22012,12 +22012,17 @@
 
 	var _elementClicked2 = _interopRequireDefault(_elementClicked);
 
+	var _massCalculated = __webpack_require__(200);
+
+	var _massCalculated2 = _interopRequireDefault(_massCalculated);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//elementsFound becomes the first key in the state object.
+	//Keys to the state object.
 	var MWtCalc = (0, _redux.combineReducers)({
 	  elementsFound: _elementsFound2.default,
-	  elementsClicked: _elementClicked2.default
+	  elementsClicked: _elementClicked2.default,
+	  massCalculated: _massCalculated2.default
 	});
 
 	exports.default = MWtCalc;
@@ -22068,12 +22073,11 @@
 	  switch (action.type) {
 
 	    case 'PIN_ELEMENT':
-
 	      return {
 	        id: action.id,
 	        mass: action.mass,
 	        acronym: action.acronym,
-	        multiplier: action.multiplier
+	        multiplier: 1
 	      };
 
 	    case 'DO_PLUS':
@@ -22164,6 +22168,46 @@
 
 /***/ },
 /* 200 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var massCalculated = function massCalculated() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'CALCULATE_TOTAL_PLUS':
+	      var newPlus = state + action.mass;
+	      //console.log(state)
+	      //console.log(newPlus)
+
+	      return newPlus;
+
+	    case 'CALCULATE_TOTAL_MINUS':
+	      var newMinus = state - action.mass;
+	      //console.log(state)
+	      //console.log(newMinus)
+
+	      if (newMinus < 0) {
+	        return 0;
+	      }
+
+	      return newMinus;
+
+	    default:
+	      return state;
+	  }
+	};
+
+	exports.default = massCalculated;
+
+/***/ },
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22176,17 +22220,21 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _SearchForElements = __webpack_require__(201);
+	var _SearchForElements = __webpack_require__(202);
 
 	var _SearchForElements2 = _interopRequireDefault(_SearchForElements);
 
-	var _DisplayElements = __webpack_require__(205);
+	var _DisplayElements = __webpack_require__(206);
 
 	var _DisplayElements2 = _interopRequireDefault(_DisplayElements);
 
-	var _DisplayCalcElements = __webpack_require__(207);
+	var _DisplayCalcElements = __webpack_require__(208);
 
 	var _DisplayCalcElements2 = _interopRequireDefault(_DisplayCalcElements);
+
+	var _DisplayMass = __webpack_require__(210);
+
+	var _DisplayMass2 = _interopRequireDefault(_DisplayMass);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22209,11 +22257,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'col-sm-8' },
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Calc Panel Coming Soon'
-	        ),
+	        _react2.default.createElement(_DisplayMass2.default, null),
 	        _react2.default.createElement(_DisplayCalcElements2.default, null)
 	      ),
 	      _react2.default.createElement(
@@ -22229,7 +22273,7 @@
 	exports.default = App;
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22244,7 +22288,7 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _actions = __webpack_require__(202);
+	var _actions = __webpack_require__(203);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22287,7 +22331,7 @@
 	exports.default = SearchForElements;
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22295,9 +22339,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.doMinus = exports.doPlus = exports.pinElement = exports.searchForElements = undefined;
+	exports.calculateTotal = exports.doMinus = exports.doPlus = exports.pinElement = exports.searchForElements = undefined;
 
-	var _helper = __webpack_require__(203);
+	var _helper = __webpack_require__(204);
 
 	var searchForElements = exports.searchForElements = function searchForElements(text) {
 	  var elementsFound = (0, _helper.elementPicker)(text);
@@ -22345,8 +22389,25 @@
 	  }
 	};
 
+	var calculateTotal = exports.calculateTotal = function calculateTotal(mass, pm) {
+
+	  switch (pm) {
+	    case 'MINUS':
+	      return {
+	        type: 'CALCULATE_TOTAL_MINUS',
+	        mass: mass
+	      };
+
+	    default:
+	      return {
+	        type: 'CALCULATE_TOTAL_PLUS',
+	        mass: mass
+	      };
+	  }
+	};
+
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22356,7 +22417,7 @@
 	});
 	exports.adjustElement = exports.elementPicker = undefined;
 
-	var _elements = __webpack_require__(204);
+	var _elements = __webpack_require__(205);
 
 	var _elements2 = _interopRequireDefault(_elements);
 
@@ -22444,7 +22505,7 @@
 	};
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -23054,7 +23115,7 @@
 	module.exports = elements;
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23065,16 +23126,15 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _ElementsPanel = __webpack_require__(206);
+	var _ElementsPanel = __webpack_require__(207);
 
 	var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
 
-	var _index = __webpack_require__(202);
+	var _index = __webpack_require__(203);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var mapStateToProps = function mapStateToProps(state) {
-
 	  return {
 	    elementsFound: state.elementsFound
 	  };
@@ -23086,6 +23146,7 @@
 	    onElementClick: function onElementClick(element) {
 	      //console.log(element)
 	      dispatch((0, _index.pinElement)(element));
+	      dispatch((0, _index.calculateTotal)(element.mass, 'PLUS'));
 	    }
 	  };
 	};
@@ -23095,7 +23156,7 @@
 	exports.default = ElementDivs;
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23135,7 +23196,12 @@
 	        _react2.default.createElement(
 	          "p",
 	          null,
-	          element.mass
+	          element.name
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          element.mass.toFixed(3)
 	        )
 	      );
 	    })
@@ -23155,7 +23221,7 @@
 	exports.default = ElementsPanel;
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23166,11 +23232,11 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _CalculationPanel = __webpack_require__(208);
+	var _CalculationPanel = __webpack_require__(209);
 
 	var _CalculationPanel2 = _interopRequireDefault(_CalculationPanel);
 
-	var _index = __webpack_require__(202);
+	var _index = __webpack_require__(203);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23182,11 +23248,13 @@
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 	  return {
-	    onPlusClick: function onPlusClick(id) {
+	    onPlusClick: function onPlusClick(id, mass) {
 	      dispatch((0, _index.doPlus)(id));
+	      dispatch((0, _index.calculateTotal)(mass, 'PLUS'));
 	    },
-	    onMinusClick: function onMinusClick(id, multiplier) {
+	    onMinusClick: function onMinusClick(id, multiplier, mass) {
 	      dispatch((0, _index.doMinus)(id, multiplier));
+	      dispatch((0, _index.calculateTotal)(mass, 'MINUS'));
 	    }
 	  };
 	};
@@ -23196,7 +23264,7 @@
 	exports.default = CalcElementDivs;
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23224,8 +23292,9 @@
 	        { key: i, className: "elementSelected col-sm-1" },
 	        _react2.default.createElement(
 	          "div",
-	          { className: "btn btn-xs btn-primary p-m", onClick: function onClick() {
-	              return onPlusClick(element.id);
+	          { className: "btn btn-xs btn-primary p-m",
+	            onClick: function onClick() {
+	              return onPlusClick(element.id, element.mass);
 	            } },
 	          _react2.default.createElement(
 	            "p",
@@ -23242,8 +23311,9 @@
 	        ),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "btn btn-xs btn-primary p-m", onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier);
+	          { className: "btn btn-xs btn-primary p-m",
+	            onClick: function onClick() {
+	              return onMinusClick(element.id, element.multiplier, element.mass);
 	            } },
 	          _react2.default.createElement(
 	            "p",
@@ -23268,6 +23338,69 @@
 	};
 
 	exports.default = CalculationPanel;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(159);
+
+	var _MassPanel = __webpack_require__(211);
+
+	var _MassPanel2 = _interopRequireDefault(_MassPanel);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    molecularWeight: state.massCalculated
+	  };
+	};
+
+	var MassPanelDivs = (0, _reactRedux.connect)(mapStateToProps)(_MassPanel2.default);
+
+	exports.default = MassPanelDivs;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MassPanel = function MassPanel(_ref) {
+	  var molecularWeight = _ref.molecularWeight;
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "row" },
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      molecularWeight.toFixed(3)
+	    )
+	  );
+	};
+
+	MassPanel.propTypes = {
+	  molecularWeight: _react.PropTypes.number.isRequired
+	};
+
+	exports.default = MassPanel;
 
 /***/ }
 /******/ ]);

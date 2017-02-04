@@ -3,15 +3,18 @@ import React, { PropTypes } from 'react'
 const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick }) => (
 
   <div id="CalculationPanel" className="row">
+
     {elementsClicked.map( (element,i) =>
       <div key={i} className="elementSelected col-sm-1">
-        <div className="btn btn-xs btn-primary p-m" onClick={() => onPlusClick(element.id)}>
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onPlusClick(element.id, element.mass)}>
           <p>+</p>
         </div>
-
+        
         <p>{element.acronym} {element.multiplier}</p>
 
-        <div className="btn btn-xs btn-primary p-m" onClick={() => onMinusClick(element.id, element.multiplier)}>
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
           <p>-</p>
         </div>
       </div>

@@ -3,12 +3,11 @@ const editElement = (state = {}, action) => {
   switch (action.type) {
 
     case 'PIN_ELEMENT':
-
       return {
         id: action.id,
         mass: action.mass,
         acronym:action.acronym,
-        multiplier:action.multiplier
+        multiplier: 1
       }
  
     case 'DO_PLUS':
@@ -23,8 +22,9 @@ const editElement = (state = {}, action) => {
       //Create and return a new object that is exactly like state,
       //except with the multiplier incremented by 1
       return Object.assign({}, state, {
-        multiplier: state.multiplier+=1
+        multiplier: state.multiplier+=1,
       })
+
 
     case 'DO_MINUS':
       //If the element being mapped wasn't what the user clicked.
@@ -35,7 +35,7 @@ const editElement = (state = {}, action) => {
       //Create and return a new object that is exactly like state,
       //except with the multiplier decremented by 1
       return Object.assign({}, state, {
-        multiplier: state.multiplier-=1
+        multiplier: state.multiplier-=1,
       })
 
     case 'REMOVE_ELEMENT':
