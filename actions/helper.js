@@ -40,7 +40,7 @@ export const elementPicker = (userInput) => {
 
     //Depending on how many letters were typed in, display the appropriate array
     if (userInput.length == 0){
-    	return listElements
+      return listElements
     }
     else if (userInput.length == 1){
       //console.log(listElements);
@@ -55,12 +55,12 @@ export const elementPicker = (userInput) => {
       return listElements2
     }
     else if (userInput.length == 3){
-    	//console.log(listElements3);
+      //console.log(listElements3);
 
       if (listElements3.length == 0){
         return listElements2
       }
-	   	return listElements3
+      return listElements3
     }
     else if (userInput.length > 3){
 
@@ -80,10 +80,10 @@ export const elementPicker = (userInput) => {
 export const adjustElement = (element, pm) => {
   switch (pm) {
     case '+':
-      return element.multiplier + 1
+      return element.multiplier++
 
     case '-':
-      return element.multiplier - 1
+      return element.multiplier--
 
     default:
       return element

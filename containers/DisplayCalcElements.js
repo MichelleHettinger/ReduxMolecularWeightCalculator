@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import CalculationPanel from '../components/CalculationPanel'
-import { addPlusMinus } from '../actions/index'
+import { doPlus } from '../actions/index'
+import { doMinus } from '../actions/index'
 
 const mapStateToProps = (state) => {
   return {
@@ -10,9 +11,11 @@ const mapStateToProps = (state) => {
  
 const mapDispatchToProps = (dispatch) => {
   return {
-    onPMClick: (element, i, pm) => {
-    	//console.log(element)
-      dispatch(addPlusMinus(element, i, pm))
+    onPlusClick: (id) => {
+      dispatch(doPlus(id))
+    },
+    onMinusClick: (id, multiplier) => {
+      dispatch(doMinus(id, multiplier))
     }
   }
 }

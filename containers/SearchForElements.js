@@ -10,9 +10,9 @@ let SearchForElements = ({ dispatch }) => {
     <div id="SearchForElements" className="row">
       <div className="col-sm-6 col-sm-offset-3">
         <form
-          onChange={form => {
+          onChange={e => {
             //Prevent form submission and subsequent page reload when hitting enter/return
-            form.preventDefault()
+            e.preventDefault()
 
             //Dispatch an action from the action creator with the value of the input
             dispatch(searchForElements(input.value))

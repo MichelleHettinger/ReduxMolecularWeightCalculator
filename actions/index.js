@@ -10,32 +10,39 @@ export const searchForElements = (text) => {
   }
 }
 
+let nextAtomId = 0
 export const pinElement = (element) => {
-  element.multiplier = 1
 
-	return {
-		type: 'PIN_ELEMENT',
-		element
-	}
+  return {
+    type: 'PIN_ELEMENT',
+    id: nextAtomId++,
+    mass: element.mass,
+    acronym: element.acronym,
+    multiplier: element.multiplier,
+  }
 }
 
-export const addPlusMinus = (element, i, pm) => {
-  const multiplier = adjustElement(element,pm)
-  
-  switch (multiplier){
-    case 0:
+export const doPlus = (id) => {
+
+  return {
+    type: 'DO_PLUS',
+    id,
+  }
+}
+
+export const doMinus = (id, multiplier) => {
+
+  switch (multiplier) {
+    case 1:
       return {
         type: 'REMOVE_ELEMENT',
-        i
+        id,
       }
 
     default:
       return {
-        type: 'PLUS_MINUS',
-        multiplier,
-        i
+        type: 'DO_MINUS',
+        id,
       }
   }
-
-
 }
