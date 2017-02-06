@@ -1,24 +1,27 @@
 import { elementPicker } from './helper'
 import { adjustElement } from './helper'
 
-export const searchForElements = (text) => {
-  const elementsFound = elementPicker(text)
-  //console.log(elementsFound)
-  return {
-    type: 'SEARCH_ELEMENT',
-    elementsFound
-  }
-}
+let clickCount = 0
+let parenID = 0
+export const doParenthesis = (id) => {
 
-let nextAtomId = 0
-export const pinElement = (element) => {
+  console.log(clickCount)
 
-  return {
-    type: 'PIN_ELEMENT',
-    id: nextAtomId++,
-    mass: element.mass,
-    acronym: element.acronym,
-    multiplier: element.multiplier,
+  switch (clickCount) {
+    case 0:
+      clickCount++
+      return {
+        type: 'DO_PAREN',
+        clickCount: 1,
+        id,
+      }
+    case 1:
+      clickCount = 0
+      return {
+        type: 'DO_PAREN',
+        clickCount: 2,
+        id,
+      }
   }
 }
 
@@ -61,5 +64,26 @@ export const calculateTotal = (mass, pm) => {
         type: 'CALCULATE_TOTAL_PLUS',
         mass
       }
+  }
+}
+
+let nextAtomId = 0
+export const pinElement = (element) => {
+
+  return {
+    type: 'PIN_ELEMENT',
+    id: nextAtomId++,
+    mass: element.mass,
+    acronym: element.acronym,
+    multiplier: element.multiplier,
+  }
+}
+
+export const searchForElements = (text) => {
+  const elementsFound = elementPicker(text)
+  //console.log(elementsFound)
+  return {
+    type: 'SEARCH_ELEMENT',
+    elementsFound
   }
 }

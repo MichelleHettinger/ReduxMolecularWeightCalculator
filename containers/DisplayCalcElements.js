@@ -3,6 +3,7 @@ import CalculationPanel from '../components/CalculationPanel'
 import { doPlus } from '../actions/index'
 import { doMinus } from '../actions/index'
 import { calculateTotal } from '../actions/index'
+import { doParenthesis } from '../actions/index'
 
 const mapStateToProps = (state) => {
   return {
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
     onMinusClick: (id, multiplier, mass) => {
       dispatch(doMinus(id, multiplier))
       dispatch(calculateTotal(mass, 'MINUS'))
+    },
+    onElementClick: (id) => {
+      dispatch(doParenthesis(id))
     }
   }
 }

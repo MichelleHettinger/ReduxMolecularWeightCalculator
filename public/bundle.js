@@ -22078,7 +22078,8 @@
 	        mass: action.mass,
 	        acronym: action.acronym,
 	        multiplier: 1,
-	        parenId: -1
+	        parenId: -1,
+	        clicked: false
 	      };
 
 	    case 'DO_PLUS':
@@ -22159,6 +22160,17 @@
 	      //console.log(newState)
 
 	      return newState;
+
+	    case 'DO_PAREN':
+
+	      //if clickCount is 1 make clicked true
+
+	      //if clickCount is 2 and element is already true, make false
+	      //otherwise find the other true and change parenId
+
+	      console.log(state);
+
+	      return state;
 
 	    default:
 	      return state;
@@ -22340,29 +22352,32 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.calculateTotal = exports.doMinus = exports.doPlus = exports.pinElement = exports.searchForElements = undefined;
+	exports.searchForElements = exports.pinElement = exports.calculateTotal = exports.doMinus = exports.doPlus = exports.doParenthesis = undefined;
 
 	var _helper = __webpack_require__(204);
 
-	var searchForElements = exports.searchForElements = function searchForElements(text) {
-	  var elementsFound = (0, _helper.elementPicker)(text);
-	  //console.log(elementsFound)
-	  return {
-	    type: 'SEARCH_ELEMENT',
-	    elementsFound: elementsFound
-	  };
-	};
+	var clickCount = 0;
+	var parenID = 0;
+	var doParenthesis = exports.doParenthesis = function doParenthesis(id) {
 
-	var nextAtomId = 0;
-	var pinElement = exports.pinElement = function pinElement(element) {
+	  console.log(clickCount);
 
-	  return {
-	    type: 'PIN_ELEMENT',
-	    id: nextAtomId++,
-	    mass: element.mass,
-	    acronym: element.acronym,
-	    multiplier: element.multiplier
-	  };
+	  switch (clickCount) {
+	    case 0:
+	      clickCount++;
+	      return {
+	        type: 'DO_PAREN',
+	        clickCount: 1,
+	        id: id
+	      };
+	    case 1:
+	      clickCount = 0;
+	      return {
+	        type: 'DO_PAREN',
+	        clickCount: 2,
+	        id: id
+	      };
+	  }
 	};
 
 	var doPlus = exports.doPlus = function doPlus(id) {
@@ -22405,6 +22420,27 @@
 	        mass: mass
 	      };
 	  }
+	};
+
+	var nextAtomId = 0;
+	var pinElement = exports.pinElement = function pinElement(element) {
+
+	  return {
+	    type: 'PIN_ELEMENT',
+	    id: nextAtomId++,
+	    mass: element.mass,
+	    acronym: element.acronym,
+	    multiplier: element.multiplier
+	  };
+	};
+
+	var searchForElements = exports.searchForElements = function searchForElements(text) {
+	  var elementsFound = (0, _helper.elementPicker)(text);
+	  //console.log(elementsFound)
+	  return {
+	    type: 'SEARCH_ELEMENT',
+	    elementsFound: elementsFound
+	  };
 	};
 
 /***/ },
@@ -23256,6 +23292,9 @@
 	    onMinusClick: function onMinusClick(id, multiplier, mass) {
 	      dispatch((0, _index.doMinus)(id, multiplier));
 	      dispatch((0, _index.calculateTotal)(mass, 'MINUS'));
+	    },
+	    onElementClick: function onElementClick(id) {
+	      dispatch((0, _index.doParenthesis)(id));
 	    }
 	  };
 	};
@@ -23283,7 +23322,8 @@
 	var CalculationPanel = function CalculationPanel(_ref) {
 	  var elementsClicked = _ref.elementsClicked,
 	      onPlusClick = _ref.onPlusClick,
-	      onMinusClick = _ref.onMinusClick;
+	      onMinusClick = _ref.onMinusClick,
+	      onElementClick = _ref.onElementClick;
 
 
 	  var PID = void 0;
@@ -23341,7 +23381,10 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          null,
+	          {
+	            onClick: function onClick() {
+	              return onElementClick(element.id, element.clicked);
+	            } },
 	          _react2.default.createElement(
 	            'p',
 	            null,
@@ -23443,6 +23486,45 @@
 	          )
 	        )
 	      );
+	      var elementNoParenInParen = _react2.default.createElement(
+	        'div',
+	        { key: i, className: 'elementSelected col-sm-1' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onPlusClick(element.id, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '+'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            element.acronym,
+	            ' ',
+	            element.multiplier
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onMinusClick(element.id, element.multiplier, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '-'
+	          )
+	        )
+	      );
 
 	      //No parenthesis required
 	      if (element.parenId < 0) {
@@ -23458,7 +23540,7 @@
 	            return elementRightParen;
 	            //Middle elements of parentheses
 	          } else {
-	            return elementNoParen;
+	            return elementNoParenInParen;
 	          }
 	        }
 	    });
@@ -23477,10 +23559,12 @@
 	    mass: _react.PropTypes.number.isRequired,
 	    acronym: _react.PropTypes.string.isRequired,
 	    multiplier: _react.PropTypes.number.isRequired,
-	    parenId: _react.PropTypes.number.isRequired
+	    parenId: _react.PropTypes.number.isRequired,
+	    clicked: _react.PropTypes.bool.isRequired
 	  }).isRequired).isRequired,
 	  onPlusClick: _react.PropTypes.func.isRequired,
-	  onMinusClick: _react.PropTypes.func.isRequired
+	  onMinusClick: _react.PropTypes.func.isRequired,
+	  onElementClick: _react.PropTypes.func.isRequired
 	};
 
 	exports.default = CalculationPanel;

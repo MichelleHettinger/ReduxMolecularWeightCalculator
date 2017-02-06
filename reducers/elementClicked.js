@@ -8,7 +8,8 @@ const editElement = (state = {}, action) => {
         mass: action.mass,
         acronym:action.acronym,
         multiplier: 1,
-        parenId: -1
+        parenId: -1,
+        clicked: false,
       }
  
     case 'DO_PLUS':
@@ -82,6 +83,17 @@ const elementClicked = (state = [], action) => {
       //console.log(newState)
 
       return newState
+
+    case 'DO_PAREN':
+
+      //if clickCount is 1 make clicked true
+
+      //if clickCount is 2 and element is already true, make false
+      //otherwise find the other true and change parenId
+
+      console.log(state)
+
+      return state
 
     default:
       return state

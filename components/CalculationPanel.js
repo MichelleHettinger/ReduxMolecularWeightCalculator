@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick }) => {
+const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElementClick }) => {
 
   let PID
   let obj = {}
@@ -50,7 +50,8 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick }) => {
             <p>+</p>
           </div>
 
-          <div>
+          <div
+            onClick={() => onElementClick(element.id, element.clicked)}>
             <p>{element.acronym} {element.multiplier}</p>
           </div>
 
@@ -94,6 +95,23 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick }) => {
           </div>
         </div>
       )
+      const elementNoParenInParen = (
+        <div key={i} className="elementSelected col-sm-1">
+          <div className="btn btn-xs btn-primary p-m"
+            onClick={() => onPlusClick(element.id, element.mass)}>
+            <p>+</p>
+          </div>
+
+          <div>
+            <p>{element.acronym} {element.multiplier}</p>
+          </div>
+
+          <div className="btn btn-xs btn-primary p-m"
+            onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
+            <p>-</p>
+          </div>
+        </div>
+      )
 
       //No parenthesis required
       if (element.parenId < 0) {
@@ -109,7 +127,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick }) => {
             return elementRightParen
         //Middle elements of parentheses
         } else {
-            return elementNoParen
+            return elementNoParenInParen
         }
       }
     })
@@ -129,9 +147,11 @@ CalculationPanel.propTypes = {
     acronym: PropTypes.string.isRequired,
     multiplier: PropTypes.number.isRequired,
     parenId: PropTypes.number.isRequired,
+    clicked: PropTypes.bool.isRequired,
   }).isRequired).isRequired,
   onPlusClick: PropTypes.func.isRequired,
-  onMinusClick: PropTypes.func.isRequired
+  onMinusClick: PropTypes.func.isRequired,
+  onElementClick: PropTypes.func.isRequired
 }
 
 export default CalculationPanel
