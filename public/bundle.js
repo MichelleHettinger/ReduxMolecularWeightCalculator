@@ -23322,162 +23322,145 @@
 	  var elements = Object.keys(obj).map(function (key) {
 	    //console.log(obj[key])
 	    return obj[key].map(function (element, i) {
-	      //console.log(element)
-	      //console.log(i)
 	      //console.log(obj[key].length)
 
-	      if (element.parenId < 0) {
-	        return _react2.default.createElement(
+	      var elementNoParen = _react2.default.createElement(
+	        'div',
+	        { key: i, className: 'elementSelected col-sm-1' },
+	        _react2.default.createElement(
 	          'div',
-	          { key: i, className: 'elementSelected col-sm-1' },
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onPlusClick(element.id, element.mass);
+	            } },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'btn btn-xs btn-primary p-m',
-	              onClick: function onClick() {
-	                return onPlusClick(element.id, element.mass);
-	              } },
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              '+'
-	            )
-	          ),
+	            'p',
+	            null,
+	            '+'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
 	          _react2.default.createElement(
 	            'p',
 	            null,
 	            element.acronym,
 	            ' ',
 	            element.multiplier
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'btn btn-xs btn-primary p-m',
-	              onClick: function onClick() {
-	                return onMinusClick(element.id, element.multiplier, element.mass);
-	              } },
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              '-'
-	            )
 	          )
-	        );
-	      } else {
-	        //First element of parentheses
-	        if (i === 0) {
-	          return _react2.default.createElement(
-	            'div',
-	            { key: i, className: 'elementSelected col-sm-1' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onPlusClick(element.id, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '+'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              '( ',
-	              element.acronym,
-	              ' ',
-	              element.multiplier
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onMinusClick(element.id, element.multiplier, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '-'
-	              )
-	            )
-	          );
-	          //Last element of parentheses
-	        } else if (i === obj[key].length - 1) {
-	          return _react2.default.createElement(
-	            'div',
-	            { key: i, className: 'elementSelected col-sm-1' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onPlusClick(element.id, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '+'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              element.acronym,
-	              ' ',
-	              element.multiplier,
-	              ' )'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onMinusClick(element.id, element.multiplier, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '-'
-	              )
-	            )
-	          );
-	          //Middle elements of parentheses
-	        } else {
-	          return _react2.default.createElement(
-	            'div',
-	            { key: i, className: 'elementSelected col-sm-1' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onPlusClick(element.id, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '+'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              element.acronym,
-	              ' ',
-	              element.multiplier
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'btn btn-xs btn-primary p-m',
-	                onClick: function onClick() {
-	                  return onMinusClick(element.id, element.multiplier, element.mass);
-	                } },
-	              _react2.default.createElement(
-	                'p',
-	                null,
-	                '-'
-	              )
-	            )
-	          );
-	        }
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onMinusClick(element.id, element.multiplier, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '-'
+	          )
+	        )
+	      );
+	      var elementLeftParen = _react2.default.createElement(
+	        'div',
+	        { key: i, className: 'elementSelected col-sm-1' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onPlusClick(element.id, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '+'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '( ',
+	            element.acronym,
+	            ' ',
+	            element.multiplier
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onMinusClick(element.id, element.multiplier, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '-'
+	          )
+	        )
+	      );
+	      var elementRightParen = _react2.default.createElement(
+	        'div',
+	        { key: i, className: 'elementSelected col-sm-1' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onPlusClick(element.id, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '+'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            element.acronym,
+	            ' ',
+	            element.multiplier,
+	            ' )'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'btn btn-xs btn-primary p-m',
+	            onClick: function onClick() {
+	              return onMinusClick(element.id, element.multiplier, element.mass);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            '-'
+	          )
+	        )
+	      );
+
+	      //No parenthesis required
+	      if (element.parenId < 0) {
+	        return elementNoParen;
 	      }
+	      //Parenthesis required
+	      else {
+	          //First element of parentheses
+	          if (i === 0) {
+	            return elementLeftParen;
+	            //Last element of parentheses
+	          } else if (i === obj[key].length - 1) {
+	            return elementRightParen;
+	            //Middle elements of parentheses
+	          } else {
+	            return elementNoParen;
+	          }
+	        }
 	    });
 	  });
 
@@ -23487,6 +23470,7 @@
 	    elements
 	  );
 	};
+
 	CalculationPanel.propTypes = {
 	  elementsClicked: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 	    id: _react.PropTypes.number.isRequired,
