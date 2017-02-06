@@ -7,7 +7,8 @@ const editElement = (state = {}, action) => {
         id: action.id,
         mass: action.mass,
         acronym:action.acronym,
-        multiplier: 1
+        multiplier: 1,
+        parenId: -1
       }
  
     case 'DO_PLUS':

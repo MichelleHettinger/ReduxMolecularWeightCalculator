@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     elementsClicked: state.elementsClicked
   }
 }
- 
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onPlusClick: (id, mass) => {

@@ -22077,7 +22077,8 @@
 	        id: action.id,
 	        mass: action.mass,
 	        acronym: action.acronym,
-	        multiplier: 1
+	        multiplier: 1,
+	        parenId: -1
 	      };
 
 	    case 'DO_PLUS':
@@ -23267,7 +23268,7 @@
 /* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23283,55 +23284,216 @@
 	  var elementsClicked = _ref.elementsClicked,
 	      onPlusClick = _ref.onPlusClick,
 	      onMinusClick = _ref.onMinusClick;
+
+
+	  var PID = void 0;
+	  var obj = {};
+
+	  //Map over every element based off of its parenId
+	  //Push the elements with the same parenId into their respective arrays within obj
+	  var getParen = elementsClicked.map(function (element, i) {
+
+	    if (i === 0) {
+
+	      PID = element.parenId;
+	      var parenID = 'paren_' + PID;
+	      obj[parenID] = [];
+	      obj[parenID].push(element);
+	      //console.log(obj)
+	    } else {
+
+	      if (PID === element.parenId) {
+
+	        var _parenID = 'paren_' + PID;
+	        obj[_parenID].push(element);
+	        //console.log(obj)
+	      } else {
+
+	        PID = element.parenId;
+	        var _parenID2 = 'paren_' + PID;
+	        obj[_parenID2] = [];
+	        obj[_parenID2].push(element);
+	      }
+	    }
+	  });
+
+	  //Map over every array within obj.
+	  //Then return element buttons either with left, right or no parenthesis.
+	  var elements = Object.keys(obj).map(function (key) {
+	    //console.log(obj[key])
+	    return obj[key].map(function (element, i) {
+	      //console.log(element)
+	      //console.log(i)
+	      //console.log(obj[key].length)
+
+	      if (element.parenId < 0) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: i, className: 'elementSelected col-sm-1' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn btn-xs btn-primary p-m',
+	              onClick: function onClick() {
+	                return onPlusClick(element.id, element.mass);
+	              } },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '+'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            element.acronym,
+	            ' ',
+	            element.multiplier
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn btn-xs btn-primary p-m',
+	              onClick: function onClick() {
+	                return onMinusClick(element.id, element.multiplier, element.mass);
+	              } },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '-'
+	            )
+	          )
+	        );
+	      } else {
+	        //First element of parentheses
+	        if (i === 0) {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: i, className: 'elementSelected col-sm-1' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onPlusClick(element.id, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '+'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '( ',
+	              element.acronym,
+	              ' ',
+	              element.multiplier
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onMinusClick(element.id, element.multiplier, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '-'
+	              )
+	            )
+	          );
+	          //Last element of parentheses
+	        } else if (i === obj[key].length - 1) {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: i, className: 'elementSelected col-sm-1' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onPlusClick(element.id, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '+'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              element.acronym,
+	              ' ',
+	              element.multiplier,
+	              ' )'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onMinusClick(element.id, element.multiplier, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '-'
+	              )
+	            )
+	          );
+	          //Middle elements of parentheses
+	        } else {
+	          return _react2.default.createElement(
+	            'div',
+	            { key: i, className: 'elementSelected col-sm-1' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onPlusClick(element.id, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '+'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              element.acronym,
+	              ' ',
+	              element.multiplier
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'btn btn-xs btn-primary p-m',
+	                onClick: function onClick() {
+	                  return onMinusClick(element.id, element.multiplier, element.mass);
+	                } },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                '-'
+	              )
+	            )
+	          );
+	        }
+	      }
+	    });
+	  });
+
 	  return _react2.default.createElement(
-	    "div",
-	    { id: "CalculationPanel", className: "row" },
-	    elementsClicked.map(function (element, i) {
-	      return _react2.default.createElement(
-	        "div",
-	        { key: i, className: "elementSelected col-sm-1" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "btn btn-xs btn-primary p-m",
-	            onClick: function onClick() {
-	              return onPlusClick(element.id, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            "+"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "p",
-	          null,
-	          element.acronym,
-	          " ",
-	          element.multiplier
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "btn btn-xs btn-primary p-m",
-	            onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            "p",
-	            null,
-	            "-"
-	          )
-	        )
-	      );
-	    })
+	    'div',
+	    { id: 'CalculationPanel', className: 'row' },
+	    elements
 	  );
 	};
-
 	CalculationPanel.propTypes = {
 	  elementsClicked: _react.PropTypes.arrayOf(_react.PropTypes.shape({
 	    id: _react.PropTypes.number.isRequired,
 	    mass: _react.PropTypes.number.isRequired,
 	    acronym: _react.PropTypes.string.isRequired,
-	    multiplier: _react.PropTypes.number.isRequired
+	    multiplier: _react.PropTypes.number.isRequired,
+	    parenId: _react.PropTypes.number.isRequired
 	  }).isRequired).isRequired,
 	  onPlusClick: _react.PropTypes.func.isRequired,
 	  onMinusClick: _react.PropTypes.func.isRequired
