@@ -24,3 +24,10 @@
 	padding:0;
 	width: 50%;
 }
+
+.activeElement{
+  color: red;
+}
+.inactiveElement{
+  color: black;
+}

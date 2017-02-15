@@ -22064,7 +22064,69 @@
 	  value: true
 	});
 
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var parenCount = 0;
+	var editParen = function editParen() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'DO_PAREN_A':
+	      //If the element being mapped wasn't what the user clicked.
+	      if (state.id != action.id) {
+	        return state;
+	      }
+	      return Object.assign({}, state, {
+	        clicked: true
+	      });
+
+	    case 'DO_PAREN_B':
+	      //If the element being mapped is what the user clicked.
+	      //If it has been clicked, make it false. Otherwise make it true.
+	      if (state.id == action.id) {
+	        return Object.assign({}, state, {
+	          clicked: true
+	        });
+	      }
+	      return state;
+
+	    case 'MAKE_PAREN':
+	      var doCount = function doCount(clicked) {
+	        if (clicked === true) {
+	          parenCount++;
+	        }
+	      };
+
+	      doCount(state.clicked);
+
+	      if (parenCount === 1) {
+	        return Object.assign({}, state, {
+	          parenId: action.parenID,
+	          clicked: false
+	        });
+	      }
+	      if (parenCount === 2) {
+	        parenCount = 0;
+	        return Object.assign({}, state, {
+	          parenId: action.parenID,
+	          clicked: false
+	        });
+	      }
+
+	      return state;
+
+	    case 'DONT_MAKE_PAREN':
+	      return Object.assign({}, state, {
+	        clicked: false
+	      });
+
+	    default:
+	      return state;
+	  }
+	};
 
 	var editElement = function editElement() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -22083,28 +22145,25 @@
 	      };
 
 	    case 'DO_PLUS':
-	      //console.log(state)
-	      //console.log(action)
+	      //If the element being mapped wasn't what the user clicked, return state.
+	      //Otherwise, create and return a new object that is exactly like state,
+	      //except with the multiplier incremented by 1
 
-	      //If the element being mapped wasn't what the user clicked.
 	      if (state.id != action.id) {
 	        return state;
 	      }
-
-	      //Create and return a new object that is exactly like state,
-	      //except with the multiplier incremented by 1
 	      return Object.assign({}, state, {
 	        multiplier: state.multiplier += 1
 	      });
 
 	    case 'DO_MINUS':
-	      //If the element being mapped wasn't what the user clicked.
+	      //If the element being mapped wasn't what the user clicked return state.
+	      //Otherwise, create and return a new object that is exactly like state,
+	      //except with the multiplier decremented by 1
+
 	      if (state.id != action.id) {
 	        return state;
 	      }
-
-	      //Create and return a new object that is exactly like state,
-	      //except with the multiplier decremented by 1
 	      return Object.assign({}, state, {
 	        multiplier: state.multiplier -= 1
 	      });
@@ -22117,64 +22176,200 @@
 	      //To find element in state array
 	      return 1;
 
+	    case 'DO_PAREN_A':
+	      //If the element being mapped wasn't what the user clicked.
+	      if (state.id != action.id) {
+	        return state;
+	      }
+	      return Object.assign({}, state, {
+	        clicked: true
+	      });
+
+	    case 'DO_PAREN_B':
+	      //If the element being mapped is what the user clicked.
+	      //If it has been clicked, make it false. Otherwise make it true.
+	      if (state.id == action.id) {
+	        return Object.assign({}, state, {
+	          clicked: true
+	        });
+	      }
+
+	      return state;
+
+	    case 'MAKE_PAREN':
+	      var doCount = function doCount(clicked) {
+	        if (clicked === true) {
+	          parenCount++;
+	        }
+	      };
+
+	      doCount(state.clicked);
+
+	      if (parenCount === 1) {
+	        return Object.assign({}, state, {
+	          parenId: 5,
+	          clicked: false
+	        });
+	      }
+	      if (parenCount === 2) {
+	        parenCount = 0;
+	        return Object.assign({}, state, {
+	          parenId: 5,
+	          clicked: false
+	        });
+	      }
+
+	      return state;
+
+	    case 'DONT_MAKE_PAREN':
+	      return Object.assign({}, state, {
+	        clicked: false
+	      });
+
 	    default:
 	      return state;
 	  }
 	};
 
-	//If state doesn't exist, it becomes an empty array.
-	//If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
-	//Otherwise return original/previous state
 	var elementClicked = function elementClicked() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 	  var action = arguments[1];
 
-	  switch (action.type) {
-	    case 'PIN_ELEMENT':
-	      //console.log(state)
-	      //console.log([...state, editElement(undefined, action)])
+	  //If state doesn't exist, it becomes an empty array.
+	  //If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
+	  //Otherwise return original/previous state
+	  var _ret = function () {
+	    switch (action.type) {
+	      case 'PIN_ELEMENT':
+	        //console.log(state)
+	        //console.log([...state, editElement(undefined, action)])
 
-	      //Return an array containing the contents of state and push action.element into that array
-	      return [].concat(_toConsumableArray(state), [editElement(undefined, action)]);
+	        //Return an array containing the contents of state and push action.element into that array
+	        return {
+	          v: [].concat(_toConsumableArray(state), [editElement(undefined, action)])
+	        };
 
-	    case 'DO_PLUS':
-	      //Map over all elements and make changes as needed
-	      return state.map(function (t) {
-	        return editElement(t, action);
-	      });
+	      case 'DO_PLUS':
+	        //Map over all elements and make changes as needed
+	        return {
+	          v: state.map(function (t) {
+	            return editElement(t, action);
+	          })
+	        };
 
-	    case 'DO_MINUS':
-	      //Map over all elements and make changes as needed
-	      return state.map(function (t) {
-	        return editElement(t, action);
-	      });
+	      case 'DO_MINUS':
+	        //Map over all elements and make changes as needed
+	        return {
+	          v: state.map(function (t) {
+	            return editElement(t, action);
+	          })
+	        };
 
-	    case 'REMOVE_ELEMENT':
-	      //Map over all elements and make changes as needed
-	      var newState = state.map(function (t) {
-	        return editElement(t, action);
-	      });
-	      newState.splice(newState.indexOf(1), 1);
+	      case 'REMOVE_ELEMENT':
+	        //Map over all elements and make changes as needed
+	        var removedState = state.map(function (t) {
+	          return editElement(t, action);
+	        });
+	        removedState.splice(removedState.indexOf(1), 1);
 
-	      //console.log(state)
-	      //console.log(newState)
+	        //console.log(state)
+	        //console.log(removedState)
 
-	      return newState;
+	        return {
+	          v: removedState
+	        };
 
-	    case 'DO_PAREN':
+	      case 'DO_PAREN_A':
+	        //Map over all elements and make changes as needed
+	        var parenAState = state.map(function (t) {
+	          return editParen(t, action);
+	        });
 
-	      //if clickCount is 1 make clicked true
+	        return {
+	          v: parenAState
+	        };
 
-	      //if clickCount is 2 and element is already true, make false
-	      //otherwise find the other true and change parenId
+	      case 'DO_PAREN_B':
+	        //Map over all elements and make changes as needed
+	        var parenBState = state.map(function (t) {
+	          return editParen(t, action);
+	        });
 
-	      console.log(state);
+	        var getClickCount = parenBState.map(function (t) {
+	          if (t.clicked) {
+	            return 1;
+	          }
+	          return 0;
+	        });
 
-	      return state;
+	        var willMake = function willMake(click) {
+	          var count = 0;
+	          var _iteratorNormalCompletion = true;
+	          var _didIteratorError = false;
+	          var _iteratorError = undefined;
 
-	    default:
-	      return state;
-	  }
+	          try {
+	            for (var _iterator = click[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	              var value = _step.value;
+
+	              if (value === 1) {
+	                count++;
+	              }
+	            }
+	          } catch (err) {
+	            _didIteratorError = true;
+	            _iteratorError = err;
+	          } finally {
+	            try {
+	              if (!_iteratorNormalCompletion && _iterator.return) {
+	                _iterator.return();
+	              }
+	            } finally {
+	              if (_didIteratorError) {
+	                throw _iteratorError;
+	              }
+	            }
+	          }
+
+	          if (count === 2) {
+	            return true;
+	          }
+	        };
+
+	        var changeToMake = function changeToMake(willMake) {
+	          if (willMake === true) {
+	            action.type = 'MAKE_PAREN';
+	            return parenBState.map(function (t) {
+	              return editParen(t, action);
+	            });
+	          } else {
+	            action.type = 'DONT_MAKE_PAREN';
+	            return parenBState.map(function (t) {
+	              return editParen(t, action);
+	            });
+	          }
+	        };
+
+	        var finalParenState = changeToMake(willMake(getClickCount));
+
+	        // console.log(state)
+	        // console.log(parenBState)
+	        // console.log(getClickCount)
+	        // console.log(willMake(getClickCount))
+	        console.log(finalParenState);
+
+	        return {
+	          v: finalParenState
+	        };
+
+	      default:
+	        return {
+	          v: state
+	        };
+	    }
+	  }();
+
+	  if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	};
 
 	exports.default = elementClicked;
@@ -22360,21 +22555,22 @@
 	var parenID = 0;
 	var doParenthesis = exports.doParenthesis = function doParenthesis(id) {
 
-	  console.log(clickCount);
+	  //console.log(clickCount)
 
 	  switch (clickCount) {
 	    case 0:
 	      clickCount++;
 	      return {
-	        type: 'DO_PAREN',
+	        type: 'DO_PAREN_A',
 	        clickCount: 1,
 	        id: id
 	      };
 	    case 1:
 	      clickCount = 0;
 	      return {
-	        type: 'DO_PAREN',
+	        type: 'DO_PAREN_B',
 	        clickCount: 2,
+	        parenID: parenID++,
 	        id: id
 	      };
 	  }
@@ -23364,183 +23560,132 @@
 	    return obj[key].map(function (element, i) {
 	      //console.log(obj[key].length)
 
+	      var elemPlusClick = _react2.default.createElement(
+	        'div',
+	        { className: 'btn btn-xs btn-primary p-m',
+	          onClick: function onClick() {
+	            return onPlusClick(element.id, element.mass);
+	          } },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          '+'
+	        )
+	      );
+	      var elemMinusClick = _react2.default.createElement(
+	        'div',
+	        { className: 'btn btn-xs btn-primary p-m',
+	          onClick: function onClick() {
+	            return onMinusClick(element.id, element.multiplier, element.mass);
+	          } },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          '-'
+	        )
+	      );
+
+	      var multiplier = function multiplier(multi) {
+	        if (multi === 1) {
+	          return;
+	        }
+	        return multi;
+	      };
+	      var clicked = function clicked(clickBool) {
+	        if (clickBool) {
+	          return 'activeElement';
+	        }
+	        return 'inactiveElement';
+	      };
+
 	      var elementNoParen = _react2.default.createElement(
 	        'div',
-	        { key: i, className: 'elementSelected col-sm-1' },
+	        { onClick: function onClick() {
+	            return onElementClick(element.id, element.clicked);
+	          } },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onPlusClick(element.id, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '+'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          {
-	            onClick: function onClick() {
-	              return onElementClick(element.id, element.clicked);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            element.acronym,
-	            ' ',
-	            element.multiplier
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '-'
-	          )
-	        )
-	      );
-	      var elementLeftParen = _react2.default.createElement(
-	        'div',
-	        { key: i, className: 'elementSelected col-sm-1' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onPlusClick(element.id, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '+'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '( ',
-	            element.acronym,
-	            ' ',
-	            element.multiplier
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '-'
-	          )
-	        )
-	      );
-	      var elementRightParen = _react2.default.createElement(
-	        'div',
-	        { key: i, className: 'elementSelected col-sm-1' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onPlusClick(element.id, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '+'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            element.acronym,
-	            ' ',
-	            element.multiplier,
-	            ' )'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '-'
-	          )
+	          'p',
+	          { className: clicked(element.clicked) },
+	          element.acronym,
+	          ' ',
+	          multiplier(element.multiplier)
 	        )
 	      );
 	      var elementNoParenInParen = _react2.default.createElement(
 	        'div',
-	        { key: i, className: 'elementSelected col-sm-1' },
+	        null,
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onPlusClick(element.id, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '+'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
+	          'p',
 	          null,
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            element.acronym,
-	            ' ',
-	            element.multiplier
-	          )
-	        ),
+	          element.acronym,
+	          ' ',
+	          multiplier(element.multiplier)
+	        )
+	      );
+	      var elementLeftParen = _react2.default.createElement(
+	        'div',
+	        null,
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'btn btn-xs btn-primary p-m',
-	            onClick: function onClick() {
-	              return onMinusClick(element.id, element.multiplier, element.mass);
-	            } },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            '-'
-	          )
+	          'p',
+	          null,
+	          '( ',
+	          element.acronym,
+	          ' ',
+	          multiplier(element.multiplier)
+	        )
+	      );
+	      var elementRightParen = _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          element.acronym,
+	          ' ',
+	          multiplier(element.multiplier),
+	          ' )'
 	        )
 	      );
 
 	      //No parenthesis required
 	      if (element.parenId < 0) {
-	        return elementNoParen;
+	        return _react2.default.createElement(
+	          'div',
+	          { key: i, className: 'elementSelected col-sm-1' },
+	          elemPlusClick,
+	          elementNoParen,
+	          elemMinusClick
+	        );
 	      }
 	      //Parenthesis required
 	      else {
 	          //First element of parentheses
 	          if (i === 0) {
-	            return elementLeftParen;
+	            return _react2.default.createElement(
+	              'div',
+	              { key: i, className: 'elementSelected col-sm-1' },
+	              elemPlusClick,
+	              elementLeftParen,
+	              elemMinusClick
+	            );
 	            //Last element of parentheses
 	          } else if (i === obj[key].length - 1) {
-	            return elementRightParen;
+	            return _react2.default.createElement(
+	              'div',
+	              { key: i, className: 'elementSelected col-sm-1' },
+	              elemPlusClick,
+	              elementRightParen,
+	              elemMinusClick
+	            );
 	            //Middle elements of parentheses
 	          } else {
-	            return elementNoParenInParen;
+	            return _react2.default.createElement(
+	              'div',
+	              { key: i, className: 'elementSelected col-sm-1' },
+	              elemPlusClick,
+	              elementNoParenInParen,
+	              elemMinusClick
+	            );
 	          }
 	        }
 	    });

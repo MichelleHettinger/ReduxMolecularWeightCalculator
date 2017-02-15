@@ -1,3 +1,59 @@
+let parenCount = 0
+const editParen = (state = {}, action) => {
+  switch (action.type) {
+    case 'DO_PAREN_A':
+      //If the element being mapped wasn't what the user clicked.
+      if (state.id != action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        clicked: true,
+      })
+
+    case 'DO_PAREN_B':
+      //If the element being mapped is what the user clicked.
+      //If it has been clicked, make it false. Otherwise make it true.
+      if (state.id == action.id) {
+        return Object.assign({}, state, {
+          clicked: true,
+        })
+      }
+      return state
+
+    case 'MAKE_PAREN':
+      const doCount = (clicked) => { 
+        if (clicked === true){
+          parenCount++
+        }
+      }
+
+      doCount(state.clicked)
+
+      if (parenCount === 1) {
+        return Object.assign({}, state, {
+          parenId: action.parenID,
+          clicked:false,
+        })
+      }
+      if (parenCount === 2) {
+        parenCount = 0
+        return Object.assign({}, state, {
+          parenId: action.parenID,
+          clicked:false,
+        })
+      }
+
+      return state
+
+    case 'DONT_MAKE_PAREN':
+      return Object.assign({}, state, {
+        clicked:false,
+      })
+
+    default:
+      return state
+  }
+}
 
 const editElement = (state = {}, action) => {
   switch (action.type) {
@@ -13,29 +69,25 @@ const editElement = (state = {}, action) => {
       }
  
     case 'DO_PLUS':
-      //console.log(state)
-      //console.log(action)
+      //If the element being mapped wasn't what the user clicked, return state.
+      //Otherwise, create and return a new object that is exactly like state,
+      //except with the multiplier incremented by 1
 
-      //If the element being mapped wasn't what the user clicked.
       if (state.id != action.id) {
         return state
       }
-
-      //Create and return a new object that is exactly like state,
-      //except with the multiplier incremented by 1
       return Object.assign({}, state, {
         multiplier: state.multiplier+=1,
       })
 
-
     case 'DO_MINUS':
-      //If the element being mapped wasn't what the user clicked.
+      //If the element being mapped wasn't what the user clicked return state.
+      //Otherwise, create and return a new object that is exactly like state,
+      //except with the multiplier decremented by 1
+
       if (state.id != action.id) {
         return state
       }
-
-      //Create and return a new object that is exactly like state,
-      //except with the multiplier decremented by 1
       return Object.assign({}, state, {
         multiplier: state.multiplier-=1,
       })
@@ -48,16 +100,65 @@ const editElement = (state = {}, action) => {
       //To find element in state array
       return 1
 
+    case 'DO_PAREN_A':
+      //If the element being mapped wasn't what the user clicked.
+      if (state.id != action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        clicked: true,
+      })
+
+    case 'DO_PAREN_B':
+      //If the element being mapped is what the user clicked.
+      //If it has been clicked, make it false. Otherwise make it true.
+      if (state.id == action.id) {
+        return Object.assign({}, state, {
+          clicked: true,
+        })
+      }
+
+      return state
+
+    case 'MAKE_PAREN':
+      const doCount = (clicked) => { 
+        if (clicked === true){
+          parenCount++
+        }
+      }
+
+      doCount(state.clicked)
+
+      if (parenCount === 1) {
+        return Object.assign({}, state, {
+          parenId: 5,
+          clicked:false,
+        })
+      }
+      if (parenCount === 2) {
+        parenCount = 0
+        return Object.assign({}, state, {
+          parenId: 5,
+          clicked:false,
+        })
+      }
+
+      return state
+
+    case 'DONT_MAKE_PAREN':
+      return Object.assign({}, state, {
+        clicked:false,
+      })
+
     default:
       return state
   }
-
 }
 
-//If state doesn't exist, it becomes an empty array.
-//If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
-//Otherwise return original/previous state
 const elementClicked = (state = [], action) => {
+  //If state doesn't exist, it becomes an empty array.
+  //If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
+  //Otherwise return original/previous state
   switch (action.type) {
     case 'PIN_ELEMENT':
       //console.log(state)
@@ -76,24 +177,64 @@ const elementClicked = (state = [], action) => {
 
     case 'REMOVE_ELEMENT':
       //Map over all elements and make changes as needed
-      let newState = state.map(t => editElement(t, action))
-      newState.splice( newState.indexOf(1), 1 )
+      let removedState = state.map(t => editElement(t, action))
+      removedState.splice( removedState.indexOf(1), 1 )
 
       //console.log(state)
-      //console.log(newState)
+      //console.log(removedState)
 
-      return newState
+      return removedState
 
-    case 'DO_PAREN':
+    case 'DO_PAREN_A':
+      //Map over all elements and make changes as needed
+      const parenAState = state.map(t => editParen(t, action))
 
-      //if clickCount is 1 make clicked true
+      return parenAState
 
-      //if clickCount is 2 and element is already true, make false
-      //otherwise find the other true and change parenId
+    case 'DO_PAREN_B':
+      //Map over all elements and make changes as needed
+      const parenBState = state.map(t => editParen(t, action))
 
-      console.log(state)
+      const getClickCount = parenBState.map(t => {
+        if (t.clicked) {
+          return 1
+        }
+        return 0
+      })
 
-      return state
+      const willMake = (click) => {
+        let count = 0
+        for (let value of click) {
+          if (value === 1){
+            count++
+          }
+        }
+        if (count === 2) {
+          return true
+        }
+      }
+
+      const changeToMake = (willMake) => {
+        if (willMake === true) {
+          action.type = 'MAKE_PAREN'
+          return parenBState.map(t => editParen(t,action))
+        }
+        else {
+          action.type = 'DONT_MAKE_PAREN'
+          return parenBState.map(t => editParen(t,action))
+        }
+      }
+
+      const finalParenState = changeToMake(willMake(getClickCount))
+
+      // console.log(state)
+      // console.log(parenBState)
+      // console.log(getClickCount)
+      // console.log(willMake(getClickCount))
+      console.log(finalParenState)
+
+      return finalParenState
+
 
     default:
       return state

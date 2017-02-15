@@ -5,21 +5,22 @@ let clickCount = 0
 let parenID = 0
 export const doParenthesis = (id) => {
 
-  console.log(clickCount)
-
+  //console.log(clickCount)
+ 
   switch (clickCount) {
     case 0:
       clickCount++
       return {
-        type: 'DO_PAREN',
+        type: 'DO_PAREN_A',
         clickCount: 1,
         id,
       }
     case 1:
       clickCount = 0
       return {
-        type: 'DO_PAREN',
+        type: 'DO_PAREN_B',
         clickCount: 2,
+        parenID: parenID++,
         id,
       }
   }

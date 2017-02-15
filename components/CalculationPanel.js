@@ -43,91 +43,96 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
     return obj[key].map( (element, i) => {
       //console.log(obj[key].length)
 
+      const elemPlusClick = (
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onPlusClick(element.id, element.mass)}>
+          <p>+</p>
+        </div>
+      )
+      const elemMinusClick = (
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
+          <p>-</p>
+        </div>
+      )
+
+
+      const multiplier = (multi) => {
+        if (multi === 1){
+          return
+        }
+        return multi
+      }
+      const clicked = (clickBool) => {
+        if (clickBool){
+          return 'activeElement'
+        }
+        return 'inactiveElement'
+      }
+
+
       const elementNoParen = (
-        <div key={i} className="elementSelected col-sm-1">
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onPlusClick(element.id, element.mass)}>
-            <p>+</p>
-          </div>
-
-          <div
-            onClick={() => onElementClick(element.id, element.clicked)}>
-            <p>{element.acronym} {element.multiplier}</p>
-          </div>
-
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
-            <p>-</p>
-          </div>
-        </div>
-      )
-      const elementLeftParen = (
-        <div key={i} className="elementSelected col-sm-1">
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onPlusClick(element.id, element.mass)}>
-            <p>+</p>
-          </div>
-          
-          <div>
-            <p>( {element.acronym} {element.multiplier}</p>
-          </div>
-
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
-            <p>-</p>
-          </div>
-        </div>
-      )
-      const elementRightParen = (
-        <div key={i} className="elementSelected col-sm-1">
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onPlusClick(element.id, element.mass)}>
-            <p>+</p>
-          </div>
-          
-          <div>
-            <p>{element.acronym} {element.multiplier} )</p>
-          </div>
-
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
-            <p>-</p>
-          </div>
+        <div onClick={() => onElementClick(element.id, element.clicked)}>
+          <p className={clicked(element.clicked)}>
+            {element.acronym} {multiplier(element.multiplier)}
+          </p>
         </div>
       )
       const elementNoParenInParen = (
-        <div key={i} className="elementSelected col-sm-1">
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onPlusClick(element.id, element.mass)}>
-            <p>+</p>
-          </div>
-
-          <div>
-            <p>{element.acronym} {element.multiplier}</p>
-          </div>
-
-          <div className="btn btn-xs btn-primary p-m"
-            onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
-            <p>-</p>
-          </div>
+        <div>
+          <p>{element.acronym} {multiplier(element.multiplier)}</p>
+        </div>
+      )
+      const elementLeftParen = (
+        <div>
+          <p>( {element.acronym} {multiplier(element.multiplier)}</p>
+        </div>
+      )
+      const elementRightParen = (
+        <div>
+          <p>{element.acronym} {multiplier(element.multiplier)} )</p>
         </div>
       )
 
       //No parenthesis required
       if (element.parenId < 0) {
-        return elementNoParen
+        return (
+          <div key={i} className="elementSelected col-sm-1">
+            {elemPlusClick}
+            {elementNoParen}
+            {elemMinusClick}
+          </div>
+        )
       }
       //Parenthesis required
       else {
         //First element of parentheses
         if (i === 0) {
-            return elementLeftParen
+          return (
+            <div key={i} className="elementSelected col-sm-1">
+              {elemPlusClick}
+              {elementLeftParen}
+              {elemMinusClick}
+            </div>
+          )
         //Last element of parentheses
         } else if (i === (obj[key].length - 1)) {
-            return elementRightParen
+          return (
+            <div key={i} className="elementSelected col-sm-1">
+              {elemPlusClick}
+              {elementRightParen}
+              {elemMinusClick}
+            </div>
+          )
         //Middle elements of parentheses
         } else {
-            return elementNoParenInParen
+          return (
+            <div key={i} className="elementSelected col-sm-1">
+              {elemPlusClick}
+              {elementNoParenInParen}
+              {elemMinusClick}
+            </div>
+          )
         }
       }
     })
