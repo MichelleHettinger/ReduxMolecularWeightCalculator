@@ -8,31 +8,14 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
   //Map over every element based off of its parenId
   //Push the elements with the same parenId into their respective arrays within obj
   const getParen = elementsClicked.map( (element,i) => {
+    PID = element.parenId
+    const parenID = 'paren_' + PID
 
-    if (i === 0) {
-
-      PID = element.parenId
-      const parenID = 'paren_' + PID
+    if (obj[parenID]) {
+      obj[parenID].push(element)
+    } else {
       obj[parenID] = []
       obj[parenID].push(element)
-      //console.log(obj)
-
-    } else {
-
-      if (PID === element.parenId) {
-
-        const parenID = 'paren_' + PID
-        obj[parenID].push(element)
-        //console.log(obj)
-
-      } else {
-
-        PID = element.parenId
-        const parenID = 'paren_' + PID
-        obj[parenID] = []
-        obj[parenID].push(element)
-
-      }
     }
   })
 
@@ -42,20 +25,6 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
     //console.log(obj[key])
     return obj[key].map( (element, i) => {
       //console.log(obj[key].length)
-
-      const elemPlusClick = (
-        <div className="btn btn-xs btn-primary p-m"
-          onClick={() => onPlusClick(element.id, element.mass)}>
-          <p>+</p>
-        </div>
-      )
-      const elemMinusClick = (
-        <div className="btn btn-xs btn-primary p-m"
-          onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
-          <p>-</p>
-        </div>
-      )
-
 
       const multiplier = (multi) => {
         if (multi === 1){
@@ -70,73 +39,106 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
         return 'inactiveElement'
       }
 
+      const elemPlusClick = (
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onPlusClick(element.id, element.mass)}>
+          <p>+</p>
+        </div>
+      )
+      const elemMinusClick = (
+        <div className="btn btn-xs btn-primary p-m"
+          onClick={() => onMinusClick(element.id, element.multiplier, element.mass)}>
+          <p>-</p>
+        </div>
+      )
 
-      const elementNoParen = (
-        <div onClick={() => onElementClick(element.id, element.clicked)}>
-          <p className={clicked(element.clicked)}>
-            {element.acronym} {multiplier(element.multiplier)}
-          </p>
+      const elemInParen = (
+        <div className="elementSelected">
+          {elemPlusClick}
+          <div style={{padding:0}}>
+            <p style={{fontSize:25}}>{element.acronym}{multiplier(element.multiplier)}</p>
+          </div>
+          {elemMinusClick}
         </div>
       )
-      const elementNoParenInParen = (
+      const elemNoParen = (
+        <div className="elementSelected">
+          {elemPlusClick}
+          <div onClick={() => onElementClick(element.id, element.clicked)}>
+            <p style={{fontSize:25}}
+              className={clicked(element.clicked)}
+            >{element.acronym}{multiplier(element.multiplier)}</p>
+          </div>
+          {elemMinusClick}
+        </div>
+      )
+
+      const leftParen = (
         <div>
-          <p>{element.acronym} {multiplier(element.multiplier)}</p>
+          <p style={{fontSize:47}}>(</p>
         </div>
       )
-      const elementLeftParen = (
-        <div>
-          <p>( {element.acronym} {multiplier(element.multiplier)}</p>
+      const rightParen = (
+        <div style={{display:"inline-flex"}}>
+          <div>
+            <p style={{fontSize:47}}>)</p>
+          </div>
+
+          <div>
+            <div className="btn btn-xs">
+              <p>+</p>
+            </div>
+            <div>
+              <p>1</p>
+            </div>
+            <div className="btn btn-xs">
+              <p>-</p>
+            </div>
+          </div>
+
         </div>
       )
-      const elementRightParen = (
-        <div>
-          <p>{element.acronym} {multiplier(element.multiplier)} )</p>
-        </div>
-      )
+
 
       //No parenthesis required
       if (element.parenId < 0) {
         return (
-          <div key={i} className="elementSelected col-sm-1">
-            {elemPlusClick}
-            {elementNoParen}
-            {elemMinusClick}
+          <div key={i}>
+            {elemNoParen}
           </div>
-        )
+        ) 
       }
       //Parenthesis required
       else {
         //First element of parentheses
         if (i === 0) {
           return (
-            <div key={i} className="elementSelected col-sm-1">
-              {elemPlusClick}
-              {elementLeftParen}
-              {elemMinusClick}
+            <div key={i} style={{display:"inline-flex"}}>
+              {leftParen}
+              {elemInParen}
             </div>
           )
         //Last element of parentheses
         } else if (i === (obj[key].length - 1)) {
           return (
-            <div key={i} className="elementSelected col-sm-1">
-              {elemPlusClick}
-              {elementRightParen}
-              {elemMinusClick}
+            <div key={i} style={{display:"inline-flex"}}>
+              {elemInParen}
+              {rightParen}
             </div>
           )
         //Middle elements of parentheses
         } else {
           return (
-            <div key={i} className="elementSelected col-sm-1">
-              {elemPlusClick}
-              {elementNoParenInParen}
-              {elemMinusClick}
+            <div key={i}>
+              {elemInParen}
             </div>
           )
         }
       }
     })
   })
+
+  console.log(obj)
 
   return (
     <div id="CalculationPanel" className="row">

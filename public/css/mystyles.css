@@ -5,24 +5,27 @@
 
 }
 #CalculationPanel{
-
+  display:inline-flex;
 }
 .elementFound{
 	border: 1px solid black;
 	text-align: center;
 }
 .elementSelected{
-
+  padding: 0 5px 0 5px;
 }
 .elementSelected p{
 	margin-bottom: 0;
 	text-align: center;
 }
+.parenth {
+  display:inline-flex;
+}
 .p-m{
 	display: block;
 	margin:auto;
 	padding:0;
-	width: 50%;
+	width: 20px;
 }
 
 .activeElement{

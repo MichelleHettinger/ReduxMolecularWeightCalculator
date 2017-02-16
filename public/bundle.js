@@ -23528,28 +23528,14 @@
 	  //Map over every element based off of its parenId
 	  //Push the elements with the same parenId into their respective arrays within obj
 	  var getParen = elementsClicked.map(function (element, i) {
+	    PID = element.parenId;
+	    var parenID = 'paren_' + PID;
 
-	    if (i === 0) {
-
-	      PID = element.parenId;
-	      var parenID = 'paren_' + PID;
+	    if (obj[parenID]) {
+	      obj[parenID].push(element);
+	    } else {
 	      obj[parenID] = [];
 	      obj[parenID].push(element);
-	      //console.log(obj)
-	    } else {
-
-	      if (PID === element.parenId) {
-
-	        var _parenID = 'paren_' + PID;
-	        obj[_parenID].push(element);
-	        //console.log(obj)
-	      } else {
-
-	        PID = element.parenId;
-	        var _parenID2 = 'paren_' + PID;
-	        obj[_parenID2] = [];
-	        obj[_parenID2].push(element);
-	      }
 	    }
 	  });
 
@@ -23559,6 +23545,19 @@
 	    //console.log(obj[key])
 	    return obj[key].map(function (element, i) {
 	      //console.log(obj[key].length)
+
+	      var multiplier = function multiplier(multi) {
+	        if (multi === 1) {
+	          return;
+	        }
+	        return multi;
+	      };
+	      var clicked = function clicked(clickBool) {
+	        if (clickBool) {
+	          return 'activeElement';
+	        }
+	        return 'inactiveElement';
+	      };
 
 	      var elemPlusClick = _react2.default.createElement(
 	        'div',
@@ -23585,65 +23584,94 @@
 	        )
 	      );
 
-	      var multiplier = function multiplier(multi) {
-	        if (multi === 1) {
-	          return;
-	        }
-	        return multi;
-	      };
-	      var clicked = function clicked(clickBool) {
-	        if (clickBool) {
-	          return 'activeElement';
-	        }
-	        return 'inactiveElement';
-	      };
+	      var elemInParen = _react2.default.createElement(
+	        'div',
+	        { className: 'elementSelected' },
+	        elemPlusClick,
+	        _react2.default.createElement(
+	          'div',
+	          { style: { padding: 0 } },
+	          _react2.default.createElement(
+	            'p',
+	            { style: { fontSize: 25 } },
+	            element.acronym,
+	            multiplier(element.multiplier)
+	          )
+	        ),
+	        elemMinusClick
+	      );
+	      var elemNoParen = _react2.default.createElement(
+	        'div',
+	        { className: 'elementSelected' },
+	        elemPlusClick,
+	        _react2.default.createElement(
+	          'div',
+	          { onClick: function onClick() {
+	              return onElementClick(element.id, element.clicked);
+	            } },
+	          _react2.default.createElement(
+	            'p',
+	            { style: { fontSize: 25 },
+	              className: clicked(element.clicked)
+	            },
+	            element.acronym,
+	            multiplier(element.multiplier)
+	          )
+	        ),
+	        elemMinusClick
+	      );
 
-	      var elementNoParen = _react2.default.createElement(
-	        'div',
-	        { onClick: function onClick() {
-	            return onElementClick(element.id, element.clicked);
-	          } },
-	        _react2.default.createElement(
-	          'p',
-	          { className: clicked(element.clicked) },
-	          element.acronym,
-	          ' ',
-	          multiplier(element.multiplier)
-	        )
-	      );
-	      var elementNoParenInParen = _react2.default.createElement(
+	      var leftParen = _react2.default.createElement(
 	        'div',
 	        null,
 	        _react2.default.createElement(
 	          'p',
-	          null,
-	          element.acronym,
-	          ' ',
-	          multiplier(element.multiplier)
+	          { style: { fontSize: 47 } },
+	          '('
 	        )
 	      );
-	      var elementLeftParen = _react2.default.createElement(
+	      var rightParen = _react2.default.createElement(
 	        'div',
-	        null,
+	        { style: { display: "inline-flex" } },
 	        _react2.default.createElement(
-	          'p',
+	          'div',
 	          null,
-	          '( ',
-	          element.acronym,
-	          ' ',
-	          multiplier(element.multiplier)
-	        )
-	      );
-	      var elementRightParen = _react2.default.createElement(
-	        'div',
-	        null,
+	          _react2.default.createElement(
+	            'p',
+	            { style: { fontSize: 47 } },
+	            ')'
+	          )
+	        ),
 	        _react2.default.createElement(
-	          'p',
+	          'div',
 	          null,
-	          element.acronym,
-	          ' ',
-	          multiplier(element.multiplier),
-	          ' )'
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn btn-xs' },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '+'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '1'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn btn-xs' },
+	            _react2.default.createElement(
+	              'p',
+	              null,
+	              '-'
+	            )
+	          )
 	        )
 	      );
 
@@ -23651,10 +23679,8 @@
 	      if (element.parenId < 0) {
 	        return _react2.default.createElement(
 	          'div',
-	          { key: i, className: 'elementSelected col-sm-1' },
-	          elemPlusClick,
-	          elementNoParen,
-	          elemMinusClick
+	          { key: i },
+	          elemNoParen
 	        );
 	      }
 	      //Parenthesis required
@@ -23663,33 +23689,31 @@
 	          if (i === 0) {
 	            return _react2.default.createElement(
 	              'div',
-	              { key: i, className: 'elementSelected col-sm-1' },
-	              elemPlusClick,
-	              elementLeftParen,
-	              elemMinusClick
+	              { key: i, style: { display: "inline-flex" } },
+	              leftParen,
+	              elemInParen
 	            );
 	            //Last element of parentheses
 	          } else if (i === obj[key].length - 1) {
 	            return _react2.default.createElement(
 	              'div',
-	              { key: i, className: 'elementSelected col-sm-1' },
-	              elemPlusClick,
-	              elementRightParen,
-	              elemMinusClick
+	              { key: i, style: { display: "inline-flex" } },
+	              elemInParen,
+	              rightParen
 	            );
 	            //Middle elements of parentheses
 	          } else {
 	            return _react2.default.createElement(
 	              'div',
-	              { key: i, className: 'elementSelected col-sm-1' },
-	              elemPlusClick,
-	              elementNoParenInParen,
-	              elemMinusClick
+	              { key: i },
+	              elemInParen
 	            );
 	          }
 	        }
 	    });
 	  });
+
+	  console.log(obj);
 
 	  return _react2.default.createElement(
 	    'div',

@@ -235,7 +235,6 @@ const elementClicked = (state = [], action) => {
 
       return finalParenState
 
-
     default:
       return state
   }
