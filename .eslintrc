@@ -1,0 +1,46 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "indent": [
+      2,
+      2,
+      {"SwitchCase": 1}
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-reserved-keys": 0,
+    "no-wrap-func": 0,
+    "spaced-line-comment": 0,
+    "no-console":1,
+    // disabled dueto eslint error
+    "no-duplicate-case": 0,
+    "object-curly-spacing": 0,
+    "babel/object-curly-spacing": 0,
+    "babel/new-cap": 0,
+    "react/forbid-prop-types": 0
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "extends": "airbnb",
+  "ecmaFeatures": {
+    "jsx": true,
+    "experimentalObjectRestSpread": true
+  },
+  "plugins": [
+    "babel",
+    "react"
+  ]
+}

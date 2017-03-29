@@ -1,27 +1,36 @@
-module.exports = {
-  
-  // This code will be compiled 
-  entry: "./index.js",
+const path = require('path');
 
-  // Then output into this file
+module.exports = {
+  context: __dirname + "/app",
+
+  entry: {
+      javascript: "./js/app.js"
+  },
+
   output: {
-    filename: "public/bundle.js"
+    filename: "bundle.js",
+    path: __dirname + "/dist"
+  },
+
+  resolve: {
+      extensions: ['*','.js', '.jsx', '.json'],
+  },
+
+  module: {
+      loaders: [
+          {
+              test: /\.jsx?$/,
+              exclude: /node_modules/,
+              loaders: ["react-hot-loader", "babel-loader"]
+          },
+          {
+              test: /\.html$/,
+              loader: "file-loader?name=[name].[ext]"
+          }
+      ]
   },
 
 
-  // This will be what we do
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
-        query: {
-          // These are the specific transformations we'll be using. 
-          presets: ['react', 'es2015']
-        }
-      }
-    ]
-  }
 
-}
+
+};
