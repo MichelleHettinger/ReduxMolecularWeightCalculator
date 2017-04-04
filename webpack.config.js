@@ -1,15 +1,15 @@
 const path = require('path');
 
 module.exports = {
-  context: __dirname + "/app",
+  context: __dirname,
 
   entry: {
-    javascript: "./js/app.js"
+    javascript: "./src/app.js"
   },
 
   output: {
     filename: "bundle.js",
-    path: "/dist"
+    path: __dirname + "/public"
   },
 
   resolve: {

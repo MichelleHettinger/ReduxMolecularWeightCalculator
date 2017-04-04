@@ -4,7 +4,7 @@ import DisplayElements from '../containers/DisplayElements'
 import DisplayCalcElements from '../containers/DisplayCalcElements'
 import DisplayMass from '../containers/DisplayMass'
 
-const Index = () => (
+const App = () => (
   <div id="topApp" className="container">
     <div className="row">
       <h1>Heading Component Soon</h1>
@@ -23,4 +23,4 @@ const Index = () => (
   </div>
 )
 
-export default Index
+export default App
