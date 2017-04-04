@@ -4,33 +4,29 @@ module.exports = {
   context: __dirname + "/app",
 
   entry: {
-      javascript: "./js/app.js"
+    javascript: "./js/app.js"
   },
 
   output: {
     filename: "bundle.js",
-    path: __dirname + "/dist"
+    path: "/dist"
   },
 
   resolve: {
-      extensions: ['*','.js', '.jsx', '.json'],
+    extensions: ['*','.js', '.jsx', '.json'],
   },
 
   module: {
-      loaders: [
-          {
-              test: /\.jsx?$/,
-              exclude: /node_modules/,
-              loaders: ["react-hot-loader", "babel-loader"]
-          },
-          {
-              test: /\.html$/,
-              loader: "file-loader?name=[name].[ext]"
-          }
-      ]
-  },
-
-
-
-
+    loaders: [
+      {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          loaders: ["react-hot-loader", "babel-loader"]
+      },
+      {
+          test: /\.html$/,
+          loader: "file-loader?name=[name].[ext]"
+      }
+    ]
+  }
 };
