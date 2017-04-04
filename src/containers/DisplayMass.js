@@ -1,5 +1,5 @@
-import { connect } from 'react-redux'
-import MassPanel from '../components/MassPanel'
+import { connect } from 'react-redux';
+import MassPanel from '../components/MassPanel';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,6 +9,6 @@ const mapStateToProps = (state) => {
 
 const MassPanelDivs = connect(
   mapStateToProps
-)(MassPanel)
+)(MassPanel);
 
-export default MassPanelDivs
+export default MassPanelDivs;

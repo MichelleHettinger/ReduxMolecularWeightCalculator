@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 129);
+/******/ 	return __webpack_require__(__webpack_require__.s = 127);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -4763,35 +4763,37 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.searchForElements = exports.pinElement = exports.calculateTotal = exports.doMinus = exports.doPlus = exports.doParenthesis = undefined;
 
-var _helper = __webpack_require__(128);
+var _helper = __webpack_require__(139);
 
 var clickCount = 0;
 var parenID = 0;
+
 var doParenthesis = exports.doParenthesis = function doParenthesis(id) {
-
-  //console.log(clickCount)
-
   switch (clickCount) {
     case 0:
-      clickCount++;
-      return {
-        type: 'DO_PAREN_A',
-        clickCount: 1,
-        id: id
-      };
+      {
+        clickCount++;
+        return {
+          type: 'DO_PAREN_A',
+          clickCount: 1,
+          id: id
+        };
+      }
+
     case 1:
-      clickCount = 0;
-      return {
-        type: 'DO_PAREN_B',
-        clickCount: 2,
-        parenID: parenID++,
-        id: id
-      };
+      {
+        clickCount = 0;
+        return {
+          type: 'DO_PAREN_B',
+          clickCount: 2,
+          parenID: parenID++,
+          id: id
+        };
+      }
   }
 };
 
 var doPlus = exports.doPlus = function doPlus(id) {
-
   return {
     type: 'DO_PLUS',
     id: id
@@ -4799,13 +4801,14 @@ var doPlus = exports.doPlus = function doPlus(id) {
 };
 
 var doMinus = exports.doMinus = function doMinus(id, multiplier) {
-
   switch (multiplier) {
     case 1:
-      return {
-        type: 'REMOVE_ELEMENT',
-        id: id
-      };
+      {
+        return {
+          type: 'REMOVE_ELEMENT',
+          id: id
+        };
+      }
 
     default:
       return {
@@ -4816,7 +4819,6 @@ var doMinus = exports.doMinus = function doMinus(id, multiplier) {
 };
 
 var calculateTotal = exports.calculateTotal = function calculateTotal(mass, pm) {
-
   switch (pm) {
     case 'MINUS':
       return {
@@ -4834,7 +4836,6 @@ var calculateTotal = exports.calculateTotal = function calculateTotal(mass, pm) 
 
 var nextAtomId = 0;
 var pinElement = exports.pinElement = function pinElement(element) {
-
   return {
     type: 'PIN_ELEMENT',
     id: nextAtomId++,
@@ -11900,19 +11901,19 @@ var _react = __webpack_require__(10);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _SearchForElements = __webpack_require__(136);
+var _SearchForElements = __webpack_require__(134);
 
 var _SearchForElements2 = _interopRequireDefault(_SearchForElements);
 
-var _DisplayElements = __webpack_require__(134);
+var _DisplayElements = __webpack_require__(132);
 
 var _DisplayElements2 = _interopRequireDefault(_DisplayElements);
 
-var _DisplayCalcElements = __webpack_require__(133);
+var _DisplayCalcElements = __webpack_require__(131);
 
 var _DisplayCalcElements2 = _interopRequireDefault(_DisplayCalcElements);
 
-var _DisplayMass = __webpack_require__(135);
+var _DisplayMass = __webpack_require__(133);
 
 var _DisplayMass2 = _interopRequireDefault(_DisplayMass);
 
@@ -11952,7 +11953,7 @@ var App = function App() {
 
 exports.default = App;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 102 */
@@ -11968,15 +11969,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _redux = __webpack_require__(34);
 
-var _elementsFound = __webpack_require__(138);
+var _elementsFound = __webpack_require__(136);
 
 var _elementsFound2 = _interopRequireDefault(_elementsFound);
 
-var _elementClicked = __webpack_require__(137);
+var _elementClicked = __webpack_require__(135);
 
 var _elementClicked2 = _interopRequireDefault(_elementClicked);
 
-var _massCalculated = __webpack_require__(139);
+var _massCalculated = __webpack_require__(137);
 
 var _massCalculated2 = _interopRequireDefault(_massCalculated);
 
@@ -13018,6 +13019,1027 @@ function isObjectLike(value) {
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
+'use strict';
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(100);
+
+var _reactRedux = __webpack_require__(19);
+
+var _redux = __webpack_require__(34);
+
+var _reducers = __webpack_require__(102);
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
+var _index = __webpack_require__(101);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var store = (0, _redux.createStore)(_reducers2.default);
+
+(0, _reactDom.render)(_react2.default.createElement(
+  _reactRedux.Provider,
+  { store: store },
+  _react2.default.createElement(_index2.default, null)
+), document.getElementById('app'));
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "app.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CalculationPanel = function CalculationPanel(_ref) {
+  var elementsClicked = _ref.elementsClicked,
+      onPlusClick = _ref.onPlusClick,
+      onMinusClick = _ref.onMinusClick,
+      onElementClick = _ref.onElementClick;
+
+
+  var PID = void 0;
+  var obj = {};
+
+  //Map over every element based off of its parenId
+  //Push the elements with the same parenId into their respective arrays within obj
+  var getParen = elementsClicked.map(function (element, i) {
+    PID = element.parenId;
+    var parenID = 'paren_' + PID;
+
+    if (obj[parenID]) {
+      obj[parenID].push(element);
+    } else {
+      obj[parenID] = [];
+      obj[parenID].push(element);
+    }
+  });
+
+  //Map over every array within obj.
+  //Then return element buttons either with left, right or no parenthesis.
+  var elements = Object.keys(obj).map(function (key) {
+    //console.log(obj[key])
+    return obj[key].map(function (element, i) {
+      //console.log(obj[key].length)
+
+      var multiplier = function multiplier(multi) {
+        if (multi === 1) {
+          return;
+        }
+        return multi;
+      };
+
+      var clicked = function clicked(clickBool) {
+        if (clickBool) {
+          return 'activeElement';
+        }
+        return 'inactiveElement';
+      };
+
+      var elemPlusClick = _react2.default.createElement(
+        'div',
+        { className: 'btn btn-xs btn-primary p-m',
+          onClick: function onClick() {
+            return onPlusClick(element.id, element.mass);
+          } },
+        _react2.default.createElement(
+          'p',
+          null,
+          '+'
+        )
+      );
+
+      var elemMinusClick = _react2.default.createElement(
+        'div',
+        { className: 'btn btn-xs btn-primary p-m',
+          onClick: function onClick() {
+            return onMinusClick(element.id, element.multiplier, element.mass);
+          } },
+        _react2.default.createElement(
+          'p',
+          null,
+          '-'
+        )
+      );
+
+      var elemInParen = _react2.default.createElement(
+        'div',
+        { className: 'elementSelected' },
+        elemPlusClick,
+        _react2.default.createElement(
+          'div',
+          { style: { padding: 0 } },
+          _react2.default.createElement(
+            'p',
+            { style: { fontSize: 25 } },
+            element.acronym,
+            multiplier(element.multiplier)
+          )
+        ),
+        elemMinusClick
+      );
+
+      var elemNoParen = _react2.default.createElement(
+        'div',
+        { className: 'elementSelected' },
+        elemPlusClick,
+        _react2.default.createElement(
+          'div',
+          { onClick: function onClick() {
+              return onElementClick(element.id, element.clicked);
+            } },
+          _react2.default.createElement(
+            'p',
+            { style: { fontSize: 25 },
+              className: clicked(element.clicked)
+            },
+            element.acronym,
+            multiplier(element.multiplier)
+          )
+        ),
+        elemMinusClick
+      );
+
+      var leftParen = _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          { style: { fontSize: 47 } },
+          '('
+        )
+      );
+
+      var rightParen = _react2.default.createElement(
+        'div',
+        { style: { display: "inline-flex" } },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'p',
+            { style: { fontSize: 47 } },
+            ')'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'btn btn-xs' },
+            _react2.default.createElement(
+              'p',
+              null,
+              '+'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'p',
+              null,
+              '1'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'btn btn-xs' },
+            _react2.default.createElement(
+              'p',
+              null,
+              '-'
+            )
+          )
+        )
+      );
+
+      //No parenthesis required
+      if (element.parenId < 0) {
+        return _react2.default.createElement(
+          'div',
+          { key: i },
+          elemNoParen
+        );
+      }
+      //Parenthesis required
+      else {
+          //First element of parentheses
+          if (i === 0) {
+            return _react2.default.createElement(
+              'div',
+              { key: i, style: { display: "inline-flex" } },
+              leftParen,
+              elemInParen
+            );
+            //Last element of parentheses
+          } else if (i === obj[key].length - 1) {
+            return _react2.default.createElement(
+              'div',
+              { key: i, style: { display: "inline-flex" } },
+              elemInParen,
+              rightParen
+            );
+            //Middle elements of parentheses
+          } else {
+            return _react2.default.createElement(
+              'div',
+              { key: i },
+              elemInParen
+            );
+          }
+        }
+    });
+  });
+
+  console.log(obj);
+
+  return _react2.default.createElement(
+    'div',
+    { id: 'CalculationPanel', className: 'row' },
+    elements
+  );
+};
+
+CalculationPanel.propTypes = {
+  elementsClicked: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+    id: _react.PropTypes.number.isRequired,
+    mass: _react.PropTypes.number.isRequired,
+    acronym: _react.PropTypes.string.isRequired,
+    multiplier: _react.PropTypes.number.isRequired,
+    parenId: _react.PropTypes.number.isRequired,
+    clicked: _react.PropTypes.bool.isRequired
+  }).isRequired).isRequired,
+  onPlusClick: _react.PropTypes.func.isRequired,
+  onMinusClick: _react.PropTypes.func.isRequired,
+  onElementClick: _react.PropTypes.func.isRequired
+};
+
+exports.default = CalculationPanel;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "CalculationPanel.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ElementsPanel = function ElementsPanel(_ref) {
+  var elementsFound = _ref.elementsFound,
+      onElementClick = _ref.onElementClick;
+  return _react2.default.createElement(
+    "div",
+    { id: "DisplayElements", className: "row" },
+    elementsFound.map(function (element, i) {
+      return _react2.default.createElement(
+        "div",
+        { key: i, className: "elementFound col-sm-3", onClick: function onClick() {
+            return onElementClick(element);
+          } },
+        _react2.default.createElement(
+          "p",
+          null,
+          element.atomicNumber
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          element.acronym
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          element.name
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          element.mass.toFixed(3)
+        )
+      );
+    })
+  );
+};
+
+ElementsPanel.propTypes = {
+  elementsFound: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+    mass: _react.PropTypes.number.isRequired,
+    name: _react.PropTypes.string.isRequired,
+    acronym: _react.PropTypes.string.isRequired,
+    atomicNumber: _react.PropTypes.number.isRequired
+  }).isRequired).isRequired,
+  onElementClick: _react.PropTypes.func.isRequired
+};
+
+exports.default = ElementsPanel;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ElementsPanel.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MassPanel = function MassPanel(_ref) {
+  var molecularWeight = _ref.molecularWeight;
+  return _react2.default.createElement(
+    'div',
+    { className: 'row' },
+    _react2.default.createElement(
+      'p',
+      null,
+      molecularWeight.toFixed(3)
+    )
+  );
+};
+
+MassPanel.propTypes = {
+  molecularWeight: _react.PropTypes.number.isRequired
+};
+
+exports.default = MassPanel;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MassPanel.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(19);
+
+var _CalculationPanel = __webpack_require__(128);
+
+var _CalculationPanel2 = _interopRequireDefault(_CalculationPanel);
+
+var _index = __webpack_require__(36);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    elementsClicked: state.elementsClicked
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onPlusClick: function onPlusClick(id, mass) {
+      dispatch((0, _index.doPlus)(id));
+      dispatch((0, _index.calculateTotal)(mass, 'PLUS'));
+    },
+    onMinusClick: function onMinusClick(id, multiplier, mass) {
+      dispatch((0, _index.doMinus)(id, multiplier));
+      dispatch((0, _index.calculateTotal)(mass, 'MINUS'));
+    },
+    onElementClick: function onElementClick(id) {
+      dispatch((0, _index.doParenthesis)(id));
+    }
+  };
+};
+
+var CalcElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CalculationPanel2.default);
+
+exports.default = CalcElementDivs;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayCalcElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(19);
+
+var _ElementsPanel = __webpack_require__(129);
+
+var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
+
+var _index = __webpack_require__(36);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    elementsFound: state.elementsFound
+  };
+};
+
+//
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    onElementClick: function onElementClick(element) {
+      //console.log(element)
+      dispatch((0, _index.pinElement)(element));
+      dispatch((0, _index.calculateTotal)(element.mass, 'PLUS'));
+    }
+  };
+};
+
+var ElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ElementsPanel2.default);
+
+exports.default = ElementDivs;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(19);
+
+var _MassPanel = __webpack_require__(130);
+
+var _MassPanel2 = _interopRequireDefault(_MassPanel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    molecularWeight: state.massCalculated
+  };
+};
+
+var MassPanelDivs = (0, _reactRedux.connect)(mapStateToProps)(_MassPanel2.default);
+
+exports.default = MassPanelDivs;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayMass.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(19);
+
+var _actions = __webpack_require__(36);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//Since this component uses redux, it is considered a container, rather than a presentational component
+var SearchForElements = function SearchForElements(_ref) {
+  var dispatch = _ref.dispatch;
+
+  var input = void 0;
+
+  return _react2.default.createElement(
+    'div',
+    { id: 'SearchForElements', className: 'row' },
+    _react2.default.createElement(
+      'div',
+      { className: 'col-sm-6 col-sm-offset-3' },
+      _react2.default.createElement(
+        'form',
+        {
+          onChange: function onChange(e) {
+            //Prevent form submission and subsequent page reload when hitting enter/return
+            e.preventDefault();
+
+            //Dispatch an action from the action creator with the value of the input
+            dispatch((0, _actions.searchForElements)(input.value));
+          }
+        },
+        _react2.default.createElement('input', { className: 'form-control input-md',
+          ref: function ref(node) {
+            //Node refers to this specific element (this input element)
+            input = node;
+          }
+        })
+      )
+    )
+  );
+};
+
+SearchForElements = (0, _reactRedux.connect)()(SearchForElements);
+
+exports.default = SearchForElements;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SearchForElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var parenCount = 0;
+
+var editParen = function editParen() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'DO_PAREN_A':
+      {
+        //If the element being mapped wasn't what the user clicked.
+        if (state.id !== action.id) {
+          return state;
+        }
+
+        return Object.assign({}, state, {
+          clicked: true
+        });
+      }
+    case 'DO_PAREN_B':
+      {
+        //If the element being mapped is what the user clicked.
+        //If it has been clicked, make it false. Otherwise make it true.
+        if (state.id === action.id) {
+          return Object.assign({}, state, {
+            clicked: true
+          });
+        }
+
+        return state;
+      }
+
+    case 'MAKE_PAREN':
+      {
+        var doCount = function doCount(clicked) {
+          if (clicked === true) {
+            parenCount += 1;
+          }
+        };
+
+        doCount(state.clicked);
+
+        if (parenCount === 1) {
+          return Object.assign({}, state, {
+            parenId: action.parenID,
+            clicked: false
+          });
+        }
+
+        if (parenCount === 2) {
+          parenCount = 0;
+
+          return Object.assign({}, state, {
+            parenId: action.parenID,
+            clicked: false
+          });
+        }
+
+        return state;
+      }
+
+    case 'DONT_MAKE_PAREN':
+      {
+        return Object.assign({}, state, {
+          clicked: false
+        });
+      }
+
+    default:
+      return state;
+  }
+};
+
+var editElement = function editElement() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments[1];
+
+  switch (action.type) {
+
+    case 'PIN_ELEMENT':
+      {
+        return {
+          id: action.id,
+          mass: action.mass,
+          acronym: action.acronym,
+          multiplier: 1,
+          parenId: -1,
+          clicked: false
+        };
+      }
+
+    case 'DO_PLUS':
+      {
+        //If the element being mapped wasn't what the user clicked, return state.
+        //Otherwise, create and return a new object that is exactly like state,
+        //except with the multiplier incremented by 1
+
+        if (state.id !== action.id) {
+          return state;
+        }
+
+        return Object.assign({}, state, {
+          multiplier: state.multiplier + 1
+        });
+      }
+
+    case 'DO_MINUS':
+      {
+        //If the element being mapped wasn't what the user clicked return state.
+        //Otherwise, create and return a new object that is exactly like state,
+        //except with the multiplier decremented by 1
+
+        if (state.id !== action.id) {
+          return state;
+        }
+
+        return Object.assign({}, state, {
+          multiplier: state.multiplier - 1
+        });
+      }
+
+    case 'REMOVE_ELEMENT':
+      {
+        //If the element being mapped wasn't what the user clicked.
+        if (state.id !== action.id) {
+          return state;
+        }
+        //To find element in state array
+        return 1;
+      }
+
+    case 'DO_PAREN_A':
+      {
+        //If the element being mapped wasn't what the user clicked.
+        if (state.id !== action.id) {
+          return state;
+        }
+        return Object.assign({}, state, {
+          clicked: true
+        });
+      }
+
+    case 'DO_PAREN_B':
+      {
+        //If the element being mapped is what the user clicked.
+        //If it has been clicked, make it false. Otherwise make it true.
+        if (state.id === action.id) {
+          return Object.assign({}, state, {
+            clicked: true
+          });
+        }
+
+        return state;
+      }
+
+    case 'MAKE_PAREN':
+      {
+        var doCount = function doCount(clicked) {
+          if (clicked === true) {
+            parenCount += 1;
+          }
+        };
+
+        doCount(state.clicked);
+
+        if (parenCount === 1) {
+          return Object.assign({}, state, {
+            parenId: 5,
+            clicked: false
+          });
+        }
+
+        if (parenCount === 2) {
+          parenCount = 0;
+
+          return Object.assign({}, state, {
+            parenId: 5,
+            clicked: false
+          });
+        }
+
+        return state;
+      }
+
+    case 'DONT_MAKE_PAREN':
+      {
+        return Object.assign({}, state, {
+          clicked: false
+        });
+      }
+
+    default:
+      return state;
+  }
+};
+
+var elementClicked = function elementClicked() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  //If state doesn't exist, it becomes an empty array.
+  //If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
+  //Otherwise return original/previous state
+  switch (action.type) {
+    case 'PIN_ELEMENT':
+      {
+        //console.log(state)
+        //console.log([...state, editElement(undefined, action)])
+
+        //Return an array containing the contents of state and push action.element into that array
+        return [].concat(_toConsumableArray(state), [editElement(undefined, action)]);
+      }
+
+    case 'DO_PLUS':
+      {
+        //Map over all elements and make changes as needed
+        return state.map(function (t) {
+          return editElement(t, action);
+        });
+      }
+
+    case 'DO_MINUS':
+      {
+        //Map over all elements and make changes as needed
+        return state.map(function (t) {
+          return editElement(t, action);
+        });
+      }
+
+    case 'REMOVE_ELEMENT':
+      {
+        //Map over all elements and make changes as needed
+        var removedState = state.map(function (t) {
+          return editElement(t, action);
+        });
+        removedState.splice(removedState.indexOf(1), 1);
+
+        //console.log(state)
+        //console.log(removedState)
+
+        return removedState;
+      }
+
+    case 'DO_PAREN_A':
+      {
+        //Map over all elements and make changes as needed
+        var parenAState = state.map(function (t) {
+          return editParen(t, action);
+        });
+
+        return parenAState;
+      }
+
+    case 'DO_PAREN_B':
+      {
+        //Map over all elements and make changes as needed
+        var parenBState = state.map(function (t) {
+          return editParen(t, action);
+        });
+
+        var getClickCount = parenBState.map(function (t) {
+          if (t.clicked) {
+            return 1;
+          }
+          return 0;
+        });
+
+        var willMake = function willMake(click) {
+          var count = 0;
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = click[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var value = _step.value;
+
+              if (value === 1) {
+                count += 1;
+              }
+            }
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          if (count === 2) {
+            return true;
+          }
+
+          return false;
+        };
+
+        var changeToMake = function changeToMake(willBeMade) {
+          var newAction = void 0;
+
+          if (willBeMade === true) {
+            newAction = Object.assign({}, action, {
+              type: 'MAKE_PAREN'
+            });
+
+            return parenBState.map(function (t) {
+              return editParen(t, newAction);
+            });
+          }
+
+          newAction = Object.assign({}, action, {
+            type: 'DONT_MAKE_PAREN'
+          });
+
+          return parenBState.map(function (t) {
+            return editParen(t, newAction);
+          });
+        };
+
+        var finalParenState = changeToMake(willMake(getClickCount));
+
+        // console.log(state)
+        // console.log(parenBState)
+        // console.log(getClickCount)
+        // console.log(willMake(getClickCount))
+        //console.log(finalParenState);
+
+        return finalParenState;
+      }
+
+    default:
+      return state;
+  }
+};
+
+exports.default = elementClicked;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "elementClicked.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+//If state doesn't exist, it becomes an empty array.
+//If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
+//Otherwise return state.
+var elementsFound = function elementsFound() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'SEARCH_ELEMENT':
+      {
+        return action.elementsFound;
+      }
+
+    default:
+      {
+        return state;
+      }
+  }
+};
+
+exports.default = elementsFound;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "elementsFound.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var CALCULATE_TOTAL_PLUS = 'CALCULATE_TOTAL_PLUS';
+var CALCULATE_TOTAL_MINUS = 'CALCULATE_TOTAL_MINUS';
+
+var massCalculated = function massCalculated() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case CALCULATE_TOTAL_PLUS:
+      {
+        var newPlus = state + action.mass;
+
+        return newPlus;
+      }
+
+    case CALCULATE_TOTAL_MINUS:
+      {
+        var newMinus = state - action.mass;
+
+        if (newMinus < 0) {
+          return 0;
+        }
+
+        return newMinus;
+      }
+
+    default:
+      return state;
+  }
+};
+
+exports.default = massCalculated;
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "massCalculated.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
 "use strict";
 
 var elements = [{
@@ -13627,7 +14649,7 @@ module.exports = elements;
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "elements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
-/* 128 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -13639,7 +14661,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.adjustElement = exports.elementPicker = undefined;
 
-var _elements = __webpack_require__(127);
+var _elements = __webpack_require__(138);
 
 var _elements2 = _interopRequireDefault(_elements);
 
@@ -13727,963 +14749,6 @@ var adjustElement = exports.adjustElement = function adjustElement(element, pm) 
 };
 
 /* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "helper.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(100);
-
-var _reactRedux = __webpack_require__(19);
-
-var _redux = __webpack_require__(34);
-
-var _reducers = __webpack_require__(102);
-
-var _reducers2 = _interopRequireDefault(_reducers);
-
-var _components = __webpack_require__(101);
-
-var _components2 = _interopRequireDefault(_components);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var store = (0, _redux.createStore)(_reducers2.default);
-
-(0, _reactDom.render)(_react2.default.createElement(
-  _reactRedux.Provider,
-  { store: store },
-  _react2.default.createElement(_components2.default, null)
-), document.getElementById('app'));
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "app.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var CalculationPanel = function CalculationPanel(_ref) {
-  var elementsClicked = _ref.elementsClicked,
-      onPlusClick = _ref.onPlusClick,
-      onMinusClick = _ref.onMinusClick,
-      onElementClick = _ref.onElementClick;
-
-
-  var PID = void 0;
-  var obj = {};
-
-  //Map over every element based off of its parenId
-  //Push the elements with the same parenId into their respective arrays within obj
-  var getParen = elementsClicked.map(function (element, i) {
-    PID = element.parenId;
-    var parenID = 'paren_' + PID;
-
-    if (obj[parenID]) {
-      obj[parenID].push(element);
-    } else {
-      obj[parenID] = [];
-      obj[parenID].push(element);
-    }
-  });
-
-  //Map over every array within obj.
-  //Then return element buttons either with left, right or no parenthesis.
-  var elements = Object.keys(obj).map(function (key) {
-    //console.log(obj[key])
-    return obj[key].map(function (element, i) {
-      //console.log(obj[key].length)
-
-      var multiplier = function multiplier(multi) {
-        if (multi === 1) {
-          return;
-        }
-        return multi;
-      };
-      var clicked = function clicked(clickBool) {
-        if (clickBool) {
-          return 'activeElement';
-        }
-        return 'inactiveElement';
-      };
-
-      var elemPlusClick = _react2.default.createElement(
-        'div',
-        { className: 'btn btn-xs btn-primary p-m',
-          onClick: function onClick() {
-            return onPlusClick(element.id, element.mass);
-          } },
-        _react2.default.createElement(
-          'p',
-          null,
-          '+'
-        )
-      );
-      var elemMinusClick = _react2.default.createElement(
-        'div',
-        { className: 'btn btn-xs btn-primary p-m',
-          onClick: function onClick() {
-            return onMinusClick(element.id, element.multiplier, element.mass);
-          } },
-        _react2.default.createElement(
-          'p',
-          null,
-          '-'
-        )
-      );
-
-      var elemInParen = _react2.default.createElement(
-        'div',
-        { className: 'elementSelected' },
-        elemPlusClick,
-        _react2.default.createElement(
-          'div',
-          { style: { padding: 0 } },
-          _react2.default.createElement(
-            'p',
-            { style: { fontSize: 25 } },
-            element.acronym,
-            multiplier(element.multiplier)
-          )
-        ),
-        elemMinusClick
-      );
-      var elemNoParen = _react2.default.createElement(
-        'div',
-        { className: 'elementSelected' },
-        elemPlusClick,
-        _react2.default.createElement(
-          'div',
-          { onClick: function onClick() {
-              return onElementClick(element.id, element.clicked);
-            } },
-          _react2.default.createElement(
-            'p',
-            { style: { fontSize: 25 },
-              className: clicked(element.clicked)
-            },
-            element.acronym,
-            multiplier(element.multiplier)
-          )
-        ),
-        elemMinusClick
-      );
-
-      var leftParen = _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'p',
-          { style: { fontSize: 47 } },
-          '('
-        )
-      );
-      var rightParen = _react2.default.createElement(
-        'div',
-        { style: { display: "inline-flex" } },
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'p',
-            { style: { fontSize: 47 } },
-            ')'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            'div',
-            { className: 'btn btn-xs' },
-            _react2.default.createElement(
-              'p',
-              null,
-              '+'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'p',
-              null,
-              '1'
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'btn btn-xs' },
-            _react2.default.createElement(
-              'p',
-              null,
-              '-'
-            )
-          )
-        )
-      );
-
-      //No parenthesis required
-      if (element.parenId < 0) {
-        return _react2.default.createElement(
-          'div',
-          { key: i },
-          elemNoParen
-        );
-      }
-      //Parenthesis required
-      else {
-          //First element of parentheses
-          if (i === 0) {
-            return _react2.default.createElement(
-              'div',
-              { key: i, style: { display: "inline-flex" } },
-              leftParen,
-              elemInParen
-            );
-            //Last element of parentheses
-          } else if (i === obj[key].length - 1) {
-            return _react2.default.createElement(
-              'div',
-              { key: i, style: { display: "inline-flex" } },
-              elemInParen,
-              rightParen
-            );
-            //Middle elements of parentheses
-          } else {
-            return _react2.default.createElement(
-              'div',
-              { key: i },
-              elemInParen
-            );
-          }
-        }
-    });
-  });
-
-  console.log(obj);
-
-  return _react2.default.createElement(
-    'div',
-    { id: 'CalculationPanel', className: 'row' },
-    elements
-  );
-};
-
-CalculationPanel.propTypes = {
-  elementsClicked: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-    id: _react.PropTypes.number.isRequired,
-    mass: _react.PropTypes.number.isRequired,
-    acronym: _react.PropTypes.string.isRequired,
-    multiplier: _react.PropTypes.number.isRequired,
-    parenId: _react.PropTypes.number.isRequired,
-    clicked: _react.PropTypes.bool.isRequired
-  }).isRequired).isRequired,
-  onPlusClick: _react.PropTypes.func.isRequired,
-  onMinusClick: _react.PropTypes.func.isRequired,
-  onElementClick: _react.PropTypes.func.isRequired
-};
-
-exports.default = CalculationPanel;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "CalculationPanel.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var ElementsPanel = function ElementsPanel(_ref) {
-  var elementsFound = _ref.elementsFound,
-      onElementClick = _ref.onElementClick;
-  return _react2.default.createElement(
-    "div",
-    { id: "DisplayElements", className: "row" },
-    elementsFound.map(function (element, i) {
-      return _react2.default.createElement(
-        "div",
-        { key: i, className: "elementFound col-sm-3", onClick: function onClick() {
-            return onElementClick(element);
-          } },
-        _react2.default.createElement(
-          "p",
-          null,
-          element.atomicNumber
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          element.acronym
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          element.name
-        ),
-        _react2.default.createElement(
-          "p",
-          null,
-          element.mass.toFixed(3)
-        )
-      );
-    })
-  );
-};
-
-ElementsPanel.propTypes = {
-  elementsFound: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-    mass: _react.PropTypes.number.isRequired,
-    name: _react.PropTypes.string.isRequired,
-    acronym: _react.PropTypes.string.isRequired,
-    atomicNumber: _react.PropTypes.number.isRequired
-  }).isRequired).isRequired,
-  onElementClick: _react.PropTypes.func.isRequired
-};
-
-exports.default = ElementsPanel;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "ElementsPanel.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var MassPanel = function MassPanel(_ref) {
-  var molecularWeight = _ref.molecularWeight;
-  return _react2.default.createElement(
-    "div",
-    { className: "row" },
-    _react2.default.createElement(
-      "p",
-      null,
-      molecularWeight.toFixed(3)
-    )
-  );
-};
-
-MassPanel.propTypes = {
-  molecularWeight: _react.PropTypes.number.isRequired
-};
-
-exports.default = MassPanel;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "MassPanel.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(19);
-
-var _CalculationPanel = __webpack_require__(130);
-
-var _CalculationPanel2 = _interopRequireDefault(_CalculationPanel);
-
-var _index = __webpack_require__(36);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    elementsClicked: state.elementsClicked
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onPlusClick: function onPlusClick(id, mass) {
-      dispatch((0, _index.doPlus)(id));
-      dispatch((0, _index.calculateTotal)(mass, 'PLUS'));
-    },
-    onMinusClick: function onMinusClick(id, multiplier, mass) {
-      dispatch((0, _index.doMinus)(id, multiplier));
-      dispatch((0, _index.calculateTotal)(mass, 'MINUS'));
-    },
-    onElementClick: function onElementClick(id) {
-      dispatch((0, _index.doParenthesis)(id));
-    }
-  };
-};
-
-var CalcElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CalculationPanel2.default);
-
-exports.default = CalcElementDivs;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayCalcElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(19);
-
-var _ElementsPanel = __webpack_require__(131);
-
-var _ElementsPanel2 = _interopRequireDefault(_ElementsPanel);
-
-var _index = __webpack_require__(36);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    elementsFound: state.elementsFound
-  };
-};
-
-//
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    onElementClick: function onElementClick(element) {
-      //console.log(element)
-      dispatch((0, _index.pinElement)(element));
-      dispatch((0, _index.calculateTotal)(element.mass, 'PLUS'));
-    }
-  };
-};
-
-var ElementDivs = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ElementsPanel2.default);
-
-exports.default = ElementDivs;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _reactRedux = __webpack_require__(19);
-
-var _MassPanel = __webpack_require__(132);
-
-var _MassPanel2 = _interopRequireDefault(_MassPanel);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    molecularWeight: state.massCalculated
-  };
-};
-
-var MassPanelDivs = (0, _reactRedux.connect)(mapStateToProps)(_MassPanel2.default);
-
-exports.default = MassPanelDivs;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "DisplayMass.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 136 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(19);
-
-var _actions = __webpack_require__(36);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//Since this component uses redux, it is considered a container, rather than a presentational component
-var SearchForElements = function SearchForElements(_ref) {
-  var dispatch = _ref.dispatch;
-
-  var input = void 0;
-
-  return _react2.default.createElement(
-    'div',
-    { id: 'SearchForElements', className: 'row' },
-    _react2.default.createElement(
-      'div',
-      { className: 'col-sm-6 col-sm-offset-3' },
-      _react2.default.createElement(
-        'form',
-        {
-          onChange: function onChange(e) {
-            //Prevent form submission and subsequent page reload when hitting enter/return
-            e.preventDefault();
-
-            //Dispatch an action from the action creator with the value of the input
-            dispatch((0, _actions.searchForElements)(input.value));
-          }
-        },
-        _react2.default.createElement('input', { className: 'form-control input-md',
-          ref: function ref(node) {
-            //Node refers to this specific element (this input element)
-            input = node;
-          }
-        })
-      )
-    )
-  );
-};
-
-SearchForElements = (0, _reactRedux.connect)()(SearchForElements);
-
-exports.default = SearchForElements;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "SearchForElements.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var parenCount = 0;
-var editParen = function editParen() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'DO_PAREN_A':
-      //If the element being mapped wasn't what the user clicked.
-      if (state.id != action.id) {
-        return state;
-      }
-      return Object.assign({}, state, {
-        clicked: true
-      });
-
-    case 'DO_PAREN_B':
-      //If the element being mapped is what the user clicked.
-      //If it has been clicked, make it false. Otherwise make it true.
-      if (state.id == action.id) {
-        return Object.assign({}, state, {
-          clicked: true
-        });
-      }
-      return state;
-
-    case 'MAKE_PAREN':
-      var doCount = function doCount(clicked) {
-        if (clicked === true) {
-          parenCount++;
-        }
-      };
-
-      doCount(state.clicked);
-
-      if (parenCount === 1) {
-        return Object.assign({}, state, {
-          parenId: action.parenID,
-          clicked: false
-        });
-      }
-      if (parenCount === 2) {
-        parenCount = 0;
-        return Object.assign({}, state, {
-          parenId: action.parenID,
-          clicked: false
-        });
-      }
-
-      return state;
-
-    case 'DONT_MAKE_PAREN':
-      return Object.assign({}, state, {
-        clicked: false
-      });
-
-    default:
-      return state;
-  }
-};
-
-var editElement = function editElement() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var action = arguments[1];
-
-  switch (action.type) {
-
-    case 'PIN_ELEMENT':
-      return {
-        id: action.id,
-        mass: action.mass,
-        acronym: action.acronym,
-        multiplier: 1,
-        parenId: -1,
-        clicked: false
-      };
-
-    case 'DO_PLUS':
-      //If the element being mapped wasn't what the user clicked, return state.
-      //Otherwise, create and return a new object that is exactly like state,
-      //except with the multiplier incremented by 1
-
-      if (state.id != action.id) {
-        return state;
-      }
-      return Object.assign({}, state, {
-        multiplier: state.multiplier += 1
-      });
-
-    case 'DO_MINUS':
-      //If the element being mapped wasn't what the user clicked return state.
-      //Otherwise, create and return a new object that is exactly like state,
-      //except with the multiplier decremented by 1
-
-      if (state.id != action.id) {
-        return state;
-      }
-      return Object.assign({}, state, {
-        multiplier: state.multiplier -= 1
-      });
-
-    case 'REMOVE_ELEMENT':
-      //If the element being mapped wasn't what the user clicked.
-      if (state.id != action.id) {
-        return state;
-      }
-      //To find element in state array
-      return 1;
-
-    case 'DO_PAREN_A':
-      //If the element being mapped wasn't what the user clicked.
-      if (state.id != action.id) {
-        return state;
-      }
-      return Object.assign({}, state, {
-        clicked: true
-      });
-
-    case 'DO_PAREN_B':
-      //If the element being mapped is what the user clicked.
-      //If it has been clicked, make it false. Otherwise make it true.
-      if (state.id == action.id) {
-        return Object.assign({}, state, {
-          clicked: true
-        });
-      }
-
-      return state;
-
-    case 'MAKE_PAREN':
-      var doCount = function doCount(clicked) {
-        if (clicked === true) {
-          parenCount++;
-        }
-      };
-
-      doCount(state.clicked);
-
-      if (parenCount === 1) {
-        return Object.assign({}, state, {
-          parenId: 5,
-          clicked: false
-        });
-      }
-      if (parenCount === 2) {
-        parenCount = 0;
-        return Object.assign({}, state, {
-          parenId: 5,
-          clicked: false
-        });
-      }
-
-      return state;
-
-    case 'DONT_MAKE_PAREN':
-      return Object.assign({}, state, {
-        clicked: false
-      });
-
-    default:
-      return state;
-  }
-};
-
-var elementClicked = function elementClicked() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  //If state doesn't exist, it becomes an empty array.
-  //If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
-  //Otherwise return original/previous state
-  switch (action.type) {
-    case 'PIN_ELEMENT':
-      //console.log(state)
-      //console.log([...state, editElement(undefined, action)])
-
-      //Return an array containing the contents of state and push action.element into that array
-      return [].concat(_toConsumableArray(state), [editElement(undefined, action)]);
-
-    case 'DO_PLUS':
-      //Map over all elements and make changes as needed
-      return state.map(function (t) {
-        return editElement(t, action);
-      });
-
-    case 'DO_MINUS':
-      //Map over all elements and make changes as needed
-      return state.map(function (t) {
-        return editElement(t, action);
-      });
-
-    case 'REMOVE_ELEMENT':
-      //Map over all elements and make changes as needed
-      var removedState = state.map(function (t) {
-        return editElement(t, action);
-      });
-      removedState.splice(removedState.indexOf(1), 1);
-
-      //console.log(state)
-      //console.log(removedState)
-
-      return removedState;
-
-    case 'DO_PAREN_A':
-      //Map over all elements and make changes as needed
-      var parenAState = state.map(function (t) {
-        return editParen(t, action);
-      });
-
-      return parenAState;
-
-    case 'DO_PAREN_B':
-      //Map over all elements and make changes as needed
-      var parenBState = state.map(function (t) {
-        return editParen(t, action);
-      });
-
-      var getClickCount = parenBState.map(function (t) {
-        if (t.clicked) {
-          return 1;
-        }
-        return 0;
-      });
-
-      var willMake = function willMake(click) {
-        var count = 0;
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = click[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var value = _step.value;
-
-            if (value === 1) {
-              count++;
-            }
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
-
-        if (count === 2) {
-          return true;
-        }
-      };
-
-      var changeToMake = function changeToMake(willMake) {
-        if (willMake === true) {
-          action.type = 'MAKE_PAREN';
-          return parenBState.map(function (t) {
-            return editParen(t, action);
-          });
-        } else {
-          action.type = 'DONT_MAKE_PAREN';
-          return parenBState.map(function (t) {
-            return editParen(t, action);
-          });
-        }
-      };
-
-      var finalParenState = changeToMake(willMake(getClickCount));
-
-      // console.log(state)
-      // console.log(parenBState)
-      // console.log(getClickCount)
-      // console.log(willMake(getClickCount))
-      console.log(finalParenState);
-
-      return finalParenState;
-
-    default:
-      return state;
-  }
-};
-
-exports.default = elementClicked;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "elementClicked.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-//If state doesn't exist, it becomes an empty array.
-//If there is an action type called 'SEARCH_ELEMENT', then return elementsFound to reducer index
-//Otherwise return state.
-var elementsFound = function elementsFound() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'SEARCH_ELEMENT':
-      return action.elementsFound;
-
-    default:
-      return state;
-  }
-};
-
-exports.default = elementsFound;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "elementsFound.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var massCalculated = function massCalculated() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case 'CALCULATE_TOTAL_PLUS':
-      var newPlus = state + action.mass;
-      //console.log(state)
-      //console.log(newPlus)
-
-      return newPlus;
-
-    case 'CALCULATE_TOTAL_MINUS':
-      var newMinus = state - action.mass;
-      //console.log(state)
-      //console.log(newMinus)
-
-      if (newMinus < 0) {
-        return 0;
-      }
-
-      return newMinus;
-
-    default:
-      return state;
-  }
-};
-
-exports.default = massCalculated;
-
-/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\Miche\\Desktop\\ReduxMolecularWeightCalculator\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "massCalculated.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ }),
 /* 140 */

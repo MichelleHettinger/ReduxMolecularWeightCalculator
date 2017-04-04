@@ -3,12 +3,14 @@
 //Otherwise return state.
 const elementsFound = (state = [], action) => {
   switch (action.type) {
-    case 'SEARCH_ELEMENT':
-      return action.elementsFound
+    case 'SEARCH_ELEMENT': {
+      return action.elementsFound;
+    }
 
-    default:
-      return state
+    default: {
+      return state;
+    }
   }
-}
+};
 
-export default elementsFound
+export default elementsFound;

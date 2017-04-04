@@ -4,7 +4,7 @@ module.exports = {
   context: __dirname,
 
   entry: {
-    javascript: "./src/app.js"
+    javascript: "./src/app.jsx"
   },
 
   output: {
@@ -17,15 +17,21 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
-          test: /\.jsx?$/,
-          exclude: /node_modules/,
-          loaders: ["react-hot-loader", "babel-loader"]
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: ["react-hot-loader", "babel-loader"]
       },
       {
-          test: /\.html$/,
-          loader: "file-loader?name=[name].[ext]"
+        test: /\.html$/,
+        loader: "file-loader?name=[name].[ext]"
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: [/node_modules/, 'server.js', 'mock/*'],
+        loader: "eslint-loader",
+        enforce: "pre",
       }
     ]
   }

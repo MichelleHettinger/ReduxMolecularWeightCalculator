@@ -1,27 +1,27 @@
+const CALCULATE_TOTAL_PLUS = 'CALCULATE_TOTAL_PLUS';
+const CALCULATE_TOTAL_MINUS = 'CALCULATE_TOTAL_MINUS';
 
 const massCalculated = (state = 0, action) => {
   switch (action.type) {
-    case 'CALCULATE_TOTAL_PLUS':
-      const newPlus = state + action.mass
-      //console.log(state)
-      //console.log(newPlus)
+    case CALCULATE_TOTAL_PLUS: {
+      const newPlus = state + action.mass;
 
-      return newPlus
+      return newPlus;
+    }
 
-    case 'CALCULATE_TOTAL_MINUS':
-      const newMinus = state - action.mass
-      //console.log(state)
-      //console.log(newMinus)
+    case CALCULATE_TOTAL_MINUS: {
+      const newMinus = state - action.mass;
 
-      if (newMinus < 0){
-        return 0
+      if (newMinus < 0) {
+        return 0;
       }
 
-      return newMinus
+      return newMinus;
+    }
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default massCalculated
+export default massCalculated;
