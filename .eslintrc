@@ -27,6 +27,10 @@
     "spaced-line-comment": 0,
     "no-console": 1,
     "spaced-comment": 0,
+    "max-len": 0,
+    "no-plusplus": 0,
+    "arrow-body-style": 0,
+    "no-restricted-syntax": 0,
     // disabled dueto eslint error
     "no-duplicate-case": 0,
     "object-curly-spacing": 0,

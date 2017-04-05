@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import shortid from 'shortid';
 
 const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElementClick }) => {
   let PID;
@@ -8,7 +9,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
   //Push the elements with the same parenId into their respective arrays within obj
   elementsClicked.map((element) => {
     PID = element.parenId;
-    const parenID = 'paren_' + PID.toString();
+    const parenID = `paren_${PID}`;
 
     if (obj[parenID]) {
       obj[parenID].push(element);
@@ -16,6 +17,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       obj[parenID] = [];
       obj[parenID].push(element);
     }
+    return true;
   });
 
   //Map over every array within obj.
@@ -27,7 +29,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
 
       const multiplier = (multi) => {
         if (multi === 1) {
-          return;
+          return '';
         }
         return multi;
       };
@@ -40,21 +42,21 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       };
 
       const elemPlusClick = (
-        <div
+        <button
           className='btn btn-xs btn-primary p-m'
           onClick={ () => onPlusClick(element.id, element.mass) }
         >
           <p>+</p>
-        </div>
+        </button>
       );
 
       const elemMinusClick = (
-        <div
+        <button
           className='btn btn-xs btn-primary p-m'
           onClick={ () => onMinusClick(element.id, element.multiplier, element.mass) }
         >
           <p>-</p>
-        </div>
+        </button>
       );
 
       const elemInParen = (
@@ -72,14 +74,14 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       const elemNoParen = (
         <div className='elementSelected'>
           {elemPlusClick}
-          <div onClick={ () => onElementClick(element.id, element.clicked) }>
+          <button onClick={ () => onElementClick(element.id, element.clicked) }>
             <p
               style={ {fontSize: 25} }
               className={ clicked(element.clicked) }
             >
               { element.acronym }{ multiplier(element.multiplier) }
             </p>
-          </div>
+          </button>
           {elemMinusClick}
         </div>
       );
@@ -114,7 +116,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //No parenthesis required
       if (element.parenId < 0) {
         return (
-          <div key={ i }>
+          <div key={ shortid.generate() }>
             {elemNoParen}
           </div>
         );
@@ -124,7 +126,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //First element of parentheses
       if (i === 0) {
         return (
-          <div key={ i } style={ {display: 'inline-flex'} }>
+          <div key={ shortid.generate() } style={ {display: 'inline-flex'} }>
             {leftParen}
             {elemInParen}
           </div>
@@ -132,7 +134,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //Last element of parentheses
       } else if (i === (obj[key].length - 1)) {
         return (
-          <div key={ i } style={ {display: 'inline-flex'} }>
+          <div key={ shortid.generate() } style={ {display: 'inline-flex'} }>
             {elemInParen}
             {rightParen}
           </div>
@@ -140,7 +142,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       }
       //Middle elements of parentheses
       return (
-        <div key={ i }>
+        <div key={ shortid.generate() }>
           {elemInParen}
         </div>
       );

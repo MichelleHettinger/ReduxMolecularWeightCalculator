@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchForElements from './SearchForElements';
-import DisplayElements from '../containers/DisplayElements';
-import DisplayCalcElements from '../containers/DisplayCalcElements';
-import DisplayMass from '../containers/DisplayMass';
+import MassPanel from '../containers/MassPanel';
+import CalculationPanel from '../containers/CalculationPanel';
+import SearchForElements from '../containers/SearchElements';
+import ElementsPanel from '../containers/ElementsPanel';
 
 const App = () => (
   <div id='topApp' className='container'>
@@ -12,12 +12,12 @@ const App = () => (
 
     <div className='row'>
       <div className='col-sm-8'>
-        <DisplayMass />
-        <DisplayCalcElements />
+        <MassPanel />
+        <CalculationPanel />
       </div>
       <div className='col-sm-4'>
         <SearchForElements />
-        <DisplayElements />
+        <ElementsPanel />
       </div>
     </div>
   </div>

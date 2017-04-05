@@ -4,11 +4,11 @@ import MassPanel from '../components/MassPanel';
 const mapStateToProps = (state) => {
   return {
     molecularWeight: state.massCalculated,
-  }
-}
+  };
+};
 
 const MassPanelDivs = connect(
-  mapStateToProps
+  mapStateToProps,
 )(MassPanel);
 
 export default MassPanelDivs;

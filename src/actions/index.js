@@ -1,4 +1,4 @@
-import { elementPicker, adjustElement } from '../utils/helper';
+import { elementPicker } from '../utils/helper';
 
 let clickCount = 0;
 let parenID = 0;
@@ -15,7 +15,7 @@ export const doParenthesis = (id) => {
     }
 
     case 1: {
-      clickCount = 0
+      clickCount = 0;
       return {
         type: 'DO_PAREN_B',
         clickCount: 2,
@@ -23,15 +23,18 @@ export const doParenthesis = (id) => {
         id,
       };
     }
+
+    default:
+      return false;
   }
-}
+};
 
 export const doPlus = (id) => {
   return {
     type: 'DO_PLUS',
     id,
   };
-}
+};
 
 export const doMinus = (id, multiplier) => {
   switch (multiplier) {
@@ -48,7 +51,7 @@ export const doMinus = (id, multiplier) => {
         id,
       };
   }
-}
+};
 
 export const calculateTotal = (mass, pm) => {
   switch (pm) {
@@ -61,12 +64,12 @@ export const calculateTotal = (mass, pm) => {
     default:
       return {
         type: 'CALCULATE_TOTAL_PLUS',
-        mass
+        mass,
       };
   }
-}
+};
 
-let nextAtomId = 0
+let nextAtomId = 0;
 export const pinElement = (element) => {
   return {
     type: 'PIN_ELEMENT',
@@ -75,13 +78,13 @@ export const pinElement = (element) => {
     acronym: element.acronym,
     multiplier: element.multiplier,
   };
-}
+};
 
 export const searchForElements = (text) => {
   const elementsFound = elementPicker(text);
   //console.log(elementsFound)
   return {
     type: 'SEARCH_ELEMENT',
-    elementsFound
+    elementsFound,
   };
-}
+};

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ElementsPanel from '../components/ElementsPanel';
-import { pinElement } from '../actions/index';
-import { calculateTotal } from '../actions/index';
+import { pinElement, calculateTotal } from '../actions/index';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
       //console.log(element)
       dispatch(pinElement(element));
       dispatch(calculateTotal(element.mass, 'PLUS'));
-    }
+    },
   };
 };
 

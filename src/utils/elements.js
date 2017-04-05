@@ -1,4 +1,4 @@
-const elements =
+const elementsArray =
   [
     {
       mass: 1.0079,
@@ -702,4 +702,4 @@ const elements =
     },
   ];
 
-module.exports = elements;
+module.exports = elementsArray;
