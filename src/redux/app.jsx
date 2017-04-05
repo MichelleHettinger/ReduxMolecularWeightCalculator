@@ -1,15 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import MWtCalc from './reducers';
-import App from './components/index';
+import Root from './components/Root';
 
 const store = createStore(MWtCalc);
 
 render(
-  <Provider store={ store }>
-    <App />
-  </Provider>,
+  <Root store={ store } />,
   document.getElementById('app'),
 );

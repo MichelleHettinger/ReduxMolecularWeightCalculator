@@ -4,21 +4,18 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import replace from 'gulp-replace';
 import rename from 'gulp-rename';
-
 import del from 'del';
 import runSequence from 'run-sequence';
 
 const $ = gulpLoadPlugins();
 let options = {};
 
-
-
 gulp.task('serve', () => {
   const config = require('./webpack.config');
   const bundler = webpack(config);
   let server = new WebpackDevServer(bundler, {
-    contentBase: './src',
-    publicPath: '/assets/',
+    contentBase: './src/public',
+    publicPath: '/public/',
     hot: true,
     stats: {
       colors: true
