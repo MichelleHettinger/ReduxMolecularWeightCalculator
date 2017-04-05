@@ -1,15 +1,15 @@
 const path = require('path');
 
 module.exports = {
-  context: __dirname,
+  context: __dirname + '/src',
 
   entry: {
-    javascript: "./src/app.jsx"
+    javascript: "./redux/app.jsx",
   },
 
   output: {
     filename: "bundle.js",
-    path: __dirname + "/public"
+    path: __dirname + '/src/public',
   },
 
   resolve: {

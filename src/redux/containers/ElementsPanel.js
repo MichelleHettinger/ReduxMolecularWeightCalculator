@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ElementsPanel from '../components/ElementsPanel';
 import { pinElement, calculateTotal } from '../actions/index';
+import ElementsPanel from '../components/ElementsPanel';
 
 const mapStateToProps = (state) => {
   return {

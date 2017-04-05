@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
 
-//Since this component uses redux, it is considered a container,
-//rather than a presentational component
 let input;
-const SearchForElements = ({ onKeyboardInput }) => (
+const SearchElements = ({ onKeyboardInput }) => (
   <div id='SearchForElements' className='row'>
     <div className='col-sm-6 col-sm-offset-3'>
       <form
@@ -27,8 +25,8 @@ const SearchForElements = ({ onKeyboardInput }) => (
   </div>
 );
 
-SearchForElements.propTypes = {
+SearchElements.propTypes = {
   onKeyboardInput: PropTypes.func.isRequired,
 };
 
-export default SearchForElements;
+export default SearchElements;

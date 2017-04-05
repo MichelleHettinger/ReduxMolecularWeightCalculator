@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { searchForElements } from '../actions';
+import { searchForElements } from '../actions/index';
 import SearchElements from '../components/SearchElements';
 
 const mapDispatchToProps = (dispatch) => {
@@ -10,8 +10,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const SearchForElementsDiv = connect(
+const SearchElementsDiv = connect(
+  null,
   mapDispatchToProps,
 )(SearchElements);
 
-export default SearchForElementsDiv;
+export default SearchElementsDiv;
