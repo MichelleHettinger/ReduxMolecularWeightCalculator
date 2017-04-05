@@ -1,8 +1,10 @@
 import React from 'react';
-import MassPanel from '../containers/MassPanel';
-import CalculationPanel from '../containers/CalculationPanel';
-import SearchForElements from '../containers/SearchElements';
-import ElementsPanel from '../containers/ElementsPanel';
+import {
+  MassPanel,
+  CalculationPanel,
+  SearchElements,
+  ElementsPanel,
+} from '../containers';
 
 const App = () => (
   <div id='topApp' className='container'>
@@ -16,7 +18,7 @@ const App = () => (
         <CalculationPanel />
       </div>
       <div className='col-sm-4'>
-        <SearchForElements />
+        <SearchElements />
         <ElementsPanel />
       </div>
     </div>

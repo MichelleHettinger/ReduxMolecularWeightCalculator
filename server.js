@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const httpProxy = require('http-proxy');
-
 const proxy = httpProxy.createProxyServer().listen(3000);
 const app = express();
 const port = 3001;

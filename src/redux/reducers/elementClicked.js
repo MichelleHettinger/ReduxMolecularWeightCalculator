@@ -1,8 +1,18 @@
+import {
+  DO_PLUS,
+  DO_MINUS,
+  DO_PAREN_A,
+  DO_PAREN_B,
+  REMOVE_ELEMENT,
+  PIN_ELEMENT,
+} from '../constants/actions';
+
+
 let parenCount = 0;
 
 const editParen = (state = {}, action) => {
   switch (action.type) {
-    case 'DO_PAREN_A': {
+    case DO_PAREN_A: {
       //If the element being mapped wasn't what the user clicked.
       if (state.id !== action.id) {
         return state;
@@ -12,7 +22,7 @@ const editParen = (state = {}, action) => {
         clicked: true,
       });
     }
-    case 'DO_PAREN_B': {
+    case DO_PAREN_B: {
       //If the element being mapped is what the user clicked.
       //If it has been clicked, make it false. Otherwise make it true.
       if (state.id === action.id) {
@@ -66,7 +76,7 @@ const editParen = (state = {}, action) => {
 const editElement = (state = {}, action) => {
   switch (action.type) {
 
-    case 'PIN_ELEMENT': {
+    case PIN_ELEMENT: {
       return {
         id: action.id,
         mass: action.mass,
@@ -77,7 +87,7 @@ const editElement = (state = {}, action) => {
       };
     }
 
-    case 'DO_PLUS': {
+    case DO_PLUS: {
       //If the element being mapped wasn't what the user clicked, return state.
       //Otherwise, create and return a new object that is exactly like state,
       //except with the multiplier incremented by 1
@@ -91,7 +101,7 @@ const editElement = (state = {}, action) => {
       });
     }
 
-    case 'DO_MINUS': {
+    case DO_MINUS: {
       //If the element being mapped wasn't what the user clicked return state.
       //Otherwise, create and return a new object that is exactly like state,
       //except with the multiplier decremented by 1
@@ -105,7 +115,7 @@ const editElement = (state = {}, action) => {
       });
     }
 
-    case 'REMOVE_ELEMENT': {
+    case REMOVE_ELEMENT: {
       //If the element being mapped wasn't what the user clicked.
       if (state.id !== action.id) {
         return state;
@@ -114,7 +124,7 @@ const editElement = (state = {}, action) => {
       return 1;
     }
 
-    case 'DO_PAREN_A': {
+    case DO_PAREN_A: {
       //If the element being mapped wasn't what the user clicked.
       if (state.id !== action.id) {
         return state;
@@ -124,7 +134,7 @@ const editElement = (state = {}, action) => {
       });
     }
 
-    case 'DO_PAREN_B': {
+    case DO_PAREN_B: {
       //If the element being mapped is what the user clicked.
       //If it has been clicked, make it false. Otherwise make it true.
       if (state.id === action.id) {
@@ -180,7 +190,7 @@ const elementClicked = (state = [], action) => {
   //If there is an action type called 'PIN_ELEMENT', append the selected element to the array.
   //Otherwise return original/previous state
   switch (action.type) {
-    case 'PIN_ELEMENT': {
+    case PIN_ELEMENT: {
       //console.log(state)
       //console.log([...state, editElement(undefined, action)])
 
@@ -188,17 +198,17 @@ const elementClicked = (state = [], action) => {
       return [...state, editElement(undefined, action)];
     }
 
-    case 'DO_PLUS': {
+    case DO_PLUS: {
       //Map over all elements and make changes as needed
       return state.map(t => editElement(t, action));
     }
 
-    case 'DO_MINUS': {
+    case DO_MINUS: {
       //Map over all elements and make changes as needed
       return state.map(t => editElement(t, action));
     }
 
-    case 'REMOVE_ELEMENT': {
+    case REMOVE_ELEMENT: {
       //Map over all elements and make changes as needed
       const removedState = state.map(t => editElement(t, action));
       removedState.splice(removedState.indexOf(1), 1);
@@ -209,14 +219,14 @@ const elementClicked = (state = [], action) => {
       return removedState;
     }
 
-    case 'DO_PAREN_A': {
+    case DO_PAREN_A: {
       //Map over all elements and make changes as needed
       const parenAState = state.map(t => editParen(t, action));
 
       return parenAState;
     }
 
-    case 'DO_PAREN_B': {
+    case DO_PAREN_B: {
       //Map over all elements and make changes as needed
       const parenBState = state.map(t => editParen(t, action));
 

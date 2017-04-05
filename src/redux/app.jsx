@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import MWtCalc from './reducers';
-import Root from './components/Root';
+import Root from './Root';
 
 const store = createStore(MWtCalc);
 

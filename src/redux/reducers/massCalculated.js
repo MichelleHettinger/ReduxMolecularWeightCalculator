@@ -1,5 +1,7 @@
-const CALCULATE_TOTAL_PLUS = 'CALCULATE_TOTAL_PLUS';
-const CALCULATE_TOTAL_MINUS = 'CALCULATE_TOTAL_MINUS';
+import {
+  CALCULATE_TOTAL_PLUS,
+  CALCULATE_TOTAL_MINUS,
+} from '../constants/actions';
 
 const massCalculated = (state = 0, action) => {
   switch (action.type) {
