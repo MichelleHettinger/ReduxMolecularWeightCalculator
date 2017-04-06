@@ -4,7 +4,7 @@ const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer().listen(3000);
 const app = express();
 const port = 3001;
-const publicPath = path.resolve(__dirname, './src/assets/public');
+const publicPath = path.resolve(__dirname, './src/public');
 
 app.use(express.static(publicPath));
 
@@ -23,7 +23,7 @@ app.all('/src/assets/*', (req, res) => {
 });
 
 app.get('/*', (req,res) => {
-  res.sendFile(path.join(__dirname, './src/assets/public/index.html'))
+  res.sendFile(path.join(__dirname, './src/public/index.html'))
 });
 
 app.listen(port, () => {
