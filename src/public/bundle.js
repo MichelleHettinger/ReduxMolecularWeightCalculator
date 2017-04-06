@@ -16656,7 +16656,7 @@ var CalculationPanel = function CalculationPanel(_ref) {
       var elemPlusClick = _react2.default.createElement(
         'button',
         {
-          className: 'btn btn-xs btn-primary p-m',
+          className: 'p-m btn btn-xs btn-primary',
           onClick: function onClick() {
             return onPlusClick(element.id, element.mass);
           }
@@ -16671,7 +16671,7 @@ var CalculationPanel = function CalculationPanel(_ref) {
       var elemMinusClick = _react2.default.createElement(
         'button',
         {
-          className: 'btn btn-xs btn-primary p-m',
+          className: 'p-m btn btn-xs btn-primary',
           onClick: function onClick() {
             return onMinusClick(element.id, element.multiplier, element.mass);
           }
@@ -16756,8 +16756,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
           'div',
           { className: 'rightParenPM' },
           _react2.default.createElement(
-            'div',
-            { className: 'btn btn-xs' },
+            'button',
+            {
+              className: 'pp-m btn btn-xs btn-primary'
+            },
             _react2.default.createElement(
               'p',
               null,
@@ -16766,7 +16768,7 @@ var CalculationPanel = function CalculationPanel(_ref) {
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'parenMultiplier' },
             _react2.default.createElement(
               'p',
               null,
@@ -16774,8 +16776,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
             )
           ),
           _react2.default.createElement(
-            'div',
-            { className: 'btn btn-xs' },
+            'button',
+            {
+              className: 'pp-m btn btn-xs btn-primary'
+            },
             _react2.default.createElement(
               'p',
               null,

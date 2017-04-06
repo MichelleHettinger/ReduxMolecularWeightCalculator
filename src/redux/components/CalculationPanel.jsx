@@ -43,7 +43,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
 
       const elemPlusClick = (
         <button
-          className='btn btn-xs btn-primary p-m'
+          className='p-m btn btn-xs btn-primary'
           onClick={ () => onPlusClick(element.id, element.mass) }
         >
           <p>+</p>
@@ -52,7 +52,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
 
       const elemMinusClick = (
         <button
-          className='btn btn-xs btn-primary p-m'
+          className='p-m btn btn-xs btn-primary'
           onClick={ () => onMinusClick(element.id, element.multiplier, element.mass) }
         >
           <p>-</p>
@@ -105,17 +105,22 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
           </div>
 
           <div className='rightParenPM'>
-            <div className='btn btn-xs'>
+            <button
+              className='pp-m btn btn-xs btn-primary'
+            >
               <p>+</p>
-            </div>
-            <div>
+            </button>
+
+            <div className='parenMultiplier'>
               <p>1</p>
             </div>
-            <div className='btn btn-xs'>
-              <p>-</p>
-            </div>
-          </div>
 
+            <button
+              className='pp-m btn btn-xs btn-primary'
+            >
+              <p>-</p>
+            </button>
+          </div>
         </div>
       );
 
