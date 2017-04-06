@@ -4,6 +4,8 @@ import { createStore } from 'redux';
 import MWtCalc from './reducers';
 import Root from './Root';
 
+require('../assets/sass/mything.scss');
+
 const store = createStore(MWtCalc);
 
 render(

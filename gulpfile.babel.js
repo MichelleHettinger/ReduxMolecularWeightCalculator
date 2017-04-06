@@ -10,8 +10,8 @@ gulp.task('serve', () => {
   const config = require('./webpack.config');
   const bundler = webpack(config);
   let server = new WebpackDevServer(bundler, {
-    contentBase: './src/public',
-    publicPath: '/public/',
+    contentBase: './src/assets/public',
+    publicPath: './src/assets/public/',
     hot: true,
     stats: {
       colors: true
