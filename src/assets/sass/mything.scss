@@ -1,36 +1,136 @@
-#SearchForElements{
+#topApp {
 
-}
-#DisplayElements{
+  #headRow {
 
-}
-#CalculationPanel{
-  display:inline-flex;
-}
-.elementFound{
-  border: 1px solid black;
-  text-align: center;
-}
-.elementSelected{
-  padding: 0 5px 0 5px;
-}
-.elementSelected p{
-  margin-bottom: 0;
-  text-align: center;
-}
-.parenth {
-  display:inline-flex;
-}
-.p-m{
-  display: block;
-  margin:auto;
-  padding:0;
-  width: 20px;
+    h1 {
+
+    }
+  }
+
+  #bodyRow {
+
+    #leftBody {
+
+      #massPanel {
+
+        p {
+
+        }
+      }
+
+      #calculationPanel {
+        display: inline-flex;
+
+        .calculatableElement {
+
+          .elemNoParen {
+
+            .elemNoParenButton {
+              display: block;
+              border: none;
+              background: none;
+
+              p {
+                font-size: 25px;
+                margin-bottom: 0;
+
+                sub {
+                  font-size: 70px;
+                }
+
+                &.activeElement {
+                  color: red;
+                }
+
+                &.inactiveElement {
+                  color: black;
+                }
+
+              }
+            }
+          }
+
+          .leftParen {
+            display: inline-block;
+
+            p {
+              margin: 0;
+              font-size: 60px;
+            }
+          }
+
+          .elemInParen {
+            display: inline-block;
+          }
+
+          .rightParenDiv {
+            display: inline-block;
+
+            .rightParen {
+              display: inline-block;
+
+              p {
+                margin: 0;
+                font-size: 60px;
+              }
+            }
+
+            .rightParenPM {
+              display: inline-block;
+            }
+          }
+
+          .elementSelected {
+            padding: 0 5px 0 5px;
+
+            .p-m {
+              display: block;
+              margin: auto;
+              padding: 0;
+              width: 20px;
+
+              p {
+                margin-bottom: 0;
+                text-align: center;
+              }
+            }
+
+            .elemInParenAcronym {
+
+              p {
+                font-size: 25px;
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #rightBody {
+
+      #searchElementsRow {
+
+        #searchElementsForm {
+
+          #searchElementsInput {
+
+          }
+        }
+      }
+
+      #elementsPanelRow {
+
+        #elementFoundButton {
+          border: 1px solid black;
+          text-align: center;
+
+          p {
+
+          }
+        }
+      }
+    }
+  }
 }
 
-.activeElement{
-  color: red;
-}
-.inactiveElement{
-  color: black;
-}

@@ -8,16 +8,16 @@ import {
 
 const App = () => (
   <div id='topApp' className='container'>
-    <div className='row'>
+    <div id='headRow' className='row'>
       <h1>Heading Component Soon</h1>
     </div>
 
-    <div className='row'>
-      <div className='col-sm-8'>
+    <div id='bodyRow' className='row'>
+      <div id='leftBody' className='col-sm-8'>
         <MassPanel />
         <CalculationPanel />
       </div>
-      <div className='col-sm-4'>
+      <div id='rightBody' className='col-sm-4'>
         <SearchElements />
         <ElementsPanel />
       </div>

@@ -1,28 +1,48 @@
-#CalculationPanel {
+#topApp #bodyRow #leftBody #calculationPanel {
   display: inline-flex; }
+  #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton {
+    display: block;
+    border: none;
+    background: none; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p {
+      font-size: 25px;
+      margin-bottom: 0; }
+      #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p sub {
+        font-size: 70px; }
+      #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.activeElement {
+        color: red; }
+      #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.inactiveElement {
+        color: black; }
+  #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen {
+    display: inline-block; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen p {
+      margin: 0;
+      font-size: 60px; }
+  #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemInParen {
+    display: inline-block; }
+  #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv {
+    display: inline-block; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen {
+      display: inline-block; }
+      #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen p {
+        margin: 0;
+        font-size: 60px; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM {
+      display: inline-block; }
+  #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected {
+    padding: 0 5px 0 5px; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m {
+      display: block;
+      margin: auto;
+      padding: 0;
+      width: 20px; }
+      #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m p {
+        margin-bottom: 0;
+        text-align: center; }
+    #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .elemInParenAcronym p {
+      font-size: 25px;
+      margin-bottom: 0; }
 
-.elementFound {
+#topApp #bodyRow #rightBody #elementsPanelRow #elementFoundButton {
   border: 1px solid black;
   text-align: center; }
-
-.elementSelected {
-  padding: 0 5px 0 5px; }
-
-.elementSelected p {
-  margin-bottom: 0;
-  text-align: center; }
-
-.parenth {
-  display: inline-flex; }
-
-.p-m {
-  display: block;
-  margin: auto;
-  padding: 0;
-  width: 20px; }
-
-.activeElement {
-  color: red; }
-
-.inactiveElement {
-  color: black; }

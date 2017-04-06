@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react';
 
 let input;
 const SearchElements = ({ onKeyboardInput }) => (
-  <div id='SearchForElements' className='row'>
+  <div id='searchElementsRow' className='row'>
     <div className='col-sm-6 col-sm-offset-3'>
       <form
+        id='searchElementsForm'
         onChange={ (e) => {
           //Prevent form submission and subsequent page reload when hitting enter/return
           e.preventDefault();
@@ -14,6 +15,7 @@ const SearchElements = ({ onKeyboardInput }) => (
         } }
       >
         <input
+          id='searchElementsInput'
           className='form-control input-md'
           ref={ (node) => {
             //Node refers to this specific element (this input element)

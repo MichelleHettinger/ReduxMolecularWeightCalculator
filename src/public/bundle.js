@@ -16683,40 +16683,27 @@ var CalculationPanel = function CalculationPanel(_ref) {
         )
       );
 
-      var elemInParen = _react2.default.createElement(
-        'div',
-        { className: 'elementSelected' },
-        elemPlusClick,
-        _react2.default.createElement(
-          'div',
-          { style: { padding: 0 } },
-          _react2.default.createElement(
-            'p',
-            { style: { fontSize: 25 } },
-            element.acronym,
-            multiplier(element.multiplier)
-          )
-        ),
-        elemMinusClick
-      );
-
       var elemNoParen = _react2.default.createElement(
         'div',
-        { className: 'elementSelected' },
+        { className: 'elemNoParen elementSelected' },
         elemPlusClick,
         _react2.default.createElement(
           'button',
-          { onClick: function onClick() {
+          {
+            className: 'elemNoParenButton',
+            onClick: function onClick() {
               return onElementClick(element.id, element.clicked);
-            } },
+            }
+          },
           _react2.default.createElement(
             'p',
-            {
-              style: { fontSize: 25 },
-              className: clicked(element.clicked)
-            },
+            { className: clicked(element.clicked) },
             element.acronym,
-            multiplier(element.multiplier)
+            _react2.default.createElement(
+              'sub',
+              null,
+              multiplier(element.multiplier)
+            )
           )
         ),
         elemMinusClick
@@ -16724,29 +16711,50 @@ var CalculationPanel = function CalculationPanel(_ref) {
 
       var leftParen = _react2.default.createElement(
         'div',
-        null,
+        { className: 'leftParen' },
         _react2.default.createElement(
           'p',
-          { style: { fontSize: 47 } },
+          null,
           '('
         )
       );
 
-      var rightParen = _react2.default.createElement(
+      var elemInParen = _react2.default.createElement(
         'div',
-        { style: { display: 'inline-flex' } },
+        { className: 'elemInParen elementSelected' },
+        elemPlusClick,
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'elemInParenAcronym' },
           _react2.default.createElement(
             'p',
-            { style: { fontSize: 47 } },
+            null,
+            element.acronym,
+            _react2.default.createElement(
+              'sub',
+              null,
+              multiplier(element.multiplier)
+            )
+          )
+        ),
+        elemMinusClick
+      );
+
+      var rightParen = _react2.default.createElement(
+        'div',
+        { className: 'rightParenDiv' },
+        _react2.default.createElement(
+          'div',
+          { className: 'rightParen' },
+          _react2.default.createElement(
+            'p',
+            null,
             ')'
           )
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'rightParenPM' },
           _react2.default.createElement(
             'div',
             { className: 'btn btn-xs' },
@@ -16781,7 +16789,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
       if (element.parenId < 0) {
         return _react2.default.createElement(
           'div',
-          { key: _shortid2.default.generate() },
+          {
+            className: 'calculatableElement',
+            key: _shortid2.default.generate()
+          },
           elemNoParen
         );
       }
@@ -16791,7 +16802,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
       if (i === 0) {
         return _react2.default.createElement(
           'div',
-          { key: _shortid2.default.generate(), style: { display: 'inline-flex' } },
+          {
+            className: 'calculatableElement',
+            key: _shortid2.default.generate()
+          },
           leftParen,
           elemInParen
         );
@@ -16799,7 +16813,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
       } else if (i === obj[key].length - 1) {
         return _react2.default.createElement(
           'div',
-          { key: _shortid2.default.generate(), style: { display: 'inline-flex' } },
+          {
+            className: 'calculatableElement',
+            key: _shortid2.default.generate()
+          },
           elemInParen,
           rightParen
         );
@@ -16807,7 +16824,10 @@ var CalculationPanel = function CalculationPanel(_ref) {
       //Middle elements of parentheses
       return _react2.default.createElement(
         'div',
-        { key: _shortid2.default.generate() },
+        {
+          className: 'calculatableElement',
+          key: _shortid2.default.generate()
+        },
         elemInParen
       );
     });
@@ -16817,7 +16837,7 @@ var CalculationPanel = function CalculationPanel(_ref) {
 
   return _react2.default.createElement(
     'div',
-    { id: 'CalculationPanel', className: 'row' },
+    { id: 'calculationPanel', className: 'row' },
     elements
   );
 };
@@ -16867,13 +16887,18 @@ var ElementsPanel = function ElementsPanel(_ref) {
       onElementClick = _ref.onElementClick;
   return _react2.default.createElement(
     'div',
-    { id: 'DisplayElements', className: 'row' },
+    { id: 'elementsPanelRow', className: 'row' },
     elementsFound.map(function (element) {
       return _react2.default.createElement(
         'button',
-        { key: _shortid2.default.generate(), className: 'elementFound col-sm-3', onClick: function onClick() {
+        {
+          id: 'elementFoundButton',
+          key: _shortid2.default.generate(),
+          className: 'col-sm-3',
+          onClick: function onClick() {
             return onElementClick(element);
-          } },
+          }
+        },
         _react2.default.createElement(
           'p',
           null,
@@ -16935,7 +16960,7 @@ var MassPanel = function MassPanel(_ref) {
   var molecularWeight = _ref.molecularWeight;
   return _react2.default.createElement(
     'div',
-    { className: 'row' },
+    { id: 'massPanel', className: 'row' },
     _react2.default.createElement(
       'p',
       null,
@@ -16975,13 +17000,14 @@ var SearchElements = function SearchElements(_ref) {
   var onKeyboardInput = _ref.onKeyboardInput;
   return _react2.default.createElement(
     'div',
-    { id: 'SearchForElements', className: 'row' },
+    { id: 'searchElementsRow', className: 'row' },
     _react2.default.createElement(
       'div',
       { className: 'col-sm-6 col-sm-offset-3' },
       _react2.default.createElement(
         'form',
         {
+          id: 'searchElementsForm',
           onChange: function onChange(e) {
             //Prevent form submission and subsequent page reload when hitting enter/return
             e.preventDefault();
@@ -16991,6 +17017,7 @@ var SearchElements = function SearchElements(_ref) {
           }
         },
         _react2.default.createElement('input', {
+          id: 'searchElementsInput',
           className: 'form-control input-md',
           ref: function ref(node) {
             //Node refers to this specific element (this input element)
@@ -17036,7 +17063,7 @@ var App = function App() {
     { id: 'topApp', className: 'container' },
     _react2.default.createElement(
       'div',
-      { className: 'row' },
+      { id: 'headRow', className: 'row' },
       _react2.default.createElement(
         'h1',
         null,
@@ -17045,16 +17072,16 @@ var App = function App() {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'row' },
+      { id: 'bodyRow', className: 'row' },
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-8' },
+        { id: 'leftBody', className: 'col-sm-8' },
         _react2.default.createElement(_containers.MassPanel, null),
         _react2.default.createElement(_containers.CalculationPanel, null)
       ),
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-4' },
+        { id: 'rightBody', className: 'col-sm-4' },
         _react2.default.createElement(_containers.SearchElements, null),
         _react2.default.createElement(_containers.ElementsPanel, null)
       )

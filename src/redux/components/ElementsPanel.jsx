@@ -3,11 +3,16 @@ import shortid from 'shortid';
 
 const ElementsPanel = ({ elementsFound, onElementClick }) => (
 
-  <div id='DisplayElements' className='row'>
+  <div id='elementsPanelRow' className='row'>
     {
       elementsFound.map((element) => {
         return (
-          <button key={ shortid.generate() } className='elementFound col-sm-3' onClick={ () => onElementClick(element) }>
+          <button
+            id='elementFoundButton'
+            key={ shortid.generate() }
+            className='col-sm-3'
+            onClick={ () => onElementClick(element) }
+          >
             <p>{element.atomicNumber}</p>
             <p>{element.acronym}</p>
             <p>{element.name}</p>

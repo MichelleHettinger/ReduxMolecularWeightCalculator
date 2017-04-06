@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const MassPanel = ({ molecularWeight }) => (
-  <div className='row'>
+  <div id='massPanel' className='row'>
     <p>{molecularWeight.toFixed(3)}</p>
   </div>
 );

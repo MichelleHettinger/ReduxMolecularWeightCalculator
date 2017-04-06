@@ -59,27 +59,18 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
         </button>
       );
 
-      const elemInParen = (
-        <div className='elementSelected'>
-          {elemPlusClick}
-          <div style={ {padding: 0} }>
-            <p style={ {fontSize: 25} }>
-              { element.acronym }{ multiplier(element.multiplier) }
-            </p>
-          </div>
-          {elemMinusClick}
-        </div>
-      );
-
       const elemNoParen = (
-        <div className='elementSelected'>
+        <div className='elemNoParen elementSelected'>
           {elemPlusClick}
-          <button onClick={ () => onElementClick(element.id, element.clicked) }>
-            <p
-              style={ {fontSize: 25} }
-              className={ clicked(element.clicked) }
-            >
-              { element.acronym }{ multiplier(element.multiplier) }
+          <button
+            className='elemNoParenButton'
+            onClick={ () => onElementClick(element.id, element.clicked) }
+          >
+            <p className={ clicked(element.clicked) }>
+              { element.acronym }
+              <sub>
+                { multiplier(element.multiplier) }
+              </sub>
             </p>
           </button>
           {elemMinusClick}
@@ -87,18 +78,33 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       );
 
       const leftParen = (
-        <div>
-          <p style={ {fontSize: 47} }>(</p>
+        <div className='leftParen'>
+          <p>(</p>
+        </div>
+      );
+
+      const elemInParen = (
+        <div className='elemInParen elementSelected'>
+          {elemPlusClick}
+          <div className='elemInParenAcronym'>
+            <p>
+              { element.acronym }
+              <sub>
+                { multiplier(element.multiplier) }
+              </sub>
+            </p>
+          </div>
+          {elemMinusClick}
         </div>
       );
 
       const rightParen = (
-        <div style={ {display: 'inline-flex'} }>
-          <div>
-            <p style={ {fontSize: 47} }>)</p>
+        <div className='rightParenDiv'>
+          <div className='rightParen'>
+            <p>)</p>
           </div>
 
-          <div>
+          <div className='rightParenPM'>
             <div className='btn btn-xs'>
               <p>+</p>
             </div>
@@ -116,7 +122,10 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //No parenthesis required
       if (element.parenId < 0) {
         return (
-          <div key={ shortid.generate() }>
+          <div
+            className='calculatableElement'
+            key={ shortid.generate() }
+          >
             {elemNoParen}
           </div>
         );
@@ -126,7 +135,10 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //First element of parentheses
       if (i === 0) {
         return (
-          <div key={ shortid.generate() } style={ {display: 'inline-flex'} }>
+          <div
+            className='calculatableElement'
+            key={ shortid.generate() }
+          >
             {leftParen}
             {elemInParen}
           </div>
@@ -134,7 +146,10 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       //Last element of parentheses
       } else if (i === (obj[key].length - 1)) {
         return (
-          <div key={ shortid.generate() } style={ {display: 'inline-flex'} }>
+          <div
+            className='calculatableElement'
+            key={ shortid.generate() }
+          >
             {elemInParen}
             {rightParen}
           </div>
@@ -142,7 +157,10 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
       }
       //Middle elements of parentheses
       return (
-        <div key={ shortid.generate() }>
+        <div
+          className='calculatableElement'
+          key={ shortid.generate() }
+        >
           {elemInParen}
         </div>
       );
@@ -152,7 +170,7 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
   //console.log(obj);
 
   return (
-    <div id='CalculationPanel' className='row'>
+    <div id='calculationPanel' className='row'>
       {elements}
     </div>
   );
