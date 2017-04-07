@@ -61,6 +61,12 @@
       font-size: 25px;
       margin-bottom: 0; }
 
-#topApp #bodyRow #rightBody #elementsPanelRow #elementFoundButton {
-  border: 1px solid black;
-  text-align: center; }
+#topApp #bodyRow #rightBody #elementsPanelRow {
+  border-left: 1px solid black;
+  margin-top: 5px; }
+  #topApp #bodyRow #rightBody #elementsPanelRow .elementFoundButton {
+    border: 1px solid black;
+    border-left: none;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 1px; }

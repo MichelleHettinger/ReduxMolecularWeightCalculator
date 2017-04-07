@@ -54,7 +54,7 @@
             display: inline-block;
             position: relative;
             bottom: 15px;
-            
+
             p {
               margin: 0;
               font-size: 60px;
@@ -147,10 +147,17 @@
       }
 
       #elementsPanelRow {
+        //border-top: 1px solid black;
+        border-left: 1px solid black;
+        margin-top: 4px;
 
-        #elementFoundButton {
+        .elementFoundButton {
           border: 1px solid black;
+          border-left: none;
+          //border-top: none;
           text-align: center;
+          padding: 0;
+          margin-bottom: 1px;
 
           p {
 

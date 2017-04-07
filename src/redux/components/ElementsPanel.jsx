@@ -8,9 +8,8 @@ const ElementsPanel = ({ elementsFound, onElementClick }) => (
       elementsFound.map((element) => {
         return (
           <button
-            id='elementFoundButton'
+            className='elementFoundButton col-sm-3'
             key={ shortid.generate() }
-            className='col-sm-3'
             onClick={ () => onElementClick(element) }
           >
             <p>{element.atomicNumber}</p>

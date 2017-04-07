@@ -16896,9 +16896,8 @@ var ElementsPanel = function ElementsPanel(_ref) {
       return _react2.default.createElement(
         'button',
         {
-          id: 'elementFoundButton',
+          className: 'elementFoundButton col-sm-3',
           key: _shortid2.default.generate(),
-          className: 'col-sm-3',
           onClick: function onClick() {
             return onElementClick(element);
           }
