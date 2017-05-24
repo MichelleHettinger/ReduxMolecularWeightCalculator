@@ -4,9 +4,11 @@ import { createStore } from 'redux';
 import MWtCalc from './reducers';
 import Root from './Root';
 
-require('../assets/sass/mything.scss');
+require('../assets/sass/mainstyles.scss');
 
-const store = createStore(MWtCalc);
+const store = createStore(
+  MWtCalc,
+);
 
 render(
   <Root store={ store } />,

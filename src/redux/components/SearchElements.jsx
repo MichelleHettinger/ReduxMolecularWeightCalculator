@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 let input;
-const SearchElements = ({ onKeyboardInput }) => (
+const SearchElements = ({ onKeyboardInput, testAsync }) => (
   <div id='searchElementsRow' className='row'>
     <div className='col-sm-6 col-sm-offset-3'>
       <form
@@ -23,12 +23,20 @@ const SearchElements = ({ onKeyboardInput }) => (
           } }
         />
       </form>
+
+      <button
+        onClick={ () => testAsync() }
+      >
+        <p>Fetch</p>
+      </button>
+
     </div>
   </div>
 );
 
 SearchElements.propTypes = {
   onKeyboardInput: PropTypes.func.isRequired,
+  testAsync: PropTypes.func.isRequired,
 };
 
 export default SearchElements;
