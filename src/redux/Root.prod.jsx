@@ -1,9 +1,13 @@
-import React, { PropTypes } from 'react';
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
+import configureStore from './store/configureStore.prod';
 import App from './components';
 
-const Root = ({ store }) => (
+const store = configureStore();
+
+const ProdRoot = () => (
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path='/(:filter)' component={ App } />
@@ -11,8 +15,4 @@ const Root = ({ store }) => (
   </Provider>
 );
 
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-};
-
-export default Root;
+export default ProdRoot;

@@ -1,4 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
+const pkjson = require('./package.json');
+
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
@@ -8,8 +11,14 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
   entry: {
-    javascript: __dirname + "/src/redux/app.jsx",
+    javascript: __dirname + "/src/redux/app.js",
   },
+
+  // entry: [
+  //   'webpack-dev-server/client?http://localhost:7777',
+  //   'webpack/hot/only-dev-server',
+  //   __dirname + "/src/redux/app.all.js"
+  // ],
 
   output: {
     filename: "bundle.js",
@@ -19,6 +28,10 @@ module.exports = {
   resolve: {
     extensions: ['*','.js', '.jsx', '.json'],
   },
+
+  cache: true,
+
+  devtool: 'sourcemap',
 
   module: {
     rules: [
@@ -36,6 +49,9 @@ module.exports = {
         exclude: [/node_modules/, 'server.js', 'mock/*'],
         loader: "eslint-loader",
         enforce: "pre",
+        options: {
+          fix: true,
+        }
       },
       {
         test: /\.scss$/,
@@ -55,5 +71,19 @@ module.exports = {
     ]
   },
 
-  plugins: [extractSass]
+  plugins: [
+    extractSass,
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
+    new webpack.DefinePlugin({
+      __DEVELOPMENT__: true,
+      __DEVTOOLS__: true,  // <-------- DISABLE redux-devtools HERE
+      __BASE_URL__: JSON.stringify('http://localhost:7777/'),
+      __PUBLIC_PATH__: __dirname + '/src/public/',
+      __APP_VERSION__: JSON.stringify(pkjson.version)
+    })
+  ]
 };
