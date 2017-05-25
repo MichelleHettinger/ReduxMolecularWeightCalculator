@@ -13,6 +13,7 @@ gulp.task('serve', () => {
     contentBase: './src/public',
     publicPath: './src/public/',
     hot: true,
+    inline: true,
     stats: {
       colors: true
     }

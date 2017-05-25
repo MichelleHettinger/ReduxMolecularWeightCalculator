@@ -1,15 +1,13 @@
-import { combineReducers } from 'redux';
 import elementsFound from './elementsFound';
 import elementsClicked from './elementClicked';
 import massCalculated from './massCalculated';
-//import async from './async';
+import { postsBySubreddit, selectedSubreddit } from './async';
 
-//Keys to the state object.
-const MWtCalc = combineReducers({
+export {
   elementsFound,
   elementsClicked,
   massCalculated,
-});
-
-export default MWtCalc;
+  postsBySubreddit,
+  selectedSubreddit,
+};
 

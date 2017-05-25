@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { searchForElements } from '../actions/index';
-import SearchElements from '../components/SearchElements';
 import { fetchPosts } from '../actions/async';
+import SearchElements from '../components/SearchElements';
 
 const mapDispatchToProps = (dispatch) => {
   return {

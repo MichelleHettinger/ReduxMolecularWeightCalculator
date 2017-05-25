@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import * as reducers from '../reducers';
+import * as reducers from '../reducers/index';
 
 // Middleware you want to use in production:
 const enhancer = applyMiddleware(thunk);

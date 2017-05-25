@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   SELECT_SUBREDDIT, INVALIDATE_SUBREDDIT,
   REQUEST_POSTS, RECEIVE_POSTS,
@@ -53,9 +52,8 @@ function postsBySubreddit(state = {}, action) {
   }
 }
 
-const async = combineReducers({
+export {
   postsBySubreddit,
   selectedSubreddit,
-});
+};
 
-export default async;

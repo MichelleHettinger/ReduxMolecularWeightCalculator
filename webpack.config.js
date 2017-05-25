@@ -14,12 +14,6 @@ module.exports = {
     javascript: __dirname + "/src/redux/app.js",
   },
 
-  // entry: [
-  //   'webpack-dev-server/client?http://localhost:7777',
-  //   'webpack/hot/only-dev-server',
-  //   __dirname + "/src/redux/app.all.js"
-  // ],
-
   output: {
     filename: "bundle.js",
     path: __dirname + '/src/public/',
@@ -31,7 +25,14 @@ module.exports = {
 
   cache: true,
 
-  devtool: 'sourcemap',
+  devtool: 'source-map',
+
+  devServer:{
+      contentBase: 'public',
+      historyApiFallback: true,
+      inline: true,
+      hot: true,
+  },
 
   module: {
     rules: [

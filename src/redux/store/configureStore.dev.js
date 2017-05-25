@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import * as reducers from '../reducers';
-import DevTools from '../utils/DevTools';
+import * as reducers from '../reducers/index';
+import DevTools from '../components/DevTools';
 
 const enhancer = compose(
   // Middleware you want to use in development:

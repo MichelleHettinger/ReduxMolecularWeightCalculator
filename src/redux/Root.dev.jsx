@@ -2,7 +2,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
-import DevTools from './utils/DevTools';
+import DevTools from './components/DevTools';
 import configureStore from './store/configureStore.dev';
 import App from './components';
 
