@@ -1,8 +1,13 @@
 import fetch from 'isomorphic-fetch';
+import {
+  pendingTask, // The action key for modifying loading state
+  begin, // The action value if a "long" running task begun
+  end, // The action value if a "long" running task ended
+} from 'react-redux-spinner';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
-
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 export function selectSubreddit(subreddit) {
   return {
@@ -15,10 +20,9 @@ function requestPosts(subreddit) {
   return {
     type: REQUEST_POSTS,
     subreddit,
+    [pendingTask]: begin,
   };
 }
-
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 
 function receivePosts(subreddit, json) {
   return {
@@ -26,6 +30,7 @@ function receivePosts(subreddit, json) {
     subreddit,
     posts: json.data.children.map(child => child.data),
     receivedAt: Date.now(),
+    [pendingTask]: end,
   };
 }
 
@@ -46,7 +51,7 @@ export function fetchPosts(subreddit) {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch(`https://www.reddit.com/r/${subreddit}.json`)
+    return fetch('https://www.reddit.com/r/politics.json')
       .then(response => response.json())
       .then(json =>
 

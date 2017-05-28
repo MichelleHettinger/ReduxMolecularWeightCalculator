@@ -1,3 +1,4 @@
+import { pendingTasksReducer as pendingTasks } from 'react-redux-spinner';
 import elementsFound from './elementsFound';
 import elementsClicked from './elementClicked';
 import massCalculated from './massCalculated';
@@ -9,5 +10,6 @@ export {
   massCalculated,
   postsBySubreddit,
   selectedSubreddit,
+  pendingTasks,
 };
 

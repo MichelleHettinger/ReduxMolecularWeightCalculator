@@ -1,77 +1,80 @@
-#topApp {
+#nprogress {
 
-  #headRow {
+  .spinner {
+    top: 50% !important;
+    right: 50% !important;
 
-    h1 {
-
+    .spinner-icon {
+      width: 40px !important;
+      height: 40px !important;
+      border-top-color: #0a72f4;
+      border-right-color: yellow;
+      border-bottom-color: red;
+      border-left-color: #0af4be;
+      animation-duration: 500ms;
+      border-width: 4px;
     }
+
   }
+}
 
-  #bodyRow {
+#app {
+  #topApp {
 
-    #leftBody {
+    #headRow {
 
-      #massPanel {
+      h1 {
 
-        p {
-
-        }
       }
+    }
 
-      #calculationPanel {
-        display: inline-flex;
+    #bodyRow {
 
-        .calculatableElement {
+      #leftBody {
 
-          .elemNoParen {
+        #massPanel {
 
-            .elemNoParenButton {
-              display: block;
-              border: none;
-              background: none;
+          p {
 
-              p {
-                font-size: 25px;
-                margin-bottom: 0;
+          }
+        }
 
-                sub {
-                  font-size: 70px;
+        #calculationPanel {
+          display: inline-flex;
+
+          .calculatableElement {
+
+            .elemNoParen {
+
+              .elemNoParenButton {
+                display: block;
+                border: none;
+                background: none;
+
+                p {
+                  font-size: 25px;
+                  margin-bottom: 0;
+
+                  sub {
+
+                  }
+
+                  &.activeElement {
+                    color: red;
+                  }
+
+                  &.inactiveElement {
+                    color: black;
+                  }
+
                 }
-
-                &.activeElement {
-                  color: red;
-                }
-
-                &.inactiveElement {
-                  color: black;
-                }
-
               }
             }
-          }
 
-          .leftParen {
-            display: inline-block;
-            position: relative;
-            bottom: 15px;
-
-            p {
-              margin: 0;
-              font-size: 60px;
-            }
-          }
-
-          .elemInParen {
-            display: inline-block;
-          }
-
-          .rightParenDiv {
-            display: inline-block;
-            position: relative;
-            bottom: 15px;
-
-            .rightParen {
+            .leftParen {
               display: inline-block;
+              position: relative;
+              bottom: 15px;
 
               p {
                 margin: 0;
@@ -79,17 +82,60 @@
               }
             }
 
-            .rightParenPM {
+            .elemInParen {
+              display: inline-block;
+            }
+
+            .rightParenDiv {
               display: inline-block;
               position: relative;
-              top: 30px;
+              bottom: 15px;
 
-              .pp-m {
+              .rightParen {
+                display: inline-block;
+
+                p {
+                  margin: 0;
+                  font-size: 60px;
+                }
+              }
+
+              .rightParenPM {
+                display: inline-block;
+                position: relative;
+                top: 30px;
+
+                .pp-m {
+                  display: block;
+                  margin: auto;
+                  padding: 0;
+                  width: 15px;
+                  height: 20px;
+
+                  p {
+                    margin-bottom: 0;
+                    text-align: center;
+                  }
+                }
+
+                .parenMultiplier {
+
+                  p {
+                    margin: 0;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+
+            .elementSelected {
+              padding: 0 5px 0 5px;
+
+              .p-m {
                 display: block;
                 margin: auto;
                 padding: 0;
-                width: 15px;
-                height: 20px;
+                width: 20px;
 
                 p {
                   margin-bottom: 0;
@@ -97,74 +143,49 @@
                 }
               }
 
-              .parenMultiplier {
+              .elemInParenAcronym {
 
                 p {
-                  margin: 0;
-                  text-align: center;
+                  font-size: 25px;
+                  margin-bottom: 0;
                 }
               }
             }
           }
-
-          .elementSelected {
-            padding: 0 5px 0 5px;
-
-            .p-m {
-              display: block;
-              margin: auto;
-              padding: 0;
-              width: 20px;
-
-              p {
-                margin-bottom: 0;
-                text-align: center;
-              }
-            }
-
-            .elemInParenAcronym {
-
-              p {
-                font-size: 25px;
-                margin-bottom: 0;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    #rightBody {
-
-      #searchElementsRow {
-
-        #searchElementsForm {
-
-          #searchElementsInput {
-
-          }
         }
       }
 
-      #elementsPanelRow {
-        //border-top: 1px solid black;
-        border-left: 1px solid black;
-        margin-top: 4px;
+      #rightBody {
 
-        .elementFoundButton {
-          border: 1px solid black;
-          border-left: none;
-          //border-top: none;
-          text-align: center;
-          padding: 0;
-          margin-bottom: 1px;
+        #searchElementsRow {
 
-          p {
+          #searchElementsForm {
 
+            #searchElementsInput {
+
+            }
+          }
+        }
+
+        #elementsPanelRow {
+          //border-top: 1px solid black;
+          border-left: 1px solid black;
+          margin-top: 4px;
+
+          .elementFoundButton {
+            border: 1px solid black;
+            border-left: none;
+            //border-top: none;
+            text-align: center;
+            padding: 0;
+            margin-bottom: 1px;
+
+            p {
+
+            }
           }
         }
       }
     }
   }
 }
-
