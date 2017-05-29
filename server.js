@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path');
+const methodOverride = require('method-override');
 const httpProxy = require('http-proxy');
 const mongoose = require('mongoose');
 const proxy = httpProxy.createProxyServer().listen(3000);
@@ -14,7 +15,6 @@ const User = require('./src/models/user.js');
 
 // MongoDB Connection
 const db = mongoose.connection;
-
 mongoose.connect('mongodb://localhost/MolecWeightMongo');
 
 db.on('error', function (err) {
@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 app.use(express.static(publicPath));
+app.use(methodOverride('_method')); // override with POST having ?_method=DELETE
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -47,48 +48,30 @@ app.all('/src/assets/*', (req, res) => {
   });
 });
  
-app.get('/', (req,res) => {
-  res.sendFile(path.join(__dirname, './src/public/index.html'));
-});
+// By placing the auth-routes before api-routes, 
+// we stop users from going to any api sections
+// if they haven't passed the threshold of auth-routes.
+require('./src/controllers/html-routes.js')(app); 
+require('./src/controllers/auth-routes.js')(app); 
 
-// Find user given email
-app.get('/api/saved/:email/:password', function(req, res){
+// app.post('/api/saved', function(req, res){
+//   const newUser = new User({
+//     email: "person@gmail.com",
+//     password: "1234",
+//     date: Date.now(),
+//   });
 
-  const email = req.params.email;
-  const password = req.params.password;
-
-  console.log(email);
-  console.log(password);
-
-  User.findOne({$and:[{"email":email}, {"password":password}]}).exec(function(err, user = {}){
-    if (err){
-      console.log(err);
-    }
-    else {
-      console.log(user);
-      res.send(user);
-    }
-  })
-});
-
-app.post('/api/saved', function(req, res){
-  const newUser = new User({
-    email: "person@gmail.com",
-    password: "1234",
-    date: Date.now(),
-  });
-
-  newUser.save(function(err, doc) {
-    // send an error to the browser
-    if (err) {
-      res.send(err);
-    } 
-    // or send the doc to our browser
-    else {
-      console.log("added to database");
-    }
-  })
-});
+//   newUser.save(function(err, doc) {
+//     // send an error to the browser
+//     if (err) {
+//       res.send(err);
+//     } 
+//     // or send the doc to our browser
+//     else {
+//       console.log("added to database");
+//     }
+//   })
+// });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

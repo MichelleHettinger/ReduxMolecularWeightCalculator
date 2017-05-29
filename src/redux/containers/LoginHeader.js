@@ -2,6 +2,12 @@ import { connect } from 'react-redux';
 import { findUser } from '../actions/login';
 import LoginHeader from '../components/LoginHeader';
 
+const mapStateToProps = (state) => {
+  return {
+    isLogged: state.user.isLogged,
+  };
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     logUserIn: (email, password) => {
@@ -11,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const LoginHeaderDivs = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(LoginHeader);
 

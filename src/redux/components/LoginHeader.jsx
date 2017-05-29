@@ -4,56 +4,70 @@ import PropTypes from 'prop-types';
 let email;
 let password;
 
-const LoginHeader = ({ logUserIn }) => (
-  <div className='col-sm-4' id='loginHeader'>
-    <div className='form-group'>
-      <div className='col-sm-9'>
-        <input
-          id='email'
-          type='text'
-          className='form-control input-md'
-          placeholder='Email Address'
-          ref={ (node) => {
-            //Node refers to this specific element (this input element)
-            email = node;
-          } }
-        />
+const LoginHeader = ({ logUserIn, isLogged }) => {
+  const loginHeader = (
+    <div className='col-sm-4' id='loginHeader'>
+      <div className='form-group'>
+        <div className='col-sm-9'>
+          <input
+            id='email'
+            type='text'
+            className='form-control input-md'
+            placeholder='Email Address'
+            ref={ (node) => {
+              //Node refers to this specific element (this input element)
+              email = node;
+            } }
+          />
+        </div>
+        <div className='col-sm-3'>
+          <input
+            id='loginButton'
+            type='button'
+            value='Log In'
+            className='btn btn-success btn-sm'
+            onClick={ () => logUserIn(email.value, password.value) }
+          />
+        </div>
       </div>
-      <div className='col-sm-3'>
-        <input
-          id='loginButton'
-          type='button'
-          value='Log In'
-          className='btn btn-success btn-sm'
-          onClick={ () => logUserIn(email.value, password.value) }
-        />
+      <div className='form-group'>
+        <div className='col-sm-9'>
+          <input
+            id='loginPasswordInput'
+            type='password'
+            className='form-control input-md'
+            placeholder='Password'
+            ref={ (node) => {
+              //Node refers to this specific element (this input element)
+              password = node;
+            } }
+          />
+        </div>
+        <div className='col-sm-3'>
+          <input
+            type='button'
+            value='Register'
+            className='btn btn-primary btn-sm'
+          />
+        </div>
       </div>
     </div>
-    <div className='form-group'>
-      <div className='col-sm-9'>
-        <input
-          id='loginPasswordInput'
-          type='password'
-          className='form-control input-md'
-          placeholder='Password'
-          ref={ (node) => {
-            //Node refers to this specific element (this input element)
-            password = node;
-          } }
-        />
-      </div>
-      <div className='col-sm-3'>
-        <input
-          type='button'
-          value='Register'
-          className='btn btn-primary btn-sm'
-        />
-      </div>
+  );
+
+  const userHeader = (
+    <div className='col-sm-4' id='userHeader'>
+      <p>You are logged in!</p>
     </div>
-  </div>
-);
+  );
+
+  if (isLogged === false) {
+    return loginHeader;
+  }
+  return userHeader;
+};
 
 LoginHeader.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
   logUserIn: PropTypes.func.isRequired,
   // signUserUp: PropTypes.func.isRequired,
 };
