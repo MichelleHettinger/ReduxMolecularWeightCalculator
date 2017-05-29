@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
-import validator from 'validator';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import { REQUEST_USER, RECEIVE_USER_FAIL, RECEIVE_USER_SUCCESS } from '../constants/actions';
+import validateEmailPass from '../utils/validator';
 
 const requestUser = (email, password) => {
   return {
@@ -34,12 +34,7 @@ export const findUser = (email, password) => {
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
 
-  //Input Validation returns bool
-  validator.isEmail(email);
-  validator.isByteLength(email, {min: 7, max: 50});
-  validator.isByteLength(password, {min: 5, max: 15});
-
-  if (validator.isEmpty(email) || validator.isEmpty(password)) {
+  if (!validateEmailPass(email, password)) {
     return () => {
       console.log('Incomplete Form');
     };
