@@ -7,4 +7,6 @@ export const DO_PAREN_B = 'DO_PAREN_B';
 export const REMOVE_ELEMENT = 'REMOVE_ELEMENT';
 export const PIN_ELEMENT = 'PIN_ELEMENT';
 export const SEARCH_ELEMENT = 'SEARCH_ELEMENT';
-
+//
+export const REQUEST_USER = 'REQUEST_USER';
+export const RECEIVE_USER = 'RECEIVE_USER';

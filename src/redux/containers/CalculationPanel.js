@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { doPlus, doMinus, calculateTotal, doParenthesis } from '../actions/index';
+import { doPlus, doMinus, calculateTotal, doParenthesis } from '../actions/elements';
 import CalculationPanel from '../components/CalculationPanel';
 
 const mapStateToProps = (state) => {

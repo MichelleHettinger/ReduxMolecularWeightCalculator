@@ -5,12 +5,16 @@ import {
   CalculationPanel,
   SearchElements,
   ElementsPanel,
+  LoginHeader,
 } from '../containers';
 
 const App = () => (
   <div id='topApp' className='container'>
     <div id='headRow' className='row'>
-      <h1>Heading Component Soon</h1>
+      <div className='col-sm-8'>
+        <h1>Heading</h1>
+      </div>
+      <LoginHeader />
     </div>
 
     <div id='bodyRow' className='row'>
