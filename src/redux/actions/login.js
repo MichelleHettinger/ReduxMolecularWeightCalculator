@@ -10,22 +10,25 @@ const requestUser = (email) => {
   };
 };
 
-export const receiveUser = (email, json) => {
-  console.log(email);
-  console.log(json);
+export const receiveUser = (json) => {
   return {
     type: RECEIVE_USER,
-    email,
-    users: json,
+    user: json,
     receivedAt: Date.now(),
     [pendingTask]: end,
   };
 };
 
-export const findUser = (email) => {
+export const findUser = (email, password) => {
   // Thunk middleware knows how to handle functions.
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
+
+  if (email === '' && password === '') {
+    return function () {
+      console.log('random');
+    };
+  }
 
   return function (dispatch) {
     // First dispatch: the app state is updated to inform
@@ -39,7 +42,7 @@ export const findUser = (email) => {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch('/api/saved/', {
+    return fetch(`/api/saved/${email}/${password}`, {
       method: 'GET',
     })
       .then(response => response.json())

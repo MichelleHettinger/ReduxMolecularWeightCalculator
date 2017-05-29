@@ -4,8 +4,8 @@ import LoginHeader from '../components/LoginHeader';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logUserIn: (email) => {
-      dispatch(findUser(email));
+    logUserIn: (email, password) => {
+      dispatch(findUser(email, password));
     },
   };
 };

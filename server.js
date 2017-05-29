@@ -52,11 +52,15 @@ app.get('/', (req,res) => {
 });
 
 // Find user given email
-app.get('/api/saved/', function(req, res){
+app.get('/api/saved/:email/:password', function(req, res){
 
-  const email = req.param('email');
+  const email = req.params.email;
+  const password = req.params.password;
 
-  User.findOne({"users.email": email}, 'email password').exec(function(err, user){
+  console.log(email);
+  console.log(password);
+
+  User.findOne({$and:[{"email":email}, {"password":password}]}).exec(function(err, user = {}){
     if (err){
       console.log(err);
     }

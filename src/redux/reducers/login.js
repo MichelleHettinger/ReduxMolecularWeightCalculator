@@ -5,7 +5,7 @@ import {
 
 const user = (state = {
   isFetching: false,
-  items: [],
+  items: {},
 }, action) => {
   switch (action.type) {
     case REQUEST_USER: {
@@ -16,7 +16,7 @@ const user = (state = {
     case RECEIVE_USER:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.users,
+        items: action.user,
         lastUpdated: action.receivedAt,
       });
 

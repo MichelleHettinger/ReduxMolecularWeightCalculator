@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7ba42891fe5dc3e791a7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e07459d108d310b1d98f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -40369,6 +40369,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.findUser = exports.receiveUser = undefined;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _isomorphicFetch = __webpack_require__(372);
 
 var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
@@ -40388,21 +40390,27 @@ var requestUser = function requestUser(email) {
   }, _reactReduxSpinner.pendingTask, _reactReduxSpinner.begin);
 };
 
-var receiveUser = exports.receiveUser = function receiveUser(email, json) {
-  console.log(email);
-  console.log(json);
+var receiveUser = exports.receiveUser = function receiveUser(json) {
   return _defineProperty({
     type: _actions.RECEIVE_USER,
-    email: email,
-    users: json,
+    user: json,
     receivedAt: Date.now()
   }, _reactReduxSpinner.pendingTask, _reactReduxSpinner.end);
 };
 
-var findUser = exports.findUser = function findUser(email) {
+var findUser = exports.findUser = function findUser(email, password) {
   // Thunk middleware knows how to handle functions.
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
+
+  console.log(typeof email === 'undefined' ? 'undefined' : _typeof(email));
+  console.log(password);
+
+  if (email === '' && password === '') {
+    return function () {
+      console.log('random');
+    };
+  }
 
   return function (dispatch) {
     // First dispatch: the app state is updated to inform
@@ -40416,7 +40424,7 @@ var findUser = exports.findUser = function findUser(email) {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return (0, _isomorphicFetch2.default)('/api/saved/', {
+    return (0, _isomorphicFetch2.default)('/api/saved/' + email + '/' + password, {
       method: 'GET'
     }).then(function (response) {
       return response.json();
@@ -40866,7 +40874,8 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// let email;
+var email = void 0;
+var password = void 0;
 
 var LoginHeader = function LoginHeader(_ref) {
   var logUserIn = _ref.logUserIn;
@@ -40883,11 +40892,11 @@ var LoginHeader = function LoginHeader(_ref) {
           id: 'email',
           type: 'text',
           className: 'form-control input-md',
-          placeholder: 'Email Address'
-          // ref={ (node) => {
-          //   //Node refers to this specific element (this input element)
-          //   email = node;
-          // } }
+          placeholder: 'Email Address',
+          ref: function ref(node) {
+            //Node refers to this specific element (this input element)
+            email = node;
+          }
         })
       ),
       _react2.default.createElement(
@@ -40899,7 +40908,7 @@ var LoginHeader = function LoginHeader(_ref) {
           value: 'Log In',
           className: 'btn btn-success btn-sm',
           onClick: function onClick() {
-            return logUserIn('aa');
+            return logUserIn(email.value, password.value);
           }
         })
       )
@@ -40914,7 +40923,11 @@ var LoginHeader = function LoginHeader(_ref) {
           id: 'loginPasswordInput',
           type: 'password',
           className: 'form-control input-md',
-          placeholder: 'Password'
+          placeholder: 'Password',
+          ref: function ref(node) {
+            //Node refers to this specific element (this input element)
+            password = node;
+          }
         })
       ),
       _react2.default.createElement(
@@ -41169,8 +41182,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    logUserIn: function logUserIn(email) {
-      dispatch((0, _login.findUser)(email));
+    logUserIn: function logUserIn(email, password) {
+      dispatch((0, _login.findUser)(email, password));
     }
   };
 };
@@ -41713,7 +41726,7 @@ var _actions = __webpack_require__(53);
 var user = function user() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
     isFetching: false,
-    items: []
+    items: {}
   };
   var action = arguments[1];
 
@@ -41727,7 +41740,7 @@ var user = function user() {
     case _actions.RECEIVE_USER:
       return Object.assign({}, state, {
         isFetching: false,
-        items: action.users,
+        items: action.user,
         lastUpdated: action.receivedAt
       });
 

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// let email;
+let email;
+let password;
 
 const LoginHeader = ({ logUserIn }) => (
   <div className='col-sm-4' id='loginHeader'>
@@ -12,10 +13,10 @@ const LoginHeader = ({ logUserIn }) => (
           type='text'
           className='form-control input-md'
           placeholder='Email Address'
-          // ref={ (node) => {
-          //   //Node refers to this specific element (this input element)
-          //   email = node;
-          // } }
+          ref={ (node) => {
+            //Node refers to this specific element (this input element)
+            email = node;
+          } }
         />
       </div>
       <div className='col-sm-3'>
@@ -24,7 +25,7 @@ const LoginHeader = ({ logUserIn }) => (
           type='button'
           value='Log In'
           className='btn btn-success btn-sm'
-          onClick={ () => logUserIn('aa') }
+          onClick={ () => logUserIn(email.value, password.value) }
         />
       </div>
     </div>
@@ -35,6 +36,10 @@ const LoginHeader = ({ logUserIn }) => (
           type='password'
           className='form-control input-md'
           placeholder='Password'
+          ref={ (node) => {
+            //Node refers to this specific element (this input element)
+            password = node;
+          } }
         />
       </div>
       <div className='col-sm-3'>
