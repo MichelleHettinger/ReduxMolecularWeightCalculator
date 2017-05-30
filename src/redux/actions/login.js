@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import CryptoJS from 'crypto-js';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import { REQUEST_USER, RECEIVE_USER_FAIL, RECEIVE_USER_SUCCESS } from '../constants/actions';
-import validateEmailPass from '../utils/login';
+import validateEmailPass from '../utils/validation';
 
 const requestUser = (email, password) => {
   return {
