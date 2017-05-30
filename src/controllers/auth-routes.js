@@ -30,8 +30,8 @@ module.exports = function(app){
     };
 
     User.findOne({'email': email}).exec(function(err, userObj){
-      const userHash = userObj.password;
 
+      //an error happens with userObj.password, where if someone logs in with an existing email, the server crashes because userObj.password doesn't exist
       if (err){
         console.log('----------------');
         console.log(err);
@@ -44,6 +44,7 @@ module.exports = function(app){
         res.send({});
       }
       else {
+        const userHash = userObj.password;
         phs(password).verifyAgainst(userHash, function(error, verified){
           if(error)
               throw new Error('There was an error while comparing hashes.');
@@ -51,6 +52,7 @@ module.exports = function(app){
               console.log('-----------------');
               console.log("Incorrect password.");
               console.log('-----------------');
+              res.send({});
           } else {
               console.log('-----------------');
               console.log("Access granted.");
@@ -72,7 +74,7 @@ module.exports = function(app){
     const encryptedPassword = decodeURIComponent(encodedPassword);
 
     const userEmail = CryptoJS.AES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
-    const userPassword = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
+    const userPassword = encryptedPassword;
 
     const user = new User({
       email: userEmail,

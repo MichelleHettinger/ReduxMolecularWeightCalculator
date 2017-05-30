@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7514ac16a6f555fff2f6"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2efb12e7fde6e9e0a222"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -47851,7 +47851,7 @@ var findUser = exports.findUser = function findUser(email, password) {
   return function (dispatch) {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
-    dispatch(requestUser(email, password));
+    dispatch(requestUser(email, encryptedPassword));
 
     // The function called by the thunk middleware can return a value,
     // that is passed on as the return value of the dispatch method.
@@ -47949,7 +47949,7 @@ var registerUser = exports.registerUser = function registerUser(email, password)
   var encodedPassword = encodeURIComponent(encryptedPassword);
 
   return function (dispatch) {
-    dispatch(requestRegisterUser(email, password));
+    dispatch(requestRegisterUser(email, encryptedPassword));
 
     return (0, _isomorphicFetch2.default)('/register/' + encodedEmail + '/' + encodedPassword, {
       method: 'POST'

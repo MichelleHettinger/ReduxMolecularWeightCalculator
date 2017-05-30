@@ -47,7 +47,7 @@ export const registerUser = (email, password) => {
   const encodedPassword = encodeURIComponent(encryptedPassword);
 
   return (dispatch) => {
-    dispatch(requestRegisterUser(email, password));
+    dispatch(requestRegisterUser(email, encryptedPassword));
 
     return fetch(`/register/${encodedEmail}/${encodedPassword}`, {
       method: 'POST',

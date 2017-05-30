@@ -50,7 +50,7 @@ export const findUser = (email, password) => {
   return (dispatch) => {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
-    dispatch(requestUser(email, password));
+    dispatch(requestUser(email, encryptedPassword));
 
     // The function called by the thunk middleware can return a value,
     // that is passed on as the return value of the dispatch method.
