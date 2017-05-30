@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import CryptoJS from 'crypto-js';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import { REQUEST_USER, RECEIVE_USER_FAIL, RECEIVE_USER_SUCCESS } from '../constants/actions';
 import validateEmailPass from '../utils/login';
@@ -40,6 +41,9 @@ export const findUser = (email, password) => {
     };
   }
 
+  const encryptedEmail = CryptoJS.DES.encrypt(email, 'michelle is awesome').toString();
+  const encryptedPassword = CryptoJS.DES.encrypt(password, 'michelle is totally awesome').toString();
+
   //Passed input validation, now look up user based off email/pass.
   return (dispatch) => {
     // First dispatch: the app state is updated to inform
@@ -52,7 +56,7 @@ export const findUser = (email, password) => {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch(`/authenticate/${email}/${password}`, {
+    return fetch(`/authenticate/${encryptedEmail}/${encryptedPassword}`, {
       method: 'GET',
     })
       .then(response => response.json())
