@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import { REQUEST_USER, RECEIVE_USER_FAIL, RECEIVE_USER_SUCCESS } from '../constants/actions';
-import validateEmailPass from '../utils/validator';
+import validateEmailPass from '../utils/login';
 
 const requestUser = (email, password) => {
   return {
@@ -40,10 +40,10 @@ export const findUser = (email, password) => {
     };
   }
 
+  //Passed input validation, now look up user based off email/pass.
   return (dispatch) => {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
-
     dispatch(requestUser(email, password));
 
     // The function called by the thunk middleware can return a value,

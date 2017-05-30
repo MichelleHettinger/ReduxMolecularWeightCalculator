@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const httpProxy = require('http-proxy');
 const mongoose = require('mongoose');
@@ -25,6 +26,7 @@ db.once('open', function () {
   console.log('Mongoose connection successful.');
 });
 
+app.set('jwtSecret', "CODINGROCKS")
 // Logging and public Path
 app.use(logger('dev'));
 app.use(bodyParser.json());

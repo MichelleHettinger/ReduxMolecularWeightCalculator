@@ -1,5 +1,4 @@
 import validator from 'validator';
-
 //Input Validation returns bool
 
 const validateEmailPass = (email, password) => {

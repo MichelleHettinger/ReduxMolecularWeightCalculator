@@ -7,7 +7,7 @@ const express = require("express");
 const mo = require("method-override");
 const bp = require("body-parser");
 const path = require("path");
-
+const phs = require('password-hash-and-salt');
 const User = require("../models/user.js");
 
 // bring in our Cookies library, so we can send the user the web token
@@ -22,28 +22,34 @@ module.exports = function(app){
     const email = req.params.email;
     const password = req.params.password;
 
-    console.log(email);
-    console.log(password);
+    User.findOne({'email': 'Q@Q.com'}).exec(function(err, userObj){
+      const userHash = userObj.password;
 
-    if (email == null) {console.log('no email')}
-
-    User.findOne({$and:[{"email":email}, {"password":password}]}).exec(function(err, user){
       if (err){
-        console.log('--------');
+        console.log('----------------');
         console.log(err);
-        console.log('--------');
+        console.log('----------------');
         res.redirect('/');
-      }
-      else if (user === null) {
-        console.log('--------');
+      } else if (userObj === null) {
+        console.log('----------------');
         console.log('User not found.');
-        console.log('--------');
+        console.log('-----------------');
         res.send({});
       }
       else {
-        res.send(user);
+        phs(password).verifyAgainst(userHash, function(error, verified){
+          if(error)
+              throw new Error('There was an error while comparing hashes.');
+          if (!verified) {
+              console.log("Incorrect password.");
+          } else {
+
+              res.send(userObj);
+              console.log("Access granted.");
+          }
+        });
       }
-    })
+    });
   });
 
   // ------------------------------------------------------------------------------------------------------

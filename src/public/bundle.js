@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4b20764f975ba09bb5c5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ab13724127a52151e50d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -41007,9 +41007,9 @@ var _reactReduxSpinner = __webpack_require__(147);
 
 var _actions = __webpack_require__(54);
 
-var _validator = __webpack_require__(607);
+var _login = __webpack_require__(607);
 
-var _validator2 = _interopRequireDefault(_validator);
+var _login2 = _interopRequireDefault(_login);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41043,16 +41043,16 @@ var findUser = exports.findUser = function findUser(email, password) {
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
 
-  if (!(0, _validator2.default)(email, password)) {
+  if (!(0, _login2.default)(email, password)) {
     return function () {
       console.log('Incomplete Form');
     };
   }
 
+  //Passed input validation, now look up user based off email/pass.
   return function (dispatch) {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
-
     dispatch(requestUser(email, password));
 
     // The function called by the thunk middleware can return a value,
@@ -43331,7 +43331,7 @@ var validateEmailPass = function validateEmailPass(email, password) {
 
 exports.default = validateEmailPass;
 
-/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(1))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "validator.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(11); if (makeExportsHot(module, __webpack_require__(1))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "login.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ }),
