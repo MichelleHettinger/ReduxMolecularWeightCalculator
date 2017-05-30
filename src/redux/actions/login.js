@@ -41,8 +41,10 @@ export const findUser = (email, password) => {
     };
   }
 
-  const encryptedEmail = CryptoJS.DES.encrypt(email, 'michelle is awesome').toString();
-  const encryptedPassword = CryptoJS.DES.encrypt(password, 'michelle is totally awesome').toString();
+  const encryptedEmail = CryptoJS.AES.encrypt(email, 'michelle is awesome').toString();
+  const encryptedPassword = CryptoJS.AES.encrypt(password, 'michelle is totally awesome').toString();
+  const encodedEmail = encodeURIComponent(encryptedEmail);
+  const encodedPassword = encodeURIComponent(encryptedPassword);
 
   //Passed input validation, now look up user based off email/pass.
   return (dispatch) => {
@@ -56,7 +58,7 @@ export const findUser = (email, password) => {
     // In this case, we return a promise to wait for.
     // This is not required by thunk middleware, but it is convenient for us.
 
-    return fetch(`/authenticate/${encryptedEmail}/${encryptedPassword}`, {
+    return fetch(`/authenticate/${encodedEmail}/${encodedPassword}`, {
       method: 'GET',
     })
       .then(response => response.json())

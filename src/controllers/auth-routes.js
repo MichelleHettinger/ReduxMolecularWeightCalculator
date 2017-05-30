@@ -12,15 +12,17 @@ const User = require("../models/user.js");
 const CryptoJS = require("crypto-js");
 
 module.exports = function(app){
-  // Authentication
-  app.get('/authenticate/:email/:password', function(req, res){
 
+  //After entering user name and password and clicking submit, they are brought to this route
+  app.get('/authenticate/:email/:password', function(req, res) {
     //start decrypting here
-    const encryptedEmail = req.params.email;
-    const encryptedPassword = req.params.password;
+    const encodedEmail = req.params.email;
+    const encodedPassword = req.params.password;
+    const encryptedEmail = decodeURIComponent(encodedEmail);
+    const encryptedPassword = decodeURIComponent(encodedPassword);
 
-    const email = CryptoJS.DES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
-    const password = CryptoJS.DES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
+    const email = CryptoJS.AES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
+    const password = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
 
     const userCredentials = {
       userEmail: email,
@@ -56,6 +58,35 @@ module.exports = function(app){
               res.send(userObj);
           }
         });
+      }
+    });
+  });
+
+  //When a user signs up, they are verified and redirected to /home with good cookie
+
+  app.post('/register/:email/:password', function(req, res) {
+    //start decrypting here
+    const encodedEmail = req.params.email;
+    const encodedPassword = req.params.password;
+    const encryptedEmail = decodeURIComponent(encodedEmail);
+    const encryptedPassword = decodeURIComponent(encodedPassword);
+
+    const userEmail = CryptoJS.AES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
+    const userPassword = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
+
+    const user = new User({
+      email: userEmail,
+      password: userPassword
+    })
+
+    user.save(function(err, newUserObj) {
+      if (err){
+        console.log('----------------');
+        console.log(err);
+        console.log('----------------');
+        res.redirect('/');
+      } else {
+        res.send(newUserObj);
       }
     });
   });

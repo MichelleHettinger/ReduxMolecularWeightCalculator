@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 let email;
 let password;
 
-const LoginHeader = ({ logUserIn, isLogged }) => {
+const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
   const loginHeader = (
     <div className='col-sm-4' id='loginHeader'>
       <div className='form-group'>
@@ -48,6 +48,7 @@ const LoginHeader = ({ logUserIn, isLogged }) => {
             type='button'
             value='Register'
             className='btn btn-primary btn-sm'
+            onClick={ () => signUserUp(email.value, password.value) }
           />
         </div>
       </div>
@@ -69,7 +70,7 @@ const LoginHeader = ({ logUserIn, isLogged }) => {
 LoginHeader.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logUserIn: PropTypes.func.isRequired,
-  // signUserUp: PropTypes.func.isRequired,
+  signUserUp: PropTypes.func.isRequired,
 };
 
 export default LoginHeader;

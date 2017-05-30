@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { findUser } from '../actions/login';
+import { registerUser } from '../actions/register';
 import LoginHeader from '../components/LoginHeader';
 
 const mapStateToProps = (state) => {
@@ -12,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logUserIn: (email, password) => {
       dispatch(findUser(email, password));
+    },
+    signUserUp: (email, password) => {
+      dispatch(registerUser(email, password));
     },
   };
 };
