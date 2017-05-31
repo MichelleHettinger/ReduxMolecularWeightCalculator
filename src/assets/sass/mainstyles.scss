@@ -19,13 +19,165 @@
 }
 
 #app {
+
   #topApp {
 
     #headRow {
 
-      h1 {
+      #headingDiv {
 
+        h1 {
+
+        }
       }
+
+      #loginHeader {
+
+        #emailFormGroup {
+
+          #emailTextInputDiv {
+
+            #emailInput {
+
+            }
+          }
+
+          #emailButtonInputDiv {
+            #loginButton {
+
+            }
+          }
+        }
+
+        #passwordFormGroup {
+
+          #passwordTextInputDiv {
+
+            #passwordInput {
+
+            }
+          }
+
+          #passwordButtonInputDiv {
+
+            #registerButton {
+
+            }
+          }
+        }
+      }
+
+      #userAccountButtons {
+
+        #userAccountButtonsDiv {
+
+          #myAccountButton {
+
+          }
+
+          #logOutButton {
+
+          }
+        }
+
+        #accountModal {
+
+          #accountModalDialog {
+
+            #accountModalContent {
+              
+              #accountModalHeader {
+
+                #accountModalCloseButton {
+
+                }
+              }
+
+              #accountModalBody {
+
+                #accountModalRow {
+
+                  #accountModalForm {
+
+                    #accountFormInlineName {
+
+                      #accountFormGroupName {
+                        display: 'flex';
+                        margin-left: 35px;
+
+                        label {
+
+                        }
+
+                        p {
+                          margin-left: 10px;
+                        }
+                      }
+                    }
+
+                    #accountFormInlineEmail {
+
+                      #accountFormGroupEmail {
+                        display: 'flex';
+                        margin-left: 35px;
+
+                        label {
+
+                        }
+
+                        p {
+                          margin-left: 10px;
+                        }
+
+                      }
+                    }
+
+                    #accountFormInlineNewName {
+
+                      #accountFormGroupNewName {
+
+                        #accountFormNewNameInput {
+
+                        }
+                      }
+                    }
+
+                    #accountFormInlineNewEmail {
+
+                      #accountFormGroupNewEmail {
+                        label {
+
+                        }
+
+                        #accountFormNewEmailInput {
+
+                        }
+
+                      }
+
+                      #accountFormUpdateButton {
+
+                      }
+                    }
+
+                  }
+                }
+              }
+
+              #accountModalFooter {
+                p {
+                  text-align: center;
+                }
+
+                #resetPasswordButton {
+
+                }
+              }   
+            }
+          }
+        }
+      }
+
     }
 
     #bodyRow {

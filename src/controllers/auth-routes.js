@@ -1,8 +1,3 @@
-// ===============================================================================
-// LOAD DEPENDENCY
-// We are primarily interested in the user data and the jwt dependency for coding/decoding
-// ===============================================================================
-
 const express = require("express");
 const mo = require("method-override");
 const bp = require("body-parser");
@@ -30,8 +25,6 @@ module.exports = function(app){
     };
 
     User.findOne({'email': email}).exec(function(err, userObj){
-
-      //an error happens with userObj.password, where if someone logs in with an existing email, the server crashes because userObj.password doesn't exist
       if (err){
         console.log('----------------');
         console.log(err);

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2efb12e7fde6e9e0a222"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7672dcc203a31f8935c0"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -19650,7 +19650,7 @@ var App = function App() {
       { id: 'headRow', className: 'row' },
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-8' },
+        { id: 'headingDiv', className: 'col-sm-8' },
         _react2.default.createElement(
           'h1',
           null,
@@ -48406,12 +48406,12 @@ var LoginHeader = function LoginHeader(_ref) {
     { className: 'col-sm-4', id: 'loginHeader' },
     _react2.default.createElement(
       'div',
-      { className: 'form-group' },
+      { className: 'form-group', id: 'emailFormGroup' },
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-9' },
+        { className: 'col-sm-9', id: 'emailTextInputDiv' },
         _react2.default.createElement('input', {
-          id: 'email',
+          id: 'emailInput',
           type: 'text',
           className: 'form-control input-md',
           placeholder: 'Email Address',
@@ -48423,7 +48423,7 @@ var LoginHeader = function LoginHeader(_ref) {
       ),
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-3' },
+        { className: 'col-sm-3', id: 'emailButtonInputDiv' },
         _react2.default.createElement('input', {
           id: 'loginButton',
           type: 'button',
@@ -48437,12 +48437,12 @@ var LoginHeader = function LoginHeader(_ref) {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'form-group' },
+      { className: 'form-group', id: 'passwordFormGroup' },
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-9' },
+        { className: 'col-sm-9', id: 'passwordTextInputDiv' },
         _react2.default.createElement('input', {
-          id: 'loginPasswordInput',
+          id: 'passwordInput',
           type: 'password',
           className: 'form-control input-md',
           placeholder: 'Password',
@@ -48454,8 +48454,9 @@ var LoginHeader = function LoginHeader(_ref) {
       ),
       _react2.default.createElement(
         'div',
-        { className: 'col-sm-3' },
+        { className: 'col-sm-3', id: 'passwordButtonInputDiv' },
         _react2.default.createElement('input', {
+          id: 'registerButton',
           type: 'button',
           value: 'Register',
           className: 'btn btn-primary btn-sm',
@@ -48469,11 +48470,177 @@ var LoginHeader = function LoginHeader(_ref) {
 
   var userHeader = _react2.default.createElement(
     'div',
-    { className: 'col-sm-4', id: 'userHeader' },
+    { className: 'col-sm-4', id: 'userAccountButtons' },
     _react2.default.createElement(
-      'p',
-      null,
-      'You are logged in!'
+      'div',
+      { className: 'pull-right', id: 'userAccountButtonsDiv' },
+      _react2.default.createElement(
+        'button',
+        {
+          id: 'myAccountButton',
+          type: 'button',
+          'data-toggle': 'modal',
+          'data-target': '#accountModal',
+          className: 'btn btn-primary btn-sm'
+        },
+        'MyAccount'
+      ),
+      _react2.default.createElement('input', {
+        id: 'logOutButton',
+        type: 'button',
+        value: 'Log Out',
+        className: 'btn btn-warning btn-sm'
+        //onClick={this.logOut}
+      })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'modal fade', id: 'accountModal' },
+      _react2.default.createElement(
+        'div',
+        { className: 'modal-dialog', role: 'document', id: 'accountModalDialog' },
+        _react2.default.createElement(
+          'div',
+          { className: 'modal-content', id: 'accountModalContent' },
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-header', id: 'accountModalHeader' },
+            _react2.default.createElement(
+              'button',
+              {
+                id: 'accountModalCloseButton',
+                type: 'button',
+                className: 'close',
+                'data-dismiss': 'modal',
+                'aria-label': 'Close'
+              },
+              _react2.default.createElement(
+                'span',
+                { 'aria-hidden': 'true' },
+                '\xD7'
+              )
+            ),
+            _react2.default.createElement(
+              'h3',
+              { className: 'modal-title' },
+              'Your Account!'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-body', id: 'accountModalBody' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row', id: 'accountModalRow' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-sm-offset-2', id: 'accountModalForm' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-inline', id: 'accountFormInlineName' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'form-group', id: 'accountFormGroupName' },
+                    _react2.default.createElement(
+                      'label',
+                      { htmlFor: 'name' },
+                      'Name:'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'USERNAMEVARIABLE'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-inline', id: 'accountFormInlineEmail' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'form-group', id: 'accountFormGroupEmail' },
+                    _react2.default.createElement(
+                      'label',
+                      { htmlFor: 'email' },
+                      'Email:'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'USEREMAILVARIABLE'
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-inline', id: 'accountFormInlineNewName' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'form-group', id: 'accountFormGroupNewName' },
+                    _react2.default.createElement(
+                      'label',
+                      { htmlFor: 'newname' },
+                      'New Name:'
+                    ),
+                    _react2.default.createElement('input', {
+                      id: 'accountFormNewNameInput',
+                      type: 'text',
+                      className: 'form-control input-md'
+                      //placeholder={this.state.user.displayName}
+                      //onChange={text => this.grabNewName(text.target.value)}
+                    })
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-inline', id: 'accountFormInlineNewEmail' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'form-group', id: 'accountFormGroupNewEmail' },
+                    _react2.default.createElement(
+                      'label',
+                      { htmlFor: 'newemail' },
+                      'New Email:'
+                    ),
+                    _react2.default.createElement('input', {
+                      id: 'accountFormNewEmailInput',
+                      type: 'text',
+                      className: 'form-control input-md'
+                      //placeholder={this.state.user.email}
+                      //onChange={text => this.grabNewEmail(text.target.value)}
+                    })
+                  ),
+                  _react2.default.createElement('input', {
+                    id: 'accountFormUpdateButton',
+                    type: 'button',
+                    value: 'Submit',
+                    className: 'btn btn-primary btn-sm'
+                  })
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'modal-footer', id: 'accountModalFooter' },
+            _react2.default.createElement(
+              'p',
+              null,
+              'Need to reset your password?'
+            ),
+            _react2.default.createElement(
+              'button',
+              {
+                id: 'resetPasswordButton',
+                type: 'button',
+                className: 'btn btn-secondary btn-xs center-block'
+                //onClick={ this.resetPassword }
+              },
+              'Click Here'
+            )
+          )
+        )
+      )
     )
   );
 

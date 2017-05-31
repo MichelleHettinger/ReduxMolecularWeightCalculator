@@ -11,7 +11,7 @@ import {
 const App = () => (
   <div id='topApp' className='container'>
     <div id='headRow' className='row'>
-      <div className='col-sm-8'>
+      <div id='headingDiv' className='col-sm-8' >
         <h1>Heading</h1>
       </div>
       <LoginHeader />
