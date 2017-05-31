@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7672dcc203a31f8935c0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "021ecd704c2dda832981"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -19654,7 +19654,7 @@ var App = function App() {
         _react2.default.createElement(
           'h1',
           null,
-          'Heading'
+          'Molecular Weight Calculator'
         )
       ),
       _react2.default.createElement(_containers.LoginHeader, null)

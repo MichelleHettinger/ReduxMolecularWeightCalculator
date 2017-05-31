@@ -11,90 +11,110 @@
     animation-duration: 500ms;
     border-width: 4px; }
 
-#app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineName #accountFormGroupName {
-  display: 'flex';
-  margin-left: 35px; }
-  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineName #accountFormGroupName p {
-    margin-left: 10px; }
+#app #topApp #headRow #loginHeader #emailFormGroup {
+  margin-top: 10px; }
 
-#app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineEmail #accountFormGroupEmail {
-  display: 'flex';
-  margin-left: 35px; }
-  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineEmail #accountFormGroupEmail p {
-    margin-left: 10px; }
+#app #topApp #headRow #loginHeader #passwordFormGroup #passwordTextInputDiv #passwordInput {
+  margin-top: 5px; }
 
-#app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalFooter p {
-  text-align: center; }
+#app #topApp #headRow #userAccountButtons {
+  margin-top: 10px; }
+  #app #topApp #headRow #userAccountButtons #userAccountButtonsDiv #logOutButton {
+    margin-left: 5px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalHeader h3 {
+    text-align: center; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineName #accountFormGroupName {
+    display: flex;
+    margin-left: 35px; }
+    #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineName #accountFormGroupName p {
+      margin-left: 5px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineEmail #accountFormGroupEmail {
+    display: flex;
+    margin-left: 35px; }
+    #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineEmail #accountFormGroupEmail p {
+      margin-left: 5px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineNewName #accountFormGroupNewName #accountFormNewNameInput {
+    margin-left: 5px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineNewEmail #accountFormGroupNewEmail {
+    margin-top: 10px; }
+    #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineNewEmail #accountFormGroupNewEmail #accountFormNewEmailInput {
+      margin-left: 5px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalBody #accountModalRow #accountModalForm #accountFormInlineNewEmail #accountFormUpdateButton {
+    margin-left: 5px;
+    margin-top: 10px; }
+  #app #topApp #headRow #userAccountButtons #accountModal #accountModalDialog #accountModalContent #accountModalFooter p {
+    text-align: center; }
 
-#app #topApp #bodyRow #leftBody #calculationPanel {
-  display: inline-flex; }
-  #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton {
-    display: block;
-    border: none;
-    background: none; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p {
-      font-size: 25px;
-      margin-bottom: 0; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.activeElement {
-        color: red; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.inactiveElement {
-        color: black; }
-  #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen {
-    display: inline-block;
-    position: relative;
-    bottom: 15px; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen p {
-      margin: 0;
-      font-size: 60px; }
-  #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemInParen {
-    display: inline-block; }
-  #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv {
-    display: inline-block;
-    position: relative;
-    bottom: 15px; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen {
-      display: inline-block; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen p {
-        margin: 0;
-        font-size: 60px; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM {
+#app #topApp #bodyRow {
+  margin-top: 20px; }
+  #app #topApp #bodyRow #leftBody #calculationPanel {
+    display: inline-flex; }
+    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton {
+      display: block;
+      border: none;
+      background: none; }
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p {
+        font-size: 25px;
+        margin-bottom: 0; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.activeElement {
+          color: red; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemNoParen .elemNoParenButton p.inactiveElement {
+          color: black; }
+    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen {
       display: inline-block;
       position: relative;
-      top: 30px; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .pp-m {
+      bottom: 15px; }
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .leftParen p {
+        margin: 0;
+        font-size: 60px; }
+    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elemInParen {
+      display: inline-block; }
+    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv {
+      display: inline-block;
+      position: relative;
+      bottom: 15px; }
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen {
+        display: inline-block; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParen p {
+          margin: 0;
+          font-size: 60px; }
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM {
+        display: inline-block;
+        position: relative;
+        top: 30px; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .pp-m {
+          display: block;
+          margin: auto;
+          padding: 0;
+          width: 15px;
+          height: 20px; }
+          #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .pp-m p {
+            margin-bottom: 0;
+            text-align: center; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .parenMultiplier p {
+          margin: 0;
+          text-align: center; }
+    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected {
+      padding: 0 5px 0 5px; }
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m {
         display: block;
         margin: auto;
         padding: 0;
-        width: 15px;
-        height: 20px; }
-        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .pp-m p {
+        width: 20px; }
+        #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m p {
           margin-bottom: 0;
           text-align: center; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .rightParenDiv .rightParenPM .parenMultiplier p {
-        margin: 0;
-        text-align: center; }
-  #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected {
-    padding: 0 5px 0 5px; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m {
-      display: block;
-      margin: auto;
+      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .elemInParenAcronym p {
+        font-size: 25px;
+        margin-bottom: 0; }
+  #app #topApp #bodyRow #rightBody #elementsPanelRow {
+    border-left: 1px solid black;
+    margin-top: 4px; }
+    #app #topApp #bodyRow #rightBody #elementsPanelRow .elementFoundButton {
+      border: 1px solid black;
+      border-left: none;
+      text-align: center;
       padding: 0;
-      width: 20px; }
-      #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .p-m p {
-        margin-bottom: 0;
-        text-align: center; }
-    #app #topApp #bodyRow #leftBody #calculationPanel .calculatableElement .elementSelected .elemInParenAcronym p {
-      font-size: 25px;
-      margin-bottom: 0; }
-
-#app #topApp #bodyRow #rightBody #elementsPanelRow {
-  border-left: 1px solid black;
-  margin-top: 4px; }
-  #app #topApp #bodyRow #rightBody #elementsPanelRow .elementFoundButton {
-    border: 1px solid black;
-    border-left: none;
-    text-align: center;
-    padding: 0;
-    margin-bottom: 1px; }
+      margin-bottom: 1px; }
 
 /*# sourceMappingURL=allstyles.css.map*/

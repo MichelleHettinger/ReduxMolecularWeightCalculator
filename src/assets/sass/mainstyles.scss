@@ -34,6 +34,7 @@
       #loginHeader {
 
         #emailFormGroup {
+          margin-top: 10px;
 
           #emailTextInputDiv {
 
@@ -43,6 +44,7 @@
           }
 
           #emailButtonInputDiv {
+
             #loginButton {
 
             }
@@ -54,7 +56,7 @@
           #passwordTextInputDiv {
 
             #passwordInput {
-
+              margin-top: 5px;
             }
           }
 
@@ -68,6 +70,7 @@
       }
 
       #userAccountButtons {
+        margin-top: 10px;
 
         #userAccountButtonsDiv {
 
@@ -76,7 +79,7 @@
           }
 
           #logOutButton {
-
+            margin-left: 5px;
           }
         }
 
@@ -88,6 +91,10 @@
               
               #accountModalHeader {
 
+                h3 {
+                  text-align: center;
+                }
+                
                 #accountModalCloseButton {
 
                 }
@@ -102,7 +109,7 @@
                     #accountFormInlineName {
 
                       #accountFormGroupName {
-                        display: 'flex';
+                        display: flex;
                         margin-left: 35px;
 
                         label {
@@ -110,7 +117,7 @@
                         }
 
                         p {
-                          margin-left: 10px;
+                          margin-left: 5px;
                         }
                       }
                     }
@@ -118,7 +125,7 @@
                     #accountFormInlineEmail {
 
                       #accountFormGroupEmail {
-                        display: 'flex';
+                        display: flex;
                         margin-left: 35px;
 
                         label {
@@ -126,7 +133,7 @@
                         }
 
                         p {
-                          margin-left: 10px;
+                          margin-left: 5px;
                         }
 
                       }
@@ -137,7 +144,7 @@
                       #accountFormGroupNewName {
 
                         #accountFormNewNameInput {
-
+                          margin-left: 5px;
                         }
                       }
                     }
@@ -145,18 +152,21 @@
                     #accountFormInlineNewEmail {
 
                       #accountFormGroupNewEmail {
+                        margin-top: 10px;
+
                         label {
 
                         }
 
                         #accountFormNewEmailInput {
-
+                          margin-left: 5px;
                         }
 
                       }
 
                       #accountFormUpdateButton {
-
+                        margin-left: 5px;
+                        margin-top: 10px;
                       }
                     }
 
@@ -181,6 +191,7 @@
     }
 
     #bodyRow {
+      margin-top:20px;
 
       #leftBody {
 
