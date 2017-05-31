@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 body {
   img {
     position: absolute;
@@ -231,7 +240,99 @@ body {
               #massPanelClearButton {
                 margin-left: 15px;
               }
+            }
+            #saveCompoundModal {
+              #saveCompoundModalDialog {
+                #saveCompoundModalContent {
+                  #saveCompoundModalHeader {
+                    button {
+                      span {
 
+                      }
+                    }
+
+                    h3 {
+                      text-align: center;
+                    }
+                  }
+                  #saveCompoundModalBody {
+                    .row {
+                      .col-sm-offset-2 {
+                        #formInlineFormula {
+                          .form-group {
+                            #formulaToSave{
+                              display:flex;
+
+                              #formulaToSaveLabelDiv {
+                                width: 65px;
+
+                                p {
+                                  text-align: right;
+                                  font-weight: bold;
+                                  margin-right: 5px;
+                                }
+                              }
+                            }
+
+                          }
+                        }
+
+                        #formInlineWeight {
+                          .form-group {
+                            #weightToSave {
+                              display: flex;
+
+                              #weightToSaveLabelDiv {
+                                width: 65px;
+
+                                p {
+                                  text-align: right;
+                                  font-weight: bold;
+                                  margin-right: 5px;
+                                }
+                              }
+                              p {
+
+                              }
+                            }
+                          }
+                        }
+
+                        #formInlineCompoundName {
+                          #formGroupCompoundName {
+                            display: flex;
+
+                            div {
+                              width: 65px;
+
+                              p {
+                                text-align: right;
+                                font-weight: bold;
+                                margin-right: 5px;
+                                margin-top: 5px;
+                              }
+                            }
+
+                            #compoundNameInput {
+                              width: 210px;
+                              margin-right: 10px;
+                            }
+
+                            #saveCompoundButton {
+
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  #saveCompoundModalFooter {
+                    button {
+
+                    }
+                  }
+                }
+              }
             }
           }
 

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "cc027c2a94e47f732d69"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "13c587c63cfda66160ec"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -48689,6 +48689,148 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var MassPanel = function MassPanel(_ref) {
   var molecularWeight = _ref.molecularWeight;
+
+  var saveCompoundModal = _react2.default.createElement(
+    'div',
+    { id: 'saveCompoundModal', className: 'modal fade' },
+    _react2.default.createElement(
+      'div',
+      { id: 'saveCompoundModalDialog', className: 'modal-dialog', role: 'document' },
+      _react2.default.createElement(
+        'div',
+        { id: 'saveCompoundModalContent', className: 'modal-content' },
+        _react2.default.createElement(
+          'div',
+          { id: 'saveCompoundModalHeader', className: 'modal-header' },
+          _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              className: 'close',
+              'data-dismiss': 'modal',
+              'aria-label': 'Close'
+            },
+            _react2.default.createElement(
+              'span',
+              { 'aria-hidden': 'true' },
+              '\xD7'
+            )
+          ),
+          _react2.default.createElement(
+            'h3',
+            { className: 'modal-title' },
+            'Save Your Compound!'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'saveCompoundModalBody', className: 'modal-body' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-sm-offset-2' },
+              _react2.default.createElement(
+                'div',
+                { id: 'formInlineFormula', className: 'form-inline' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group' },
+                  _react2.default.createElement(
+                    'div',
+                    { id: 'formulaToSave' },
+                    _react2.default.createElement(
+                      'div',
+                      { id: 'formulaToSaveLabelDiv' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Formula:'
+                      )
+                    ),
+                    'ELEMENTSVARIABLEDIV'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { id: 'formInlineWeight', className: 'form-inline' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group' },
+                  _react2.default.createElement(
+                    'div',
+                    { id: 'weightToSave' },
+                    _react2.default.createElement(
+                      'div',
+                      { id: 'weightToSaveLabelDiv' },
+                      _react2.default.createElement(
+                        'p',
+                        null,
+                        'Weight:'
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      molecularWeight,
+                      ' g/mol'
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { id: 'formInlineCompoundName', className: 'form-inline' },
+                _react2.default.createElement(
+                  'div',
+                  { id: 'formGroupCompoundName', className: 'form-group' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      'Name:'
+                    )
+                  ),
+                  _react2.default.createElement('input', {
+                    id: 'compoundNameInput',
+                    type: 'text',
+                    className: 'form-control input-md',
+                    placeholder: 'Name'
+                    //onChange={text => this.getMoleculeName(text.target.value)}
+                  }),
+                  _react2.default.createElement('input', {
+                    id: 'saveCompoundButton',
+                    type: 'button',
+                    value: 'Save',
+                    className: 'btn btn-success btn-sm'
+                    //onClick={this.saveMolecule}
+                  })
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'saveCompoundModalFooter', className: 'modal-footer' },
+          _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              className: 'btn btn-secondary',
+              'data-dismiss': 'modal'
+            },
+            'Close'
+          )
+        )
+      )
+    )
+  );
+
   return _react2.default.createElement(
     'div',
     { id: 'massPanel', className: 'row' },
@@ -48706,12 +48848,13 @@ var MassPanel = function MassPanel(_ref) {
         _react2.default.createElement(
           'span',
           null,
-          molecularWeight.toFixed(3)
+          molecularWeight.toFixed(3),
+          ' '
         ),
         _react2.default.createElement(
           'span',
           null,
-          ' g/mol'
+          'g/mol'
         )
       )
     ),
@@ -48724,7 +48867,7 @@ var MassPanel = function MassPanel(_ref) {
           id: 'massPanelSaveButton',
           type: 'button',
           'data-toggle': 'modal',
-          'data-target': '#saveModal',
+          'data-target': '#saveCompoundModal',
           className: 'btn btn-success btn-sm'
         },
         'Save'
@@ -48738,7 +48881,8 @@ var MassPanel = function MassPanel(_ref) {
         },
         'Clear'
       )
-    )
+    ),
+    saveCompoundModal
   );
 };
 
