@@ -177,7 +177,9 @@ const CalculationPanel = ({ elementsClicked, onPlusClick, onMinusClick, onElemen
 
   return (
     <div id='calculationPanel' className='row'>
-      {elements}
+      <div id='calculationPanelElements'>
+        {elements}
+      </div>
     </div>
   );
 };

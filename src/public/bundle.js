@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "021ecd704c2dda832981"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cc027c2a94e47f732d69"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -19650,7 +19650,7 @@ var App = function App() {
       { id: 'headRow', className: 'row' },
       _react2.default.createElement(
         'div',
-        { id: 'headingDiv', className: 'col-sm-8' },
+        { className: 'col-sm-8', id: 'headingDiv' },
         _react2.default.createElement(
           'h1',
           null,
@@ -48266,7 +48266,11 @@ var CalculationPanel = function CalculationPanel(_ref) {
   return _react2.default.createElement(
     'div',
     { id: 'calculationPanel', className: 'row' },
-    elements
+    _react2.default.createElement(
+      'div',
+      { id: 'calculationPanelElements' },
+      elements
+    )
   );
 };
 
@@ -48325,7 +48329,7 @@ var ElementsPanel = function ElementsPanel(_ref) {
       return _react2.default.createElement(
         'button',
         {
-          className: 'elementFoundButton col-sm-3',
+          className: 'elementFoundButton col-sm-4',
           key: _shortid2.default.generate(),
           onClick: function onClick() {
             return onElementClick(element);
@@ -48333,22 +48337,22 @@ var ElementsPanel = function ElementsPanel(_ref) {
         },
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'elementFoundAtomicP' },
           element.atomicNumber
         ),
         _react2.default.createElement(
-          'p',
+          'h2',
           null,
           element.acronym
         ),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'elementFoundNameP' },
           element.name
         ),
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'elementFoundMassP' },
           element.mass.toFixed(3)
         )
       );
@@ -48689,9 +48693,51 @@ var MassPanel = function MassPanel(_ref) {
     'div',
     { id: 'massPanel', className: 'row' },
     _react2.default.createElement(
-      'p',
-      null,
-      molecularWeight.toFixed(3)
+      'div',
+      { id: 'massPanelMolecularWeight', className: 'col-sm-9' },
+      _react2.default.createElement(
+        'h3',
+        null,
+        _react2.default.createElement(
+          'span',
+          null,
+          'Molecular Weight: '
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          molecularWeight.toFixed(3)
+        ),
+        _react2.default.createElement(
+          'span',
+          null,
+          ' g/mol'
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { id: 'massPanelButtonsDiv', className: 'pull-right' },
+      _react2.default.createElement(
+        'button',
+        {
+          id: 'massPanelSaveButton',
+          type: 'button',
+          'data-toggle': 'modal',
+          'data-target': '#saveModal',
+          className: 'btn btn-success btn-sm'
+        },
+        'Save'
+      ),
+      _react2.default.createElement(
+        'button',
+        {
+          id: 'massPanelClearButton',
+          type: 'button',
+          className: 'btn btn-sm btn-secondary'
+        },
+        'Clear'
+      )
     )
   );
 };
@@ -48734,29 +48780,25 @@ var SearchElements = function SearchElements(_ref) {
     'div',
     { id: 'searchElementsRow', className: 'row' },
     _react2.default.createElement(
-      'div',
-      { className: 'col-sm-6 col-sm-offset-3' },
-      _react2.default.createElement(
-        'form',
-        {
-          id: 'searchElementsForm',
-          onChange: function onChange(e) {
-            //Prevent form submission and subsequent page reload when hitting enter/return
-            e.preventDefault();
+      'form',
+      {
+        id: 'searchElementsForm',
+        onChange: function onChange(e) {
+          //Prevent form submission and subsequent page reload when hitting enter/return
+          e.preventDefault();
 
-            //Dispatch an action from the action creator with the value of the input
-            onKeyboardInput(input.value);
-          }
-        },
-        _react2.default.createElement('input', {
-          id: 'searchElementsInput',
-          className: 'form-control input-md',
-          ref: function ref(node) {
-            //Node refers to this specific element (this input element)
-            input = node;
-          }
-        })
-      )
+          //Dispatch an action from the action creator with the value of the input
+          onKeyboardInput(input.value);
+        }
+      },
+      _react2.default.createElement('input', {
+        id: 'searchElementsInput',
+        className: 'form-control input-md',
+        ref: function ref(node) {
+          //Node refers to this specific element (this input element)
+          input = node;
+        }
+      })
     )
   );
 };

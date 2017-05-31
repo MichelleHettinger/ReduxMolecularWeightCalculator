@@ -9,14 +9,14 @@ const ElementsPanel = ({ elementsFound, onElementClick }) => (
       elementsFound.map((element) => {
         return (
           <button
-            className='elementFoundButton col-sm-3'
+            className='elementFoundButton col-sm-4'
             key={ shortid.generate() }
             onClick={ () => onElementClick(element) }
           >
-            <p>{element.atomicNumber}</p>
-            <p>{element.acronym}</p>
-            <p>{element.name}</p>
-            <p>{element.mass.toFixed(3)}</p>
+            <p className='elementFoundAtomicP'>{element.atomicNumber}</p>
+            <h2>{element.acronym}</h2>
+            <p className='elementFoundNameP'>{element.name}</p>
+            <p className='elementFoundMassP'>{element.mass.toFixed(3)}</p>
           </button>
         );
       })

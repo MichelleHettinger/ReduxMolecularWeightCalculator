@@ -11,7 +11,7 @@ import {
 const App = () => (
   <div id='topApp' className='container'>
     <div id='headRow' className='row'>
-      <div id='headingDiv' className='col-sm-8' >
+      <div className='col-sm-8' id='headingDiv'>
         <h1>Molecular Weight Calculator</h1>
       </div>
       <LoginHeader />
