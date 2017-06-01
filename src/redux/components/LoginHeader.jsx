@@ -6,9 +6,9 @@ let password;
 
 const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
   const loginHeader = (
-    <div className='col-sm-4' id='loginHeader'>
-      <div className='form-group' id='emailFormGroup'>
-        <div className='col-sm-9' id='emailTextInputDiv'>
+    <div id='loginHeader' className='col-sm-4'>
+      <div id='emailFormGroup' className='form-group'>
+        <div id='emailTextInputDiv' className='col-sm-9'>
           <input
             id='emailInput'
             type='text'
@@ -20,7 +20,7 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
             } }
           />
         </div>
-        <div className='col-sm-3' id='emailButtonInputDiv'>
+        <div id='emailButtonInputDiv' className='col-sm-3'>
           <input
             id='loginButton'
             type='button'
@@ -30,8 +30,8 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
           />
         </div>
       </div>
-      <div className='form-group' id='passwordFormGroup'>
-        <div className='col-sm-9' id='passwordTextInputDiv'>
+      <div id='passwordFormGroup' className='form-group'>
+        <div id='passwordTextInputDiv' className='col-sm-9'>
           <input
             id='passwordInput'
             type='password'
@@ -43,7 +43,7 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
             } }
           />
         </div>
-        <div className='col-sm-3' id='passwordButtonInputDiv'>
+        <div id='passwordButtonInputDiv' className='col-sm-3'>
           <input
             id='registerButton'
             type='button'
@@ -57,8 +57,8 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
   );
 
   const userHeader = (
-    <div className='col-sm-4' id='userAccountButtons'>
-      <div className='pull-right' id='userAccountButtonsDiv'>
+    <div id='userAccountButtons' className='col-sm-4'>
+      <div id='userAccountButtonsDiv' className='pull-right'>
         <button
           id='myAccountButton'
           type='button'
@@ -74,10 +74,10 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
           //onClick={this.logOut}
         />
       </div>
-      <div className='modal fade' id='accountModal'>
-        <div className='modal-dialog' role='document' id='accountModalDialog'>
-          <div className='modal-content' id='accountModalContent'>
-            <div className='modal-header' id='accountModalHeader'>
+      <div id='accountModal' className='modal fade'>
+        <div id='accountModalDialog' className='modal-dialog' role='document'>
+          <div id='accountModalContent' className='modal-content'>
+            <div id='accountModalHeader' className='modal-header'>
               <button
                 id='accountModalCloseButton'
                 type='button'
@@ -89,23 +89,23 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
               </button>
               <h3 className='modal-title'>Your Account!</h3>
             </div>
-            <div className='modal-body' id='accountModalBody'>
-              <div className='row' id='accountModalRow'>
-                <div className='col-sm-offset-2' id='accountModalForm'>
-                  <div className='form-inline' id='accountFormInlineName'>
-                    <div className='form-group' id='accountFormGroupName'>
+            <div id='accountModalBody' className='modal-body'>
+              <div id='accountModalRow' className='row'>
+                <div id='accountModalForm' className='col-sm-offset-2'>
+                  <div id='accountFormInlineName' className='form-inline'>
+                    <div id='accountFormGroupName' className='form-group'>
                       <label htmlFor='name'>Name:</label>
                       <p>USERNAMEVARIABLE</p>
                     </div>
                   </div>
-                  <div className='form-inline' id='accountFormInlineEmail'>
-                    <div className='form-group' id='accountFormGroupEmail'>
+                  <div id='accountFormInlineEmail' className='form-inline'>
+                    <div id='accountFormGroupEmail' className='form-group'>
                       <label htmlFor='email'>Email:</label>
                       <p>USEREMAILVARIABLE</p>
                     </div>
                   </div>
-                  <div className='form-inline' id='accountFormInlineNewName'>
-                    <div className='form-group' id='accountFormGroupNewName'>
+                  <div id='accountFormInlineNewName' className='form-inline'>
+                    <div id='accountFormGroupNewName' className='form-group'>
                       <label htmlFor='newname'>New Name:</label>
                       <input
                         id='accountFormNewNameInput'
@@ -116,8 +116,8 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
                       />
                     </div>
                   </div>
-                  <div className='form-inline' id='accountFormInlineNewEmail'>
-                    <div className='form-group' id='accountFormGroupNewEmail'>
+                  <div id='accountFormInlineNewEmail' className='form-inline'>
+                    <div id='accountFormGroupNewEmail' className='form-group'>
                       <label htmlFor='newemail'>New Email:</label>
                       <input
                         id='accountFormNewEmailInput'
@@ -137,7 +137,7 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
                 </div>
               </div>
             </div>
-            <div className='modal-footer' id='accountModalFooter'>
+            <div id='accountModalFooter' className='modal-footer'>
               <p>Need to reset your password?</p>
               <button
                 id='resetPasswordButton'
