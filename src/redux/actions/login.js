@@ -41,9 +41,8 @@ export const findUser = (email, password) => {
     };
   }
 
-  const encryptedEmail = CryptoJS.AES.encrypt(email, 'michelle is awesome').toString();
   const encryptedPassword = CryptoJS.AES.encrypt(password, 'michelle is totally awesome').toString();
-  const encodedEmail = encodeURIComponent(encryptedEmail);
+  const encodedEmail = encodeURIComponent(email);
   const encodedPassword = encodeURIComponent(encryptedPassword);
 
   //Passed input validation, now look up user based off email/pass.

@@ -152,7 +152,6 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
     </div>
   );
 
-
   if (isLogged === false) {
     return loginHeader;
   }

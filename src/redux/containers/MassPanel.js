@@ -4,6 +4,9 @@ import MassPanel from '../components/MassPanel';
 const mapStateToProps = (state) => {
   return {
     molecularWeight: state.massCalculated,
+    elementsClicked: state.elementsClicked,
+    isLogged: state.user.isLogged,
+    userCompounds: state.user.details.compounds,
   };
 };
 

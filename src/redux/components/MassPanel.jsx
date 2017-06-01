@@ -1,7 +1,66 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import shortid from 'shortid';
 
-const MassPanel = ({ molecularWeight }) => {
+const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }) => {
+  const currentElements = elementsClicked.map((element) => {
+    if (element.multiplier === 1) {
+      return (
+        <p key={ shortid.generate() }>{element.acronym}</p>
+      );
+    }
+
+    return (
+      <p key={ shortid.generate() }>{element.acronym}<sub>{element.multiplier}</sub></p>
+    );
+  });
+
+  const userSavedCompoundsMapped = userCompounds.map((compound) => {
+    const compoundName = compound.chemicalName;
+    const compoundTotal = compound.molecularWeight;
+
+    const molecularFormula = compound.elements.map((elemente) => {
+      const acronym = elemente.acronym;
+      const multiplier = elemente.multiplier;
+      //const parenId = element.parenId;
+      //const atomicNumber = element.atomicNumber;
+      //const acronym = element.acronym;
+      //const name = element.name;
+
+      return (
+        <p key={ shortid.generate() }>{acronym}<sub>{multiplier}</sub></p>
+      );
+    });
+
+    return (
+      <div key={ shortid.generate() } className='panel panel-default'>
+        <div key={ shortid.generate() } className='col-sm-9'>
+          <div key={ shortid.generate() }>
+            <h4 key={ shortid.generate() }>{compoundName} - {compoundTotal} g/mol</h4>
+          </div>
+          <div className='savedFormula'>
+            {molecularFormula}
+          </div>
+        </div>
+        <div className='pull-right'>
+          <input
+            key={ shortid.generate() }
+            type='button'
+            value='Load'
+            className='btn btn-sm btn-info'
+            //onClick={()=>{this.loadSavedMolecule(compoundX)}}
+          />
+          <input
+            type='button'
+            value='Delete'
+            className='btn btn-sm btn-danger'
+            //onClick={()=>{this.props.updateDeleted(compoundX)}}
+          />
+        </div>
+      </div>
+    );
+  });
+
   const saveCompoundModal = (
     <div id='saveCompoundModal' className='modal fade'>
       <div id='saveCompoundModalDialog' className='modal-dialog' role='document'>
@@ -25,7 +84,7 @@ const MassPanel = ({ molecularWeight }) => {
                       <div id='formulaToSaveLabelDiv'>
                         <p>Formula:</p>
                       </div>
-                      ELEMENTSVARIABLEDIV
+                      {currentElements}
                     </div>
                   </div>
                 </div>
@@ -62,6 +121,7 @@ const MassPanel = ({ molecularWeight }) => {
                 </div>
               </div>
             </div>
+            {userSavedCompoundsMapped}
           </div>
           <div id='saveCompoundModalFooter' className='modal-footer'>
             <button
@@ -75,6 +135,30 @@ const MassPanel = ({ molecularWeight }) => {
     </div>
   );
 
+  let saveButton;
+
+  if (isLogged === true) {
+    saveButton = (
+      <button
+        id='massPanelSaveButton'
+        type='button'
+        data-toggle='modal'
+        data-target='#saveCompoundModal'
+        className='btn btn-success btn-sm'
+      >Save</button>
+    );
+  } else {
+    saveButton = (
+      <button
+        id='massPanelSaveButton'
+        type='button'
+        data-toggle='modal'
+        data-target='#saveCompoundModal'
+        className='btn btn-success btn-sm sr-only'
+      >Save</button>
+    );
+  }
+
   return (
     <div id='massPanel' className='row'>
       <div id='massPanelMolecularWeight' className='col-sm-9'>
@@ -85,13 +169,7 @@ const MassPanel = ({ molecularWeight }) => {
         </h3>
       </div>
       <div id='massPanelButtonsDiv' className='pull-right'>
-        <button
-          id='massPanelSaveButton'
-          type='button'
-          data-toggle='modal'
-          data-target='#saveCompoundModal'
-          className='btn btn-success btn-sm'
-        >Save</button>
+        {saveButton}
         <button
           id='massPanelClearButton'
           type='button'
@@ -105,6 +183,26 @@ const MassPanel = ({ molecularWeight }) => {
 
 MassPanel.propTypes = {
   molecularWeight: PropTypes.number.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+  elementsClicked: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    mass: PropTypes.number.isRequired,
+    acronym: PropTypes.string.isRequired,
+    multiplier: PropTypes.number.isRequired,
+    parenId: PropTypes.number.isRequired,
+    clicked: PropTypes.bool.isRequired,
+  }).isRequired).isRequired,
+  userCompounds: PropTypes.arrayOf(PropTypes.shape({
+    chemicalName: PropTypes.string.isRequired,
+    elements: PropTypes.arrayOf(PropTypes.shape({
+      mass: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      acronym: PropTypes.string.isRequired,
+      atomicNumber: PropTypes.number.isRequired,
+      multiplier: PropTypes.number.isRequired,
+      parenId: PropTypes.number.isRequired,
+    }).isRequired).isRequired,
+  }).isRequired).isRequired,
 };
 
 export default MassPanel;

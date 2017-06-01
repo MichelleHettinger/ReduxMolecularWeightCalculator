@@ -7,16 +7,17 @@ const UserSchema = new Schema({
   email: {
     type: String,
     unique: true,
+    required: true,
   },
   password: {
   	type: String,
+    required: true,
   },
   date: {
   	type: Date,
+    required: true,
   },
-  compounds: {
-    type: Schema.Types.Mixed,
-  }
+  compounds: [Schema.Types.Mixed],
 });
 
 // Create the Model

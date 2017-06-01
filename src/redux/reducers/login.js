@@ -10,7 +10,7 @@ import {
 const user = (state = {
   isFetching: false,
   isLogged: false,
-  details: {},
+  details: {compounds: []},
 }, action) => {
   switch (action.type) {
     case REQUEST_REGISTER_USER:

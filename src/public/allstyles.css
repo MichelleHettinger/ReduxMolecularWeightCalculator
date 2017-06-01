@@ -71,12 +71,18 @@ body #app #topApp #bodyRow {
       margin-right: 15px; }
       body #app #topApp #bodyRow #leftBody #massPanel #massPanelButtonsDiv #massPanelClearButton {
         margin-left: 15px; }
-    body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave #formulaToSaveLabelDiv {
-      width: 65px; }
-      body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave #formulaToSaveLabelDiv p {
-        text-align: right;
-        font-weight: bold;
-        margin-right: 5px; }
+    body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalHeader h3 {
+      text-align: center; }
+    body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave {
+      display: flex; }
+      body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave #formulaToSaveLabelDiv {
+        width: 65px; }
+        body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave #formulaToSaveLabelDiv p {
+          text-align: right;
+          font-weight: bold;
+          margin-right: 5px; }
+      body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineFormula .form-group #formulaToSave p {
+        margin-right: 2px; }
     body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineWeight .form-group #weightToSave {
       display: flex; }
       body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineWeight .form-group #weightToSave #weightToSaveLabelDiv {
@@ -94,6 +100,9 @@ body #app #topApp #bodyRow {
           font-weight: bold;
           margin-right: 5px;
           margin-top: 5px; }
+      body #app #topApp #bodyRow #leftBody #massPanel #saveCompoundModal #saveCompoundModalDialog #saveCompoundModalContent #saveCompoundModalBody .row .col-sm-offset-2 #formInlineCompoundName #formGroupCompoundName #compoundNameInput {
+        width: 210px;
+        margin-right: 10px; }
     body #app #topApp #bodyRow #leftBody #calculationPanel {
       display: inline-flex; }
       body #app #topApp #bodyRow #leftBody #calculationPanel #calculationPanelElements {

@@ -9,20 +9,11 @@ const CryptoJS = require("crypto-js");
 module.exports = function(app){
 
   //After entering user name and password and clicking submit, they are brought to this route
-  app.get('/authenticate/:email/:password', function(req, res) {
+  app.get('/authenticate/:encodedEmail/:encodedPassword', function(req, res) {
     //start decrypting here
-    const encodedEmail = req.params.email;
-    const encodedPassword = req.params.password;
-    const encryptedEmail = decodeURIComponent(encodedEmail);
-    const encryptedPassword = decodeURIComponent(encodedPassword);
-
-    const email = CryptoJS.AES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
-    const password = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
-
-    const userCredentials = {
-      userEmail: email,
-      userPassword: password,
-    };
+    const email = decodeURIComponent(req.params.encodedEmail);
+    const encryptedPassword = decodeURIComponent(req.params.encodedPassword);
+    const whatUserTyped = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
 
     User.findOne({'email': email}).exec(function(err, userObj){
       if (err){
@@ -37,10 +28,12 @@ module.exports = function(app){
         res.send({});
       }
       else {
-        const userHash = userObj.password;
-        phs(password).verifyAgainst(userHash, function(error, verified){
+        const userSavedHash = userObj.password;
+
+        phs(whatUserTyped).verifyAgainst(userSavedHash, function(error, verified){
           if(error)
               throw new Error('There was an error while comparing hashes.');
+              //This error crashes the server. Make sure to come back and handle it.
           if (!verified) {
               console.log('-----------------');
               console.log("Incorrect password.");
@@ -57,22 +50,17 @@ module.exports = function(app){
     });
   });
 
-  //When a user signs up, they are verified and redirected to /home with good cookie
-
-  app.post('/register/:email/:password', function(req, res) {
+  app.post('/register/:encodedEmail/:encodedHash', function(req, res) {
     //start decrypting here
-    const encodedEmail = req.params.email;
-    const encodedPassword = req.params.password;
-    const encryptedEmail = decodeURIComponent(encodedEmail);
-    const encryptedPassword = decodeURIComponent(encodedPassword);
-
-    const userEmail = CryptoJS.AES.decrypt(encryptedEmail, 'michelle is awesome').toString(CryptoJS.enc.Utf8);
-    const userPassword = encryptedPassword;
+    const userEmail = decodeURIComponent(req.params.encodedEmail);
+    const hash = decodeURIComponent(req.params.encodedHash);
 
     const user = new User({
       email: userEmail,
-      password: userPassword
-    })
+      password: hash,
+      date: Date.now(),
+      compounds: [],
+    });
 
     user.save(function(err, newUserObj) {
       if (err){

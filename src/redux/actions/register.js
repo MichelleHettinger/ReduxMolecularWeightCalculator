@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-fetch';
-import CryptoJS from 'crypto-js';
+import phs from 'password-hash-and-salt';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import validateEmailPass from '../utils/validation';
 import {
@@ -41,20 +41,22 @@ export const registerUser = (email, password) => {
     };
   }
 
-  const encryptedEmail = CryptoJS.AES.encrypt(email, 'michelle is awesome').toString();
-  const encryptedPassword = CryptoJS.AES.encrypt(password, 'michelle is totally awesome').toString();
-  const encodedEmail = encodeURIComponent(encryptedEmail);
-  const encodedPassword = encodeURIComponent(encryptedPassword);
-
   return (dispatch) => {
-    dispatch(requestRegisterUser(email, encryptedPassword));
+    phs(password).hash((err, hash) => {
+      if (err) { throw new Error('Could not generate hash.'); }
 
-    return fetch(`/register/${encodedEmail}/${encodedPassword}`, {
-      method: 'POST',
-    })
-      .then(response => response.json())
-      .then(userObj =>
-        dispatch(finishRegisterUser(email, userObj)),
-      );
+      const encodedHash = encodeURIComponent(hash);
+      const encodedEmail = encodeURIComponent(email);
+
+      dispatch(requestRegisterUser(email, hash));
+
+      return fetch(`/register/${encodedEmail}/${encodedHash}`, {
+        method: 'POST',
+      })
+        .then(response => response.json())
+        .then(userObj =>
+          dispatch(finishRegisterUser(email, userObj)),
+        );
+    });
   };
 };
