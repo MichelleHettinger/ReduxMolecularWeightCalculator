@@ -27,13 +27,19 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
       //const acronym = element.acronym;
       //const name = element.name;
 
+      if (multiplier === 1) {
+        return (
+          <p key={ shortid.generate() }>{acronym}</p>
+        );
+      }
+
       return (
         <p key={ shortid.generate() }>{acronym}<sub>{multiplier}</sub></p>
       );
     });
 
     return (
-      <div key={ shortid.generate() } className='panel panel-default'>
+      <div key={ shortid.generate() } className='panel panel-default savedCompoundOuterDiv'>
         <div key={ shortid.generate() } className='col-sm-9'>
           <div key={ shortid.generate() }>
             <h4 key={ shortid.generate() }>{compoundName} - {compoundTotal} g/mol</h4>
@@ -76,7 +82,7 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
             <h3 className='modal-title'>Save Your Compound!</h3>
           </div>
           <div id='saveCompoundModalBody' className='modal-body'>
-            <div className='row' >
+            <div id='saveCompoundModalTopRow' className='row' >
               <div className='col-sm-offset-2'>
                 <div id='formInlineFormula' className='form-inline'>
                   <div className='form-group'>
@@ -121,7 +127,10 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
                 </div>
               </div>
             </div>
-            {userSavedCompoundsMapped}
+            <hr />
+            <div id='saveCompoundModalBottomRow' className='row'>
+              {userSavedCompoundsMapped}
+            </div>
           </div>
           <div id='saveCompoundModalFooter' className='modal-footer'>
             <button

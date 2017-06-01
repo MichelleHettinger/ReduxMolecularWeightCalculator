@@ -216,7 +216,9 @@ body {
                     }
                   }
                   #saveCompoundModalBody {
-                    .row {
+                    padding-bottom: 0;
+
+                    #saveCompoundModalTopRow {
                       .col-sm-offset-2 {
                         #formInlineFormula {
                           .form-group {
@@ -288,6 +290,45 @@ body {
                             #saveCompoundButton {
 
                             }
+                          }
+                        }
+                      }
+                    }
+                    hr {
+
+                    }
+                    #saveCompoundModalBottomRow {
+                      .savedCompoundOuterDiv {
+                        display: flex;
+                        margin-left: 15px;
+                        margin-right: 15px;
+
+                        .col-sm-9 {
+                          div {
+                            h4 {
+
+                            }
+                          }
+
+                          .savedFormula {
+                            display: flex;
+
+                            p {
+                              margin-right: 2px;
+                            }
+                          }
+                        }
+
+                        .pull-right {
+                          display: flex;
+                          height: 30px;
+                          margin-top: 20px;
+
+                          .btn-info {
+
+                          }
+                          .btn-danger {
+                            margin-left: 10px;
                           }
                         }
                       }

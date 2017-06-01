@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "40bc1966d260604fe8cc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b02bc1b61f2283afa16a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -69999,6 +69999,14 @@ var MassPanel = function MassPanel(_ref) {
       //const acronym = element.acronym;
       //const name = element.name;
 
+      if (multiplier === 1) {
+        return _react2.default.createElement(
+          'p',
+          { key: _shortid2.default.generate() },
+          acronym
+        );
+      }
+
       return _react2.default.createElement(
         'p',
         { key: _shortid2.default.generate() },
@@ -70013,7 +70021,7 @@ var MassPanel = function MassPanel(_ref) {
 
     return _react2.default.createElement(
       'div',
-      { key: _shortid2.default.generate(), className: 'panel panel-default' },
+      { key: _shortid2.default.generate(), className: 'panel panel-default savedCompoundOuterDiv' },
       _react2.default.createElement(
         'div',
         { key: _shortid2.default.generate(), className: 'col-sm-9' },
@@ -70092,7 +70100,7 @@ var MassPanel = function MassPanel(_ref) {
           { id: 'saveCompoundModalBody', className: 'modal-body' },
           _react2.default.createElement(
             'div',
-            { className: 'row' },
+            { id: 'saveCompoundModalTopRow', className: 'row' },
             _react2.default.createElement(
               'div',
               { className: 'col-sm-offset-2' },
@@ -70178,7 +70186,12 @@ var MassPanel = function MassPanel(_ref) {
               )
             )
           ),
-          userSavedCompoundsMapped
+          _react2.default.createElement('hr', null),
+          _react2.default.createElement(
+            'div',
+            { id: 'saveCompoundModalBottomRow', className: 'row' },
+            userSavedCompoundsMapped
+          )
         ),
         _react2.default.createElement(
           'div',
