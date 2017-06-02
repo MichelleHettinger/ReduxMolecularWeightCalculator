@@ -1,6 +1,13 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+  },
   "rules": {
     "jsx-quotes": [2, "prefer-single"],
     "react/jsx-curly-spacing": [2, "always"],
@@ -32,6 +39,7 @@
     "no-plusplus": 0,
     "arrow-body-style": 0,
     "no-restricted-syntax": 0,
+    "no-underscore-dangle": 1,
     // disabled dueto eslint error
     "no-duplicate-case": 0,
     "object-curly-spacing": 0,

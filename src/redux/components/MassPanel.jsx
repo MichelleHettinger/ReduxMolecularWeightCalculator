@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
-const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }) => {
+let newCompoundName = '';
+const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, saveNewCompound, userID }) => {
   const currentElements = elementsClicked.map((element) => {
     if (element.multiplier === 1) {
       return (
@@ -15,6 +16,10 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
     );
   });
 
+  const currentElementsObj = elementsClicked.map((element) => {
+    return element;
+  });
+
   const userSavedCompoundsMapped = userCompounds.map((compound) => {
     const compoundName = compound.chemicalName;
     const compoundTotal = compound.molecularWeight;
@@ -22,10 +27,6 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
     const molecularFormula = compound.elements.map((elemente) => {
       const acronym = elemente.acronym;
       const multiplier = elemente.multiplier;
-      //const parenId = element.parenId;
-      //const atomicNumber = element.atomicNumber;
-      //const acronym = element.acronym;
-      //const name = element.name;
 
       if (multiplier === 1) {
         return (
@@ -114,14 +115,20 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds }
                       type='text'
                       className='form-control input-md'
                       placeholder='Name'
-                      //onChange={text => this.getMoleculeName(text.target.value)}
+                      ref={ (node) => {
+                        newCompoundName = node;
+                      } }
                     />
                     <input
                       id='saveCompoundButton'
                       type='button'
                       value='Save'
                       className='btn btn-success btn-sm'
-                      //onClick={this.saveMolecule}
+                      onClick={ () => saveNewCompound(userID, {
+                        chemicalName: newCompoundName.value,
+                        molecularWeight,
+                        elements: currentElementsObj,
+                      }) }
                     />
                   </div>
                 </div>
@@ -194,7 +201,6 @@ MassPanel.propTypes = {
   molecularWeight: PropTypes.number.isRequired,
   isLogged: PropTypes.bool.isRequired,
   elementsClicked: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
     mass: PropTypes.number.isRequired,
     acronym: PropTypes.string.isRequired,
     multiplier: PropTypes.number.isRequired,
@@ -205,13 +211,13 @@ MassPanel.propTypes = {
     chemicalName: PropTypes.string.isRequired,
     elements: PropTypes.arrayOf(PropTypes.shape({
       mass: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
       acronym: PropTypes.string.isRequired,
-      atomicNumber: PropTypes.number.isRequired,
       multiplier: PropTypes.number.isRequired,
       parenId: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired).isRequired,
+  saveNewCompound: PropTypes.func.isRequired,
+  userID: PropTypes.string.isRequired,
 };
 
 export default MassPanel;

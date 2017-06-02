@@ -55,25 +55,7 @@ app.all('/src/assets/*', (req, res) => {
 // if they haven't passed the threshold of auth-routes.
 require('./src/controllers/html-routes.js')(app); 
 require('./src/controllers/auth-routes.js')(app); 
-
-// app.post('/api/saved', function(req, res){
-//   const newUser = new User({
-//     email: "person@gmail.com",
-//     password: "1234",
-//     date: Date.now(),
-//   });
-
-//   newUser.save(function(err, doc) {
-//     // send an error to the browser
-//     if (err) {
-//       res.send(err);
-//     } 
-//     // or send the doc to our browser
-//     else {
-//       console.log("added to database");
-//     }
-//   })
-// });
+require('./src/controllers/api-routes.js')(app);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

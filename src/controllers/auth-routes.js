@@ -1,7 +1,3 @@
-const express = require("express");
-const mo = require("method-override");
-const bp = require("body-parser");
-const path = require("path");
 const phs = require('password-hash-and-salt');
 const User = require("../models/user.js");
 const CryptoJS = require("crypto-js");

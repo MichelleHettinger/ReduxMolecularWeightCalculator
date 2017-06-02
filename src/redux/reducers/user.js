@@ -5,20 +5,25 @@ import {
   REQUEST_REGISTER_USER,
   REGISTER_USER_FAIL,
   REGISTER_USER_SUCCESS,
+  REQUEST_SAVE_COMPOUND,
+  SAVE_COMPOUND_FAIL,
+  SAVE_COMPOUND_SUCCESS,
 } from '../constants/actions';
 
 const user = (state = {
   isFetching: false,
   isLogged: false,
-  details: {compounds: []},
+  details: {_id: '', compounds: []},
 }, action) => {
   switch (action.type) {
+    case REQUEST_SAVE_COMPOUND:
     case REQUEST_REGISTER_USER:
     case REQUEST_USER: {
       return Object.assign({}, state, {
         isFetching: true,
       });
     }
+    case SAVE_COMPOUND_SUCCESS:
     case REGISTER_USER_SUCCESS:
     case RECEIVE_USER_SUCCESS:
       return Object.assign({}, state, {
@@ -27,12 +32,13 @@ const user = (state = {
         details: action.user,
         lastUpdated: action.receivedAt,
       });
+
+    case SAVE_COMPOUND_FAIL:
     case REGISTER_USER_FAIL:
     case RECEIVE_USER_FAIL:
       return Object.assign({}, state, {
         isFetching: false,
         isLogged: false,
-        details: {},
         lastUpdated: action.receivedAt,
       });
 
