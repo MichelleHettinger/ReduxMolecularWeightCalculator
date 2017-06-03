@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import MassPanel from '../components/MassPanel';
 import { saveCompound } from '../actions/savecompound';
+import { deleteCompound } from '../actions/deletecompound';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveNewCompound: (userId, newCompound) => {
       dispatch(saveCompound(userId, newCompound));
+    },
+    deleteOldCompound: (userId, oldCompound) => {
+      dispatch(deleteCompound(userId, oldCompound));
     },
   };
 };

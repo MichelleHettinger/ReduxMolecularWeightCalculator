@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 let newCompoundName = '';
-const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, saveNewCompound, userID }) => {
+const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, saveNewCompound, deleteOldCompound, userID }) => {
   const currentElements = elementsClicked.map((element) => {
     if (element.multiplier === 1) {
       return (
@@ -61,7 +61,7 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, 
             type='button'
             value='Delete'
             className='btn btn-sm btn-danger'
-            //onClick={()=>{this.props.updateDeleted(compoundX)}}
+            onClick={ () => deleteOldCompound(userID, compoundName) }
           />
         </div>
       </div>
@@ -217,6 +217,7 @@ MassPanel.propTypes = {
     }).isRequired).isRequired,
   }).isRequired).isRequired,
   saveNewCompound: PropTypes.func.isRequired,
+  deleteOldCompound: PropTypes.func.isRequired,
   userID: PropTypes.string.isRequired,
 };
 
