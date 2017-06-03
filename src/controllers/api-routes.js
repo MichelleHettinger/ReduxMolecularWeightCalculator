@@ -11,23 +11,16 @@ module.exports = function(app) {
     newCompoundObj.elements = Object.keys(newCompoundObj.elements).map(key=>newCompoundObj.elements[key]);
 
     //Find user with id combo and update 
-    User.findOneAndUpdate({'_id': userObjId}, {$push: {'compounds': newCompoundObj}}).exec(function(err, res) {
+    User.findOneAndUpdate({'_id': userObjId}, {$push: {'compounds': newCompoundObj}}, {new: true}).exec(function(err, userObj) {
       if (err){
         console.log('----------------');
         console.log(err);
         console.log('----------------');
         res.redirect('/');
+      } else {
+        console.log(userObj)
+        res.send(userObj);
       }
-    })
-      .then(User.findOne({'_id': userObjId}).exec(function(err, userObj) {
-        if (err){
-          console.log('----------------');
-          console.log(err);
-          console.log('----------------');
-          res.redirect('/');
-        } else {
-          res.send(userObj);
-        }
-      }));
+    });
   });
 }
