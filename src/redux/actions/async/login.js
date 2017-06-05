@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import CryptoJS from 'crypto-js';
 import { pendingTask, begin, end } from 'react-redux-spinner';
+import { setCookie } from 'redux-cookie';
 import {
   REQUEST_USER,
   RECEIVE_USER_FAIL,
@@ -17,8 +18,8 @@ const requestUser = (email, password) => {
   };
 };
 
-export const receiveUser = (email, userObj) => {
-  if (userObj.email === undefined) {
+export const receiveUser = (email, userWithToken) => {
+  if (userWithToken.userObj.email === undefined) {
     return {
       type: RECEIVE_USER_FAIL,
       receivedAt: Date.now(),
@@ -28,7 +29,7 @@ export const receiveUser = (email, userObj) => {
 
   return {
     type: RECEIVE_USER_SUCCESS,
-    user: userObj,
+    user: userWithToken.userObj,
     receivedAt: Date.now(),
     [pendingTask]: end,
   };
@@ -63,13 +64,18 @@ export const findUser = (email, password) => {
 
     return fetch(`/authenticate/${encodedEmail}/${encodedPassword}`, {
       method: 'GET',
+      credentials: 'same-origin',
     })
       .then(response => response.json())
-      .then(userObj =>
+      .then(userWithToken =>
 
         // We can dispatch many times!
         // Here, we update the app state with the results of the API call.
-        dispatch(receiveUser(email, userObj)),
+        dispatch(
+          receiveUser(email, userWithToken),
+          dispatch(setCookie('access-token', userWithToken.token, { expires: 365 })),
+        ),
+
       );
 
       // In a real world app, you also want to

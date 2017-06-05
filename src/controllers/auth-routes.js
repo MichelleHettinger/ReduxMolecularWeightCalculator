@@ -1,6 +1,7 @@
 const phs = require('password-hash-and-salt');
 const User = require("../models/user.js");
 const CryptoJS = require("crypto-js");
+const jwt = require('jsonwebtoken'); 
 
 module.exports = function(app){
 
@@ -10,6 +11,11 @@ module.exports = function(app){
     const email = decodeURIComponent(req.params.encodedEmail);
     const encryptedPassword = decodeURIComponent(req.params.encodedPassword);
     const whatUserTyped = CryptoJS.AES.decrypt(encryptedPassword, 'michelle is totally awesome').toString(CryptoJS.enc.Utf8);
+
+    const userInfo = {
+      username: email,
+      password: whatUserTyped,
+    };
 
     User.findOne({'email': email}).exec(function(err, userObj){
       if (err){
@@ -39,7 +45,14 @@ module.exports = function(app){
               console.log('-----------------');
               console.log("Access granted.");
               console.log('-----------------');
-              res.send(userObj);
+
+              // We use jwt to "sign" a web token, using the secret we created in server.js
+              const token = jwt.sign(userInfo, app.get('jwtSecret'), {
+                  expiresIn: 1440 // Token is given but will expire in 24 minutes (requiring a re-login)
+              });
+
+              const userWithToken = {token, userObj};
+              res.send(userWithToken);
           }
         });
       }
@@ -69,4 +82,32 @@ module.exports = function(app){
       }
     });
   });
+
+  // ------------------------------------------------------------------------------------------------------
+  // GET/POST - This route checks token for all subsequent queries (in our case all the api queries)
+  // ------------------------------------------------------------------------------------------------------
+  // By saying app.all (all routes will pass through here. If they meet the requirement for a token then they are "next"ed to the next route option).
+
+
+  // IMPORTANT #3
+  // ============
+  // app.all('*'): every entry into the site that proceeds this route file
+  // app.all('*', function(req, res, next) {
+
+  //   const cookie = req.headers.cookie;
+  //   const token = cookie.split('=')[1];
+
+  //   jwt.verify(token, app.get('jwtSecret'), function(err, decoded) {
+  //     if (err) {
+  //       // if it's a bad cookie, tell console (debugging)
+  //       console.log("bad cookie");
+  //       // return error if there is one
+  //       return res.json({success: false, message: "access denied. Bro. Did you even send me a token?"})
+  //     }
+  //     else {
+  //       console.log("good cookie");
+  //       next();
+  //     }
+  //   });
+  // });
 }

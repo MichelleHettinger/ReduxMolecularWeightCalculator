@@ -1,12 +1,14 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import Cookies from 'cookies-js';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createCookieMiddleware } from 'redux-cookie';
 import * as reducers from '../reducers/index';
 import DevTools from '../components/DevTools';
 
 const enhancer = compose(
   // Middleware you want to use in development:
   applyMiddleware(thunk),
-  // Required! Enable Redux DevTools with the monitors you chose
+  applyMiddleware(createCookieMiddleware(Cookies, '/redux/cookie/')),
   DevTools.instrument(),
 );
 
