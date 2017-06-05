@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 let newCompoundName = '';
-const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, saveNewCompound, deleteOldCompound, userID }) => {
+const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userID, userCompounds, loadUserCompound, clearCalcPanel, saveNewCompound, deleteOldCompound }) => {
   const currentElements = elementsClicked.map((element) => {
     if (element.multiplier === 1) {
       return (
@@ -23,6 +23,9 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, 
   const userSavedCompoundsMapped = userCompounds.map((compound) => {
     const compoundName = compound.chemicalName;
     const compoundTotal = compound.molecularWeight;
+    const compoundFormula = compound.elements.map((elem) => {
+      return elem;
+    });
 
     const molecularFormula = compound.elements.map((elemente) => {
       const acronym = elemente.acronym;
@@ -55,7 +58,7 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, 
             type='button'
             value='Load'
             className='btn btn-sm btn-info'
-            //onClick={()=>{this.loadSavedMolecule(compoundX)}}
+            onClick={ () => { loadUserCompound(compoundName, compoundTotal, compoundFormula); } }
           />
           <input
             type='button'
@@ -190,6 +193,7 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, 
           id='massPanelClearButton'
           type='button'
           className='btn btn-sm btn-secondary'
+          onClick={ () => clearCalcPanel() }
         >Clear</button>
       </div>
       {saveCompoundModal}
@@ -200,6 +204,7 @@ const MassPanel = ({ molecularWeight, elementsClicked, isLogged, userCompounds, 
 MassPanel.propTypes = {
   molecularWeight: PropTypes.number.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  userID: PropTypes.string.isRequired,
   elementsClicked: PropTypes.arrayOf(PropTypes.shape({
     mass: PropTypes.number.isRequired,
     acronym: PropTypes.string.isRequired,
@@ -216,9 +221,10 @@ MassPanel.propTypes = {
       parenId: PropTypes.number.isRequired,
     }).isRequired).isRequired,
   }).isRequired).isRequired,
+  loadUserCompound: PropTypes.func.isRequired,
+  clearCalcPanel: PropTypes.func.isRequired,
   saveNewCompound: PropTypes.func.isRequired,
   deleteOldCompound: PropTypes.func.isRequired,
-  userID: PropTypes.string.isRequired,
 };
 
 export default MassPanel;

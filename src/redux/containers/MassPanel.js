@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import MassPanel from '../components/MassPanel';
-import { saveCompound } from '../actions/savecompound';
-import { deleteCompound } from '../actions/deletecompound';
+import { saveCompound } from '../actions/async/savecompound';
+import { deleteCompound } from '../actions/async/deletecompound';
+import { loadCompound, clearPanel } from '../actions/elements';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +16,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadUserCompound: (name, weight, formula) => {
+      dispatch(loadCompound(name, weight, formula));
+    },
+    clearCalcPanel: () => {
+      dispatch(clearPanel());
+    },
     saveNewCompound: (userId, newCompound) => {
       dispatch(saveCompound(userId, newCompound));
     },

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 let email;
 let password;
 
-const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
+const LoginHeader = ({ logUserIn, isLogged, signUserUp, logUserOut }) => {
   const loginHeader = (
     <div id='loginHeader' className='col-sm-4'>
       <div id='emailFormGroup' className='form-group'>
@@ -71,7 +71,7 @@ const LoginHeader = ({ logUserIn, isLogged, signUserUp }) => {
           type='button'
           value='Log Out'
           className='btn btn-warning btn-sm'
-          //onClick={this.logOut}
+          onClick={ () => { logUserOut(); } }
         />
       </div>
       <div id='accountModal' className='modal fade'>
@@ -162,6 +162,7 @@ LoginHeader.propTypes = {
   isLogged: PropTypes.bool.isRequired,
   logUserIn: PropTypes.func.isRequired,
   signUserUp: PropTypes.func.isRequired,
+  logUserOut: PropTypes.func.isRequired,
 };
 
 export default LoginHeader;

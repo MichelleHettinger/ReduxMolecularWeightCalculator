@@ -10,7 +10,31 @@ import {
   REMOVE_ELEMENT,
   PIN_ELEMENT,
   SEARCH_ELEMENT,
+  CLEAR_CALC_PANEL,
+  LOAD_USER_COMPOUND,
+  LOG_USER_OUT,
 } from '../constants/actions';
+
+export const logOut = () => {
+  return {
+    type: LOG_USER_OUT,
+  };
+};
+
+export const clearPanel = () => {
+  return {
+    type: CLEAR_CALC_PANEL,
+  };
+};
+
+export const loadCompound = (compoundName, molecularWeight, elementsClicked) => {
+  return {
+    type: LOAD_USER_COMPOUND,
+    compoundName,
+    molecularWeight,
+    elementsClicked,
+  };
+};
 
 export const doPlus = (id) => {
   return {

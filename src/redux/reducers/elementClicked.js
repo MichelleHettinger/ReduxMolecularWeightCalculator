@@ -5,6 +5,8 @@ import {
   DO_PAREN_B,
   REMOVE_ELEMENT,
   PIN_ELEMENT,
+  CLEAR_CALC_PANEL,
+  LOAD_USER_COMPOUND,
 } from '../constants/actions';
 
 
@@ -278,6 +280,14 @@ const elementClicked = (state = [], action) => {
       //console.log(finalParenState);
 
       return finalParenState;
+    }
+
+    case CLEAR_CALC_PANEL: {
+      return [];
+    }
+
+    case LOAD_USER_COMPOUND: {
+      return action.elementsClicked;
     }
 
     default:

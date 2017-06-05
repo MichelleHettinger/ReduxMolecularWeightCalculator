@@ -5,7 +5,7 @@ import {
   REQUEST_DELETE_COMPOUND,
   DELETE_COMPOUND_FAIL,
   DELETE_COMPOUND_SUCCESS,
-} from '../constants/actions';
+} from '../../constants/actions';
 
 const requestDeleteCompound = (userObjId, oldCompound) => {
   return {

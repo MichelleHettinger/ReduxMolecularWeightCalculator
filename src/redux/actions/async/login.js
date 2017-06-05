@@ -5,8 +5,8 @@ import {
   REQUEST_USER,
   RECEIVE_USER_FAIL,
   RECEIVE_USER_SUCCESS,
-} from '../constants/actions';
-import validateEmailPass from '../utils/validation';
+} from '../../constants/actions';
+import validateEmailPass from '../../utils/validation';
 
 const requestUser = (email, password) => {
   return {

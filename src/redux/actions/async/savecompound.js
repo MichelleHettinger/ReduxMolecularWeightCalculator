@@ -1,11 +1,10 @@
 import fetch from 'isomorphic-fetch';
-//import CryptoJS from 'crypto-js';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import {
   REQUEST_SAVE_COMPOUND,
   SAVE_COMPOUND_FAIL,
   SAVE_COMPOUND_SUCCESS,
-} from '../constants/actions';
+} from '../../constants/actions';
 
 const requestSaveCompound = (userObjId, newCompound) => {
   return {

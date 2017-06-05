@@ -1,12 +1,12 @@
 import fetch from 'isomorphic-fetch';
 import phs from 'password-hash-and-salt';
 import { pendingTask, begin, end } from 'react-redux-spinner';
-import validateEmailPass from '../utils/validation';
+import validateEmailPass from '../../utils/validation';
 import {
   REQUEST_REGISTER_USER,
   REGISTER_USER_FAIL,
   REGISTER_USER_SUCCESS,
-} from '../constants/actions';
+} from '../../constants/actions';
 
 const requestRegisterUser = (email, password) => {
   return {

@@ -11,6 +11,7 @@ import {
   REQUEST_DELETE_COMPOUND,
   DELETE_COMPOUND_FAIL,
   DELETE_COMPOUND_SUCCESS,
+  LOG_USER_OUT,
 } from '../constants/actions';
 
 const user = (state = {
@@ -46,6 +47,12 @@ const user = (state = {
         isFetching: false,
         isLogged: false,
         lastUpdated: action.receivedAt,
+      });
+
+    case LOG_USER_OUT:
+      return Object.assign({}, state, {
+        isLogged: false,
+        details: {_id: '', compounds: []},
       });
 
     default: {

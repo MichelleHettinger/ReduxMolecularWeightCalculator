@@ -1,6 +1,8 @@
 import {
   CALCULATE_TOTAL_PLUS,
   CALCULATE_TOTAL_MINUS,
+  CLEAR_CALC_PANEL,
+  LOAD_USER_COMPOUND,
 } from '../constants/actions';
 
 const massCalculated = (state = 0, action) => {
@@ -19,6 +21,14 @@ const massCalculated = (state = 0, action) => {
       }
 
       return newMinus;
+    }
+
+    case CLEAR_CALC_PANEL: {
+      return 0;
+    }
+
+    case LOAD_USER_COMPOUND: {
+      return action.molecularWeight;
     }
 
     default:
