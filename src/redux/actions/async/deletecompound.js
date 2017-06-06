@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-//import CryptoJS from 'crypto-js';
 import { pendingTask, begin, end } from 'react-redux-spinner';
 import {
   REQUEST_DELETE_COMPOUND,
@@ -16,11 +15,11 @@ const requestDeleteCompound = (userObjId, oldCompound) => {
   };
 };
 
-export const finishDeleteCompound = (user, oldCompound) => {
-  if (user === undefined) {
+export const finishDeleteCompound = (userObj, oldCompound) => {
+  if (userObj === undefined) {
     return {
       type: DELETE_COMPOUND_FAIL,
-      user,
+      userObj,
       oldCompound,
       receivedAt: Date.now(),
       [pendingTask]: end,
@@ -29,7 +28,7 @@ export const finishDeleteCompound = (user, oldCompound) => {
 
   return {
     type: DELETE_COMPOUND_SUCCESS,
-    user,
+    userObj,
     oldCompound,
     receivedAt: Date.now(),
     [pendingTask]: end,
@@ -48,7 +47,6 @@ export const deleteCompound = (UserID, oldCompoundName) => {
     })
       .then(response => response.json())
       .then(userObj =>
-
         dispatch(finishDeleteCompound(userObj, oldCompoundName)),
       );
   };

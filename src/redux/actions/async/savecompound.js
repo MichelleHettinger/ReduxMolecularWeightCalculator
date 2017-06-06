@@ -15,11 +15,11 @@ const requestSaveCompound = (userObjId, newCompound) => {
   };
 };
 
-export const finishSaveCompound = (user, newCompound) => {
-  if (user === undefined) {
+export const finishSaveCompound = (userObj, newCompound) => {
+  if (userObj === undefined) {
     return {
       type: SAVE_COMPOUND_FAIL,
-      user,
+      userObj,
       newCompound,
       receivedAt: Date.now(),
       [pendingTask]: end,
@@ -28,7 +28,7 @@ export const finishSaveCompound = (user, newCompound) => {
 
   return {
     type: SAVE_COMPOUND_SUCCESS,
-    user,
+    userObj,
     newCompound,
     receivedAt: Date.now(),
     [pendingTask]: end,
@@ -48,7 +48,6 @@ export const saveCompound = (UserID, newCompound) => {
     })
       .then(response => response.json())
       .then(userObj =>
-
         dispatch(finishSaveCompound(userObj, newCompound)),
       );
   };

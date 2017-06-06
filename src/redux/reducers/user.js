@@ -35,7 +35,7 @@ const user = (state = {
       return Object.assign({}, state, {
         isFetching: false,
         isLogged: true,
-        details: action.user,
+        details: action.userObj,
         lastUpdated: action.receivedAt,
       });
 

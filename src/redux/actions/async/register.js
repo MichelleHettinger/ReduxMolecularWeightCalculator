@@ -17,8 +17,8 @@ const requestRegisterUser = (email, password) => {
   };
 };
 
-export const finishRegisterUser = (email, userObj) => {
-  if (userObj.email === undefined) {
+export const finishRegisterUser = (email, userWithToken) => {
+  if (userWithToken.userObj.email === undefined) {
     return {
       type: REGISTER_USER_FAIL,
       receivedAt: Date.now(),
@@ -28,7 +28,7 @@ export const finishRegisterUser = (email, userObj) => {
 
   return {
     type: REGISTER_USER_SUCCESS,
-    user: userObj,
+    userObj: userWithToken.userObj,
     receivedAt: Date.now(),
     [pendingTask]: end,
   };
@@ -54,8 +54,8 @@ export const registerUser = (email, password) => {
         method: 'POST',
       })
         .then(response => response.json())
-        .then(userObj =>
-          dispatch(finishRegisterUser(email, userObj)),
+        .then(userWithToken =>
+          dispatch(finishRegisterUser(email, userWithToken)),
         );
     });
   };
